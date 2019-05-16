@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SeleniumDemo1" basedir=".">
+    <property name="lib.dir" value="lib" />
+    <path id="test.classpath">
+        <fileset dir="${lib.dir}" includes="*.jar" />
+    </path>
+    <target name="transform">
+        <xslt in="E:/SeleniumDemo1/target/surefire-reports/TEST-TestSuite.xml"
+              style="E:/SeleniumDemo1/test-output/testng-results.xsl"
+              out="E:/SeleniumDemo1/target/surefire-reports/html/index1.html">
+            <param name="testNgXslt.outputdir" expression="E:/SeleniumDemo1/test-output" />
+            <classpath refid="test.classpath" />
+        </xslt>
+    </target>
+</project>

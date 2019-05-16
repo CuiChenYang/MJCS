@@ -1,0 +1,14 @@
+server:
+  port: 7070
+
+baidu:
+  appid: 15819857
+  apikey: wC9kBK4NsZFCelWECe5utmGu
+  appsecret: tS1XI21mFXd00V0s4wn8iMqGp2DAamWs
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://192.168.2.216:1433;databaseName=FlxServerDB
+    username: mj_flx_server_admin
+    password: MjFlxServerAdminP@ssw0rd
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" allow-return-values="true">
+    <test verbose="2" name="D:/IDEA/SeleniumDemo3">
+        <classes>
+            <class name="com.selenium.flx.flx">
+                <methods>
+
+                    <include name="flx"/>
+                    <include name="login"/>
+
+                    <include name="userManage"/>
+                    <include name="menuManage"/>
+                    <include name="authorizationManage"/>
+                    <include name="roleManage"/>
+                    <include name="parameterManage"/>
+                    <include name="appFunctionManage"/>
+                    <include name="organizationManage"/>
+                    <include name="interfacesPowerManage"/>
+                    <include name="customerIPSettings"/>
+                    <include name="thirdPartyAccountManage"/>
+                    <include name="other"/>
+                    <include name="queryShopScore"/>
+                    <include name="queryShopScoreAlter"/>
+                    <include name="queryLog"/>
+
+                    <include name="cusProfileAlterManager"/>
+                    <include name="cooperationManager"/>
+                    <include name="cooperationCustomRelation"/>
+
+                    <include name="bankCardCountList"/>
+                    <include name="prepaidCardCountList"/>
+
+                    <include name="custom_power"/>
+                    <include name="agentList"/>
+
+                    <!--<include name="rechargeQueryList"/>-->
+
+
+
+                </methods>
+            </class>
+            <!--<class name="com.selenium.fuyou.fuYou">-->
+            <!--</class>-->
+        </classes>
+    </test>
+</suite>
