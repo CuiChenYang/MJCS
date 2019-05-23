@@ -73,6 +73,7 @@ public class customerIPSettings {
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a[2]/span")).click();
             Thread.sleep(500);
+            updateInput(driver, "name", "customIp.customNo", "01510182");
             updateInput(driver, "name", "customIp.ipAddress", "192.168.1.21");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
@@ -86,7 +87,6 @@ public class customerIPSettings {
             driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--客户IP设置--测试完成 <br/>");

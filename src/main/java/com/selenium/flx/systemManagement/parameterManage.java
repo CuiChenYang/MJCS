@@ -62,7 +62,6 @@ public class parameterManage {
             }
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--参数管理--测试完成 <br/>");

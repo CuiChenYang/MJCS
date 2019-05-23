@@ -11,17 +11,19 @@ import javax.xml.bind.Element;
 import java.util.List;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 
 public class menuManage {
+
     //菜单管理
     public boolean menu(WebDriver driver) {
         try {
             switchIframe(driver, "/FlxServer/coframe/framework/menu/menu_manage.jsp", 1);
-            switchIframe(driver, "/FlxServer/coframe/framework/menu/menu_list.jsp", 1);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
+            judge(driver);
+            Thread.sleep(500);
+            mouseClick(driver, "mini-tree-nodetext", "应用菜单树", 2);
+            Thread.sleep(500);
+            driver.findElement(By.id("addmenu$text")).click();
             Thread.sleep(1000);
             switchIframe(driver, "/FlxServer/coframe/framework/menu/menu_add.jsp", 0);
 
@@ -37,13 +39,7 @@ public class menuManage {
 
             Thread.sleep(1000);
             switchIframe(driver, "/FlxServer/coframe/framework/menu/menu_manage.jsp", 0);
-            List<WebElement> list = driver.findElements(By.className("mini-tree-nodetext"));
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getText().equals("测试")) {
-                    list.get(i).click();
-                    break;
-                }
-            }
+            mouseClick(driver, "mini-tree-nodetext", "测试", 0);
             Thread.sleep(1000);
             switchIframe(driver, "/FlxServer/coframe/framework/menu/menu_info.jsp", 1);
             updateInput(driver, "name", "appmenu.menuname", "测试1");
@@ -55,15 +51,9 @@ public class menuManage {
 
             Thread.sleep(1000);
             switchIframe(driver, "/FlxServer/coframe/framework/menu/menu_manage.jsp", 0);
-            list = driver.findElements(By.className("mini-tree-nodeshow"));
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getText().equals("测试1")) {
-                    list.get(i).click();
-                    break;
-                }
-            }
+            mouseClick(driver, "mini-tree-nodeshow", "测试1", 0);
             Thread.sleep(1000);
-            driver.findElement(By.xpath("//*[@id=\"mini-16$3\"]/span")).click();
+            driver.findElements(By.className("mini-tab-text")).get(1).click();
 
             Thread.sleep(1000);
             switchIframe(driver, "/FlxServer/coframe/framework/menu/menu_list.jsp", 1);
@@ -115,22 +105,12 @@ public class menuManage {
             Thread.sleep(1000);
             switchIframe(driver, "/FlxServer/coframe/framework/menu/menu_manage.jsp", 0);
             //创建鼠标
-            Actions mouse = new Actions(driver);
-            //右键测试1  点击删除
-            list = driver.findElements(By.className("mini-tree-nodetext"));
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getText().equals("测试1")) {
-                    mouse.contextClick(list.get(i)).perform();
-                    break;
-                }
-            }
+            mouseClick(driver, "mini-tree-nodetext", "测试1", 2);
             Thread.sleep(1000);
             driver.findElement(By.id("removemenu$text")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("//a[contains(@style,'width: 58px; margin-right: 15px;')]")).click();
             Thread.sleep(1000);
-
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--菜单管理--测试完成 <br/>");
@@ -146,4 +126,24 @@ public class menuManage {
         }
     }
 
+    public void judge(WebDriver driver) throws InterruptedException {
+        Actions mouse = new Actions(driver);
+        boolean b = false;
+        List<WebElement> list = driver.findElements(By.className("mini-tree-nodetext"));
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getText().equals("测试1") || list.get(i).getText().equals("测试")) {
+                list.get(i).click();
+                mouse.contextClick(list.get(i)).perform();
+                b = true;
+                break;
+            }
+        }
+        if (b) {
+            Thread.sleep(1000);
+            driver.findElement(By.id("removemenu$text")).click();
+            Thread.sleep(1000);
+            driver.findElement(By.xpath("//a[contains(@style,'width: 58px; margin-right: 15px;')]")).click();
+            Thread.sleep(1000);
+        }
+    }
 }

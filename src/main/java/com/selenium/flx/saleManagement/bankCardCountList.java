@@ -37,7 +37,6 @@ public class bankCardCountList {
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr/td[3]/a/span")).click();
 
             Thread.sleep(500);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("销售管理--银行卡库存查询--测试完成 <br/>");

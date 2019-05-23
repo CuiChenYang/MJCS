@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 
 public class queryLog {
 
@@ -38,7 +36,6 @@ public class queryLog {
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr/td[8]/a/span")).click();
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--日志查询--用户登录日志--测试完成 <br/>");
@@ -63,18 +60,17 @@ public class queryLog {
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/other/webHandle/queryHandle.jsp", 0);
 
-            queryOver(driver);
+            queryOver(driver,"mini-grid-cell");
             queryUserOperateLog(driver, "2019-04-18", "2019-04-18", "", "", "");
-            queryOver(driver);
+            queryOver(driver,"mini-grid-cell");
             queryUserOperateLog(driver, "2019-04-18", "2019-04-18", "sysadmin", "", "");
-            queryOver(driver);
+            queryOver(driver,"mini-grid-cell");
             queryUserOperateLog(driver, "2019-04-18", "2019-04-18", "sysadmin", "", "custom/cusprofile/com.primeton.components.nui.DictLoader.getDictData.biz.ext");
-            queryOver(driver);
+            queryOver(driver,"mini-grid-cell");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[8]/a/span")).click();
-            queryOver(driver);
+            queryOver(driver,"mini-grid-cell");
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--日志查询--用户操作日志--测试完成 <br/>");
@@ -90,19 +86,6 @@ public class queryLog {
         }
     }
 
-    //查询未执行完毕则休眠程序
-    public void queryOver(WebDriver driver) throws InterruptedException {
-        boolean b = true;
-        do {
-            try {
-                driver.findElements(By.className("mini-grid-cell ")).get(0);
-                b = false;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Thread.sleep(1000);
-        } while (b);
-    }
 
     public void queryUserLoginLog(WebDriver driver, String startTime, String endTime, String userName, String userCode) throws InterruptedException {
         updateInput(driver, "id", "startOperatorTime$text", startTime);

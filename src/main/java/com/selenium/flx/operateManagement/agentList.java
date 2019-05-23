@@ -19,7 +19,6 @@ public class agentList {
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/agent/agent/agentList.jsp", 0);
 
-
             //查询
             queryInput(driver, "代理商", "", "", "", "", "");
             queryInput(driver, "", "dl0004", "", "", "", "");
@@ -114,7 +113,6 @@ public class agentList {
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             Thread.sleep(500);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("运营管理--代理商管理--测试完成 <br/>");
@@ -140,6 +138,6 @@ public class agentList {
         updateInput(driver, "id", "createTimeEnd$text", endTime);
 
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span")).click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
     }
 }

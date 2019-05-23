@@ -41,7 +41,7 @@ public class userManage {
                     driver.findElement(By.className("mini-buttonedit-icon")).click();
             }
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
+
             if (journal) {
                 Reporter.log("系统管理--用户管理--查询完成 <br/>");
             }

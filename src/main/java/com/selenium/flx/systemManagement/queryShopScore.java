@@ -26,8 +26,6 @@ public class queryShopScore {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-cancel")).click();
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
-
 
             if (journal) {
                 Reporter.log("系统管理--系统账户优分设置--测试完成 <br/>");

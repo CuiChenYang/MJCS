@@ -32,7 +32,6 @@ public class queryShopScoreAlter {
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr/td[7]/a/span")).click();
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--系统账户优分设置变更记录--测试完成 <br/>");

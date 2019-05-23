@@ -2,16 +2,16 @@ package com.selenium.flx;
 
 import com.selenium.utils.JdbcUtil;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Reporter;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import static com.selenium.flx.flx.journal;
 import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
@@ -51,6 +51,20 @@ public class flxPublicMethod {
                 break;
         }
 
+    }
+
+    //查询未执行完毕则休眠程序
+    public static void queryOver(WebDriver driver, String className) throws InterruptedException {
+        boolean b = true;
+        do {
+            try {
+                driver.findElements(By.className(className)).get(0);
+                b = false;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Thread.sleep(1000);
+        } while (b);
     }
 
     //出现此元素就点击若不出现则一直等（每一秒判断一次）
@@ -117,30 +131,89 @@ public class flxPublicMethod {
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'" + iframeSrc + "')]")));
     }
 
-
-
-
-    //模版
-    public boolean asdf(WebDriver driver) {
-        try {
-
-            Thread.sleep(500);
-            switchIframe(driver,"",0);
-
-
-            if (journal) {
-                Reporter.log("运营管理--用户管理--测试完成 <br/>");
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (journal) {
-                taskScreenShot(driver);
-                Reporter.log("运营管理--用户管理--测试失败。错误：" + e.toString() + "<br/>");
-            }
-            return false;
+    /**
+     * 查询下拉列表
+     *
+     * @param driver
+     * @param num          值的个数
+     * @param spinnerId    下拉列表的id
+     * @param listIdPrefix 值的id前缀
+     * @param queryXpath   查询按钮的xpath
+     * @throws InterruptedException
+     */
+    public static void querySpinner(WebDriver driver, int num, String spinnerId, String listIdPrefix, String queryXpath) throws InterruptedException {
+        for (int i = 1; i < num; i++) {
+            driver.findElement(By.id(spinnerId)).click();
+            driver.findElement(By.id(listIdPrefix + i)).click();
+            driver.findElement(By.xpath(queryXpath)).click();
+            Thread.sleep(1500);
         }
+        driver.findElement(By.id(spinnerId)).click();
+        driver.findElement(By.id(listIdPrefix + 0)).click();
     }
 
+    /**
+     * 点击某个按钮跳出新的tab页面，停顿两秒后关闭新页面回到旧页面
+     *
+     * @param driver
+     * @param cssSelector 按钮的cssSelector
+     * @throws InterruptedException
+     */
+    public static void lookTabAndCloseTab(WebDriver driver, String cssSelector) throws InterruptedException {
+        //保存当前页面的句柄
+        String oldHandle = driver.getWindowHandle();
+        //点击按钮跳出页面
+        driver.findElement(By.cssSelector(cssSelector)).click();
+        Thread.sleep(2000);
+        //获取当前浏览器打开的页面Handle集合
+        Set<String> set = driver.getWindowHandles();
+        //定位到新打开的tab页
+        for (String h : set) {
+            if (!h.equals(driver.getWindowHandle())) {
+                driver.switchTo().window(h);
+            }
+        }
+        //关闭打印页面，回到之前页面
+        driver.close();
+        driver.switchTo().window(oldHandle);
+    }
 
+    /**
+     * 使用鼠标左键单击或右键单击
+     * 或左键单击后再右键单击
+     * 集合的某元素（若元素存在）
+     * 返回值为是否存在此元素
+     *
+     * @param driver
+     * @param listClassName 集合的className
+     * @param text          需要单击的元素名称
+     * @param click         0为左键单击，1为右键单击，2为左键单击后再右键单击
+     * @throws InterruptedException
+     */
+    public static boolean mouseClick(WebDriver driver, String listClassName, String text, int click) throws InterruptedException {
+        Actions mouse = new Actions(driver);
+        Thread.sleep(500);
+        List<WebElement> list = driver.findElements(By.className(listClassName));
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getText().equals(text)) {
+                if (click == 0) {
+                    mouse.click(list.get(i)).perform();
+                    Thread.sleep(500);
+                }
+                if (click == 1) {
+                    mouse.contextClick(list.get(i)).perform();
+                    Thread.sleep(500);
+
+                }
+                if (click == 2) {
+                    Thread.sleep(500);
+                    mouse.click(list.get(i)).perform();
+                    Thread.sleep(500);
+                    mouse.contextClick(list.get(i)).perform();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 }

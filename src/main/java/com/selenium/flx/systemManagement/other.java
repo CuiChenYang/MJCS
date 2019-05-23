@@ -79,7 +79,6 @@ public class other {
             driver.switchTo().alert().accept();
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--其他--设置安全策略--测试完成 <br/>");
@@ -172,7 +171,6 @@ public class other {
             driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a[1]")).click();
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--其他--配置业务字典--测试完成 <br/>");

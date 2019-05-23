@@ -12,7 +12,7 @@ import static com.selenium.flx.flxPublicMethod.updateInput;
 
 public class cooperationManager {
 
-
+    //合作伙伴档案管理
     public boolean cooperationManager(WebDriver driver) {
         try {
 
@@ -72,7 +72,6 @@ public class cooperationManager {
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr/td[6]/a/span")).click();
 
             Thread.sleep(500);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("客户管理--合作伙伴档案管理--测试完成 <br/>");

@@ -9,9 +9,7 @@ import org.testng.Reporter;
 import java.util.List;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 
 public class organizationManage {
     //组织机构管理
@@ -20,7 +18,10 @@ public class organizationManage {
 
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
-
+            Thread.sleep(500);
+            //判断是否需要删除
+            judge(driver);
+            Thread.sleep(500);
             //新增测试组织
             Actions mouse = new Actions(driver);
             List<WebElement> list = driver.findElements(By.className("mini-tree-nodetext"));
@@ -57,14 +58,7 @@ public class organizationManage {
             //本级机构  修改
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
-            list = driver.findElements(By.className("mini-tree-nodeshow"));
-            Thread.sleep(500);
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getText().equals("test公司")) {
-                    list.get(2).click();
-                    break;
-                }
-            }
+            mouseClick(driver, "mini-tree-nodeshow", "test公司", 0);
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/org/organization/org_update.jsp", 1);
             Thread.sleep(500);
@@ -313,21 +307,13 @@ public class organizationManage {
             //删除测试组织
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 1);
-            list = driver.findElements(By.className("mini-tree-nodeshow"));
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getText().equals("test公司")) {
-                    mouse.click(list.get(i)).perform();
-                    mouse.contextClick(list.get(i)).perform();
-                    break;
-                }
-            }
+            mouseClick(driver, "mini-tree-nodeshow", "test公司", 2);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"treeMenu\"]/div/div/div[1]/div[5]/div/div[2]")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//a[contains(@style,'width: 58px; margin-right: 15px;')]")).click();
 
             Thread.sleep(1500);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--组织机构管理--测试完成 <br/>");
@@ -340,6 +326,16 @@ public class organizationManage {
                 Reporter.log("系统管理--组织机构管理--测试失败。错误：" + e.toString() + "<br/>");
             }
             return false;
+        }
+    }
+
+    public void judge(WebDriver driver) throws InterruptedException {
+        boolean b = mouseClick(driver, "mini-tree-nodeshow", "test公司", 2);
+        if (b) {
+            Thread.sleep(500);
+            driver.findElement(By.xpath("//*[@id=\"treeMenu\"]/div/div/div[1]/div[5]/div/div[2]")).click();
+            Thread.sleep(500);
+            driver.findElement(By.xpath("//a[contains(@style,'width: 58px; margin-right: 15px;')]")).click();
         }
     }
 }

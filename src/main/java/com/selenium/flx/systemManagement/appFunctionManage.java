@@ -9,19 +9,24 @@ import org.testng.Reporter;
 import java.util.List;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 
 public class appFunctionManage {
     //应用功能管理
     public boolean appFunctionManage(WebDriver driver) {
         try {
 
-             Thread.sleep(500);
+            Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/framework/application/application_manage.jsp", 1);
-
+            Thread.sleep(500);
+            boolean b = judge(driver);
             //新增
+            if (b) {
+                driver.switchTo().defaultContent();
+                driver.findElement(By.id("3")).click();
+                Thread.sleep(500);
+                switchIframe(driver, "/FlxServer/coframe/framework/application/application_manage.jsp", 1);
+            }
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/framework/application/application_list.jsp", 1);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
@@ -69,9 +74,8 @@ public class appFunctionManage {
             //功能组列表测试
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/framework/application/application_manage.jsp", 0);
-            List<WebElement> list = driver.findElements(By.className("mini-tree-nodeshow"));
             Thread.sleep(500);
-            list.get(2).click();
+            mouseClick(driver, "mini-tree-nodeshow", "测试应用", 0);
             Thread.sleep(500);
             driver.findElement(By.id("mini-16$3")).click();
             //增加
@@ -82,7 +86,7 @@ public class appFunctionManage {
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/framework/functiongroup/funcgroup_add.jsp", 0);
             Thread.sleep(500);
-            updateInput(driver,"id","appfuncgroup.funcgroupname$text","测试名称1");
+            updateInput(driver, "id", "appfuncgroup.funcgroupname$text", "测试名称1");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //编辑
@@ -96,7 +100,7 @@ public class appFunctionManage {
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/framework/functiongroup/funcgroup_edit.jsp", 0);
             Thread.sleep(500);
-            updateInput(driver,"id","appfuncgroup.funcgroupname$text","测试名称2");
+            updateInput(driver, "id", "appfuncgroup.funcgroupname$text", "测试名称2");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //删除
@@ -113,16 +117,13 @@ public class appFunctionManage {
             //删除测试应用
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/framework/application/application_manage.jsp", 0);
-            Actions mouse = new Actions(driver);
-            list = driver.findElements(By.className("mini-tree-nodeshow"));
-            mouse.contextClick(list.get(2)).perform();
+            Thread.sleep(500);
+            mouseClick(driver, "mini-tree-nodeshow", "测试应用", 2);
             Thread.sleep(1000);
             driver.findElement(By.id("removeapplication$text")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("//a[contains(@style,'width: 58px; margin-right: 15px;')]")).click();
             Thread.sleep(1000);
-
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--应用功能管理--测试完成 <br/>");
@@ -138,4 +139,15 @@ public class appFunctionManage {
         }
     }
 
+    public boolean judge(WebDriver driver) throws InterruptedException {
+        boolean b = mouseClick(driver, "mini-tree-nodeshow", "测试应用", 2);
+        if (b) {
+            Thread.sleep(1000);
+            driver.findElement(By.id("removeapplication$text")).click();
+            Thread.sleep(1000);
+            driver.findElement(By.xpath("//a[contains(@style,'width: 58px; margin-right: 15px;')]")).click();
+            Thread.sleep(1000);
+        }
+        return b;
+    }
 }

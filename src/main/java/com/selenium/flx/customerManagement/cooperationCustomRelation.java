@@ -109,8 +109,6 @@ public class cooperationCustomRelation {
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[8]/a/span")).click();
 
             Thread.sleep(500);
-            driver.switchTo().defaultContent();
-
 
             if (journal) {
                 Reporter.log("客户管理--客户与合作伙伴关系管理--测试完成 <br/>");
@@ -135,7 +133,7 @@ public class cooperationCustomRelation {
         updateInput(driver, "id", "corpaccounts$text", corpaccounts);
 
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span")).click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
     }
 
 }

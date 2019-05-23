@@ -66,7 +66,7 @@ public class authorizationManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
             Thread.sleep(500);
-            driver.findElement(By.xpath("//*[@id=\"4$cell$1\"]/div/div/span/span[2]")).click();
+            driver.findElements(By.cssSelector(".icon-organization.mini-tree-icon")).get(0).click();
             //添加成功
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"addBtn\"]/span")).click();
@@ -136,7 +136,6 @@ public class authorizationManage {
             waitClick(driver, "//*[@id=\"mini-30\"]/span", 3);
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--授权管理--测试完成 <br/>");

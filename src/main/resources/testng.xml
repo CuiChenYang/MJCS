@@ -4,11 +4,11 @@
     <test verbose="2" name="D:/IDEA/SeleniumDemo3">
         <classes>
             <class name="com.selenium.flx.flx">
+                <!--flx测试-->
                 <methods>
-
                     <include name="flx"/>
                     <include name="login"/>
-
+                    <!--系统管理-->
                     <include name="userManage"/>
                     <include name="menuManage"/>
                     <include name="authorizationManage"/>
@@ -23,22 +23,64 @@
                     <include name="queryShopScore"/>
                     <include name="queryShopScoreAlter"/>
                     <include name="queryLog"/>
-
+                    <!--客户管理-->
                     <include name="cusProfileAlterManager"/>
                     <include name="cooperationManager"/>
                     <include name="cooperationCustomRelation"/>
-
+                    <!--销售管理-->
                     <include name="bankCardCountList"/>
                     <include name="prepaidCardCountList"/>
-
+                    <!--运营管理-->
                     <include name="custom_power"/>
                     <include name="agentList"/>
-
-                    <!--<include name="rechargeQueryList"/>-->
-
-
-
+                    <!--财务管理-->
+                    <include name="rechargeQueryList"/>
+                    <include name="scoretobankQueryList"/>
+                    <include name="scoretocredit"/>
+                    <include name="repayment"/>
+                    <include name="queryRepaymentAll"/>
+                    <include name="creditQueryList"/>
+                    <include name="errorRepayment"/>
+                    <include name="importPaymentResult"/>
+                    <include name="paymentFileList"/>
+                    <include name="handleAcceptQueryList"/>
+                    <include name="specialAccountChangeInputList"/>
+                    <include name="orderQueryList"/>
+                    <include name="orderCredentialHandList"/>
+                    <include name="queryReportDailyOrderTbl"/>
+                    <include name="queryReportSpend"/>
+                    <include name="queryCounterFee"/>
+                    <include name="queryCertificateReport"/>
+                    <include name="reportlogMangaer"/>
+                    <include name="queryAccountReport"/>
+                    <include name="queryPointsSummary"/>
+                    <include name="queryEnterSummary"/>
+                    <!--客服明细-->
+                    <include name="queryPrepaidCardInfo"/>
+                    <!--绩效管理-->
+                    <include name="validCustomer"/>
+                    <include name="platformCustomer"/>
+                    <include name="terminalCustomer"/>
+                    <include name="queryTotalCustomer"/>
+                    <include name="agentInfo"/>
                 </methods>
+
+                <!--flx开户充值流程测试-->
+               <!-- <methods>
+                    <include name="flx"/>
+                    <include name="login"/>
+                    <include name="normalOpenCustom"/>
+                    <include name="auditCustom"/>
+                    <include name="entryOrder"/>
+                    <include name="checkOrder"/>
+                    <include name="firstLoginFuYou"/>
+                    <include name="againLoginFuYou"/>
+                    <include name="handleOrder"/>
+                    <include name="activateOrder"/>
+                    <include name="queryDetail"/>
+                    &lt;!&ndash;特殊开户&ndash;&gt;
+                    <include name="specialOpenCustom_1"/>
+                </methods>-->
             </class>
             <!--<class name="com.selenium.fuyou.fuYou">-->
             <!--</class>-->

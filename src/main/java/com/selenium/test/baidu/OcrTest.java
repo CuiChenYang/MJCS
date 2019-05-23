@@ -51,7 +51,7 @@ public class OcrTest {
     }
 
     public static void main(String[] args) {
-            Map<String,Object> ss = OcrTest.orcImage("E:\\2019\\test.png");
+            Map<String,Object> ss = OcrTest.orcImage("E:\\2019\\validCoding.png");
             System.out.println("sss"+ss);
     }
 }

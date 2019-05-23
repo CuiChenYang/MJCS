@@ -48,7 +48,6 @@ public class interfacesPowerManage {
             }
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--接口权限管理--测试完成 <br/>");

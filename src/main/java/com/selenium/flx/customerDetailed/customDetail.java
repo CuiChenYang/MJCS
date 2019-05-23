@@ -1,4 +1,4 @@
-package com.selenium.flx.customService;
+package com.selenium.flx.customerDetailed;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;

@@ -76,7 +76,6 @@ public class roleManage {
             driver.findElement(By.xpath("//*[@id=\"mini-31\"]/span")).click();
 
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("系统管理--角色管理--测试完成 <br/>");

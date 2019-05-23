@@ -36,7 +36,6 @@ public class custom_power {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
 
             Thread.sleep(500);
-            driver.switchTo().defaultContent();
 
             if (journal) {
                 Reporter.log("运营管理--客户绑定--测试完成 <br/>");

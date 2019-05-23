@@ -7,9 +7,7 @@ import org.testng.Reporter;
 import java.util.Set;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 
 public class cusProfileAlterManager {
 
@@ -21,11 +19,6 @@ public class cusProfileAlterManager {
             switchIframe(driver, "/FlxServer/custom/cusprofile/cusProfileAlterManager.jsp", 0);
 
             //查询
-            queryFile(driver, "1549", "", "", "", "");
-            queryFile(driver, "", "上海演示", "", "", "");
-            queryFile(driver, "", "", "2017-01-07", "", "");
-            queryFile(driver, "", "", "", "2017-01-09", "");
-            queryFile(driver, "", "", "", "", "01510006");
             queryFile(driver, "", "", "2017-01-12", "2017-01-13", "");
             queryFile(driver, "", "", "2017-01-12", "2017-01-13", "01510017");
             queryFile(driver, "", "福优网开发", "2017-01-12", "2017-01-13", "01510017");
@@ -34,22 +27,7 @@ public class cusProfileAlterManager {
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
 
-            //保存当前页面的句柄
-            String oldHandle = driver.getWindowHandle();
-            //点击打印跳出页面
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-print")).click();
-            Thread.sleep(2000);
-            //获取当前浏览器打开的页面Handle集合
-            Set<String> set = driver.getWindowHandles();
-            //定位到新打开的tab页
-            for (String h : set) {
-                if (!h.equals(driver.getWindowHandle())) {
-                    driver.switchTo().window(h);
-                }
-            }
-            //关闭打印页面，回到之前页面
-            driver.close();
-            driver.switchTo().window(oldHandle);
+            lookTabAndCloseTab(driver,".mini-button-text.mini-button-icon.icon-print");
 
             if (journal) {
                 Reporter.log("客户管理--客户档案变更记录--测试完成 <br/>");
@@ -75,7 +53,7 @@ public class cusProfileAlterManager {
         updateInput(driver, "id", "customNo$text", customNo);
 
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
-        Thread.sleep(1000);
+        Thread.sleep(1500);
     }
 
 }
