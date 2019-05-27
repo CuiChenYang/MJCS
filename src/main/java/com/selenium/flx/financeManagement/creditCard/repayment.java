@@ -60,6 +60,7 @@ public class repayment {
         updateInput(driver, "id", "cardholder$text", cardholder);
         updateInput(driver, "id", "customNo$text", customNo);
         updateInput(driver, "id", "company$text", company);
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span")).click();
         Thread.sleep(1500);
     }

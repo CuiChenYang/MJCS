@@ -12,14 +12,13 @@ import static com.selenium.flx.flxPublicMethod.switchIframe;
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
 import static com.selenium.flx.flxPublicMethod.updateInput;
 import static com.selenium.fuyou.fuYouMethod.isAlertPresent;
+import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 public class other {
 
     //设置安全策略
     public boolean installSafeStrategy(WebDriver driver) {
         try {
-            Thread.sleep(500);
-            driver.findElement(By.id("50")).click();
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/policy/access_rules_list.jsp", 0);
 
@@ -98,8 +97,6 @@ public class other {
     public boolean disposeTransactionDictionary(WebDriver driver) {
         try {
             Thread.sleep(500);
-            driver.findElement(By.id("51")).click();
-            Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
 
             // 业务字典类型
@@ -110,6 +107,30 @@ public class other {
             switchIframe(driver, "/FlxServer/coframe/dict/edit_dict_type.jsp", 0);
             Thread.sleep(500);
             updatedicttype(driver, "test", "测试");
+            //若已存在先删除再添加
+            if (isExistBoxOrExistButton(driver, "mini-messagebox-buttons", 1)) {
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-close")).click();
+                Thread.sleep(500);
+                switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
+                Thread.sleep(500);
+                updateInput(driver, "id", "dicttypeid$text", "test");
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//*[@id=\"query_dict_type_form\"]/table/tbody/tr[1]/td[5]/a/span")).click();
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).click();
+
+                Thread.sleep(500);
+                driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/div/div/div/div[2]/div[2]/div[2]/div/table/tbody/tr/td/a[1]/span")).click();
+                Thread.sleep(500);
+                switchIframe(driver, "/FlxServer/coframe/dict/edit_dict_type.jsp", 0);
+                Thread.sleep(500);
+                updatedicttype(driver, "test", "测试");
+            }
             //添加子类型
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
@@ -205,7 +226,7 @@ public class other {
             Thread.sleep(500);
             driver.findElement(By.className("mini-listbox-item")).click();
         }
-        if (!(dictid$text == null||"".equals(dictid$text))) {
+        if (!(dictid$text == null || "".equals(dictid$text))) {
             Thread.sleep(500);
             updateInput(driver, "id", "dictid$text", dictid$text);
         }

@@ -40,7 +40,7 @@ public class handleAcceptQueryList {
 
         updateInput(driver, "id", "orderNoFlx$text", orderNoFlx);
         updateInput(driver, "id", "customNo$text", customNo);
-
+        Thread.sleep(500);
         driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
         Thread.sleep(1500);
 

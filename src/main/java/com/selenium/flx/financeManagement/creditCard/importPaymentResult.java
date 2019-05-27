@@ -50,7 +50,7 @@ public class importPaymentResult {
 
         updateInput(driver, "id", "orderNoFlx$text", orderNoFlx);
         updateInput(driver, "id", "orderNoBank$text", orderNoBank);
-
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[6]/a[1]/span")).click();
         Thread.sleep(1500);
     }

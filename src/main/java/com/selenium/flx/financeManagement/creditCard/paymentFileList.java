@@ -54,7 +54,7 @@ public class paymentFileList {
 
         updateInput(driver, "id", "batchno$text", batchno);
         updateInput(driver, "id", "filename$text", filename);
-
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr/td[9]/a/span")).click();
         Thread.sleep(1500);
     }

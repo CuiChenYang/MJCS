@@ -77,6 +77,7 @@ public class scoretobankQueryList {
         }
         updateInput(driver, "xpath", "//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[4]/span[1]/span/input", outputBeginTime);
         updateInput(driver, "xpath", "//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[4]/span[2]/span/input", outputEndTime);
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[6]/a/span")).click();
         Thread.sleep(1500);
     }

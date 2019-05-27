@@ -51,7 +51,7 @@ public class cusProfileAlterManager {
         updateInput(driver, "id", "createDateStart$text", createDateStart);
         updateInput(driver, "id", "createDateEnd$text", createDateEnd);
         updateInput(driver, "id", "customNo$text", customNo);
-
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
         Thread.sleep(1500);
     }

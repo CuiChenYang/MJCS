@@ -49,7 +49,7 @@ public class orderCredentialHandList {
         updateInput(driver, "id", "certificateNo$text", certificateNo);
         updateInput(driver, "id", "adjustTimeStart$text", adjustTimeStart);
         updateInput(driver, "id", "adjustTimeEnd$text", adjustTimeEnd);
-
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[3]/a/span")).click();
         Thread.sleep(1500);
 

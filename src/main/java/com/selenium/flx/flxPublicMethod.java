@@ -53,7 +53,7 @@ public class flxPublicMethod {
 
     }
 
-    //查询未执行完毕则休眠程序
+    //查询未执行完毕则休眠程序(查询结果有数据存在)
     public static void queryOver(WebDriver driver, String className) throws InterruptedException {
         boolean b = true;
         do {

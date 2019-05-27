@@ -14,8 +14,6 @@ public class queryLog {
         try {
 
             Thread.sleep(500);
-            driver.findElement(By.id("2302")).click();
-            Thread.sleep(500);
             switchIframe(driver, "/FlxServer/coframe/auth/login/queryLoginLog.jsp", 0);
 
             Thread.sleep(500);
@@ -55,8 +53,6 @@ public class queryLog {
     public boolean userOperateLog(WebDriver driver) {
         try {
 
-            Thread.sleep(500);
-            driver.findElement(By.id("2303")).click();
             Thread.sleep(500);
             switchIframe(driver, "/FlxServer/other/webHandle/queryHandle.jsp", 0);
 

@@ -20,12 +20,6 @@ public class agentList {
             switchIframe(driver, "/FlxServer/agent/agent/agentList.jsp", 0);
 
             //查询
-            queryInput(driver, "代理商", "", "", "", "", "");
-            queryInput(driver, "", "dl0004", "", "", "", "");
-            queryInput(driver, "", "", "上海销售", "", "", "");
-            queryInput(driver, "", "", "", "500001", "", "");
-            queryInput(driver, "", "", "", "", "2018-08-14", "");
-            queryInput(driver, "", "", "", "", "", "2018-08-14");
             queryInput(driver, "", "", "", "", "2018-07-27", "2018-08-14");
             queryInput(driver, "代理商", "", "", "", "2018-07-27", "2018-08-14");
             queryInput(driver, "代理商", "", "上海销售", "", "2018-07-27", "2018-08-14");
@@ -42,13 +36,13 @@ public class agentList {
             switchIframe(driver, "/FlxServer/agent/agent/addAgent.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
             Thread.sleep(500);
             updateInput(driver, "id", "agentName$text", "test001");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"userId\"]/span/span/span[2]/span")).click();
@@ -68,13 +62,13 @@ public class agentList {
             switchIframe(driver, "/FlxServer/agent/agent/addAgent.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
             Thread.sleep(500);
             driver.findElement(By.id("agentRate$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "1");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             //修改
@@ -95,7 +89,7 @@ public class agentList {
             driver.findElement(By.id("agentRate$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "3");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             //删除
@@ -107,9 +101,9 @@ public class agentList {
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             Thread.sleep(500);
@@ -136,7 +130,7 @@ public class agentList {
         updateInput(driver, "id", "userId$text", userId);
         updateInput(driver, "id", "createTimeStart$text", startTime);
         updateInput(driver, "id", "createTimeEnd$text", endTime);
-
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span")).click();
         Thread.sleep(1500);
     }

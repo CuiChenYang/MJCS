@@ -19,10 +19,12 @@
                     <include name="interfacesPowerManage"/>
                     <include name="customerIPSettings"/>
                     <include name="thirdPartyAccountManage"/>
-                    <include name="other"/>
+                    <include name="installSafeStrategy"/>
+                    <include name="disposeTransactionDictionary"/>
                     <include name="queryShopScore"/>
                     <include name="queryShopScoreAlter"/>
-                    <include name="queryLog"/>
+                    <include name="userLoginLog"/>
+                    <include name="userOperateLog"/>
                     <!--客户管理-->
                     <include name="cusProfileAlterManager"/>
                     <include name="cooperationManager"/>
@@ -39,8 +41,8 @@
                     <include name="scoretocredit"/>
                     <include name="repayment"/>
                     <include name="queryRepaymentAll"/>
-                    <include name="creditQueryList"/>
                     <include name="errorRepayment"/>
+                    <include name="creditQueryList"/>
                     <include name="importPaymentResult"/>
                     <include name="paymentFileList"/>
                     <include name="handleAcceptQueryList"/>
@@ -66,21 +68,21 @@
                 </methods>
 
                 <!--flx开户充值流程测试-->
-               <!-- <methods>
-                    <include name="flx"/>
-                    <include name="login"/>
-                    <include name="normalOpenCustom"/>
-                    <include name="auditCustom"/>
-                    <include name="entryOrder"/>
-                    <include name="checkOrder"/>
-                    <include name="firstLoginFuYou"/>
-                    <include name="againLoginFuYou"/>
-                    <include name="handleOrder"/>
-                    <include name="activateOrder"/>
-                    <include name="queryDetail"/>
-                    &lt;!&ndash;特殊开户&ndash;&gt;
-                    <include name="specialOpenCustom_1"/>
-                </methods>-->
+                <!--<methods>-->
+                    <!--<include name="flx"/>-->
+                    <!--<include name="login"/>-->
+                    <!--<include name="normalOpenCustom"/>-->
+                    <!--<include name="auditCustom"/>-->
+                    <!--<include name="entryOrder"/>-->
+                    <!--<include name="checkOrder"/>-->
+                    <!--<include name="firstLoginFuYou"/>-->
+                    <!--<include name="againLoginFuYou"/>-->
+                    <!--<include name="handleOrder"/>-->
+                    <!--<include name="activateOrder"/>-->
+                    <!--<include name="queryDetail"/>-->
+                    <!--特殊开户-->
+                    <!--<include name="specialOpenCustom_1"/>-->
+                <!--</methods>-->
             </class>
             <!--<class name="com.selenium.fuyou.fuYou">-->
             <!--</class>-->

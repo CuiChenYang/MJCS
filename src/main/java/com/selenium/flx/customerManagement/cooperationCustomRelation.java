@@ -131,7 +131,7 @@ public class cooperationCustomRelation {
         updateInput(driver, "id", "cooperationid$text", cooperationid);
         updateInput(driver, "id", "cooperationname$text", cooperationname);
         updateInput(driver, "id", "corpaccounts$text", corpaccounts);
-
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span")).click();
         Thread.sleep(1500);
     }

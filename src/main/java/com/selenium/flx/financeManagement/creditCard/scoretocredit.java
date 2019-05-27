@@ -44,12 +44,12 @@ public class scoretocredit {
         }
     }
 
-    public void query(WebDriver driver, String bankCardNo, String begintime, String endtime) {
+    public void query(WebDriver driver, String bankCardNo, String begintime, String endtime) throws InterruptedException {
 
         updateInput(driver, "id", "bankCardNo$text", bankCardNo);
         updateInput(driver, "id", "begintime$text", begintime);
         updateInput(driver, "id", "endtime$text", endtime);
-
+        Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[3]/a/span")).click();
 
     }

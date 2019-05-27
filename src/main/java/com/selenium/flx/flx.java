@@ -32,9 +32,12 @@ import com.selenium.utils.PropertiesConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
+
+import java.util.List;
 
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
 import static com.selenium.flx.flxPublicMethod.updateInput;
@@ -97,7 +100,7 @@ public class flx extends DriverBase {
             if (journal) {
                 taskScreenShot(driver);
                 Reporter.log("登录flx。失败。错误：" + e.toString() + "<br/>");
-                driver.findElement(By.id("asdf")).click();
+                driver.findElement(By.id("returnfalse")).click();
             }
         }
     }
@@ -106,164 +109,199 @@ public class flx extends DriverBase {
 //region    系统管理
 
     //用户管理
-    @Test(dependsOnMethods = "login", description = "系统管理-用户管理", alwaysRun = true)
+    @Test(dependsOnMethods = "login", description = "系统管理--用户管理", alwaysRun = true)
     public void userManage() {
-        driver.findElement(By.id("1021")).click();
-        driver.findElement(By.id("7")).click();
+        listClickByText(driver, "系统管理");
+        driver.findElement(By.xpath("//a[@url='/coframe/rights/user/user_list.jsp']")).click();
         userManage u = new userManage();
-        u.selectUser(driver);
+        if (!u.selectUser(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //菜单管理
-    @Test(dependsOnMethods = "userManage", description = "系统管理-菜单管理", alwaysRun = true)
+    @Test(dependsOnMethods = "userManage", description = "系统管理--菜单管理", alwaysRun = true)
     public void menuManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("4")).click();
+        driver.findElement(By.xpath("//a[@url='/coframe/framework/menu/menu_manage.jsp']")).click();
         menuManage m = new menuManage();
-        m.menu(driver);
+        if (!m.menu(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //授权管理
-    @Test(dependsOnMethods = "menuManage", description = "系统管理-授权管理", alwaysRun = true)
+    @Test(dependsOnMethods = "menuManage", description = "系统管理--授权管理", alwaysRun = true)
     public void authorizationManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("5")).click();
+        driver.findElement(By.xpath("//a[@url='/coframe/auth/role_auth.jsp']")).click();
         authorizationManage a = new authorizationManage();
-        a.roleAuthorization(driver);
+        if (!a.roleAuthorization(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //角色管理
-    @Test(dependsOnMethods = "authorizationManage", description = "系统管理-角色管理", alwaysRun = true)
+    @Test(dependsOnMethods = "authorizationManage", description = "系统管理--角色管理", alwaysRun = true)
     public void roleManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("6")).click();
+        driver.findElement(By.xpath("//a[@url='/coframe/rights/role/role_manager.jsp']")).click();
         roleManage r = new roleManage();
-        r.roleManage(driver);
+        if (!r.roleManage(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //参数管理
-    @Test(dependsOnMethods = "roleManage", description = "系统管理-参数管理", alwaysRun = true)
+    @Test(dependsOnMethods = "roleManage", description = "系统管理--参数管理", alwaysRun = true)
     public void parameterManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1101")).click();
+        driver.findElement(By.xpath("//a[@url='/parameter/code/bank_sys_code.jsp']")).click();
         parameterManage p = new parameterManage();
-        p.parameterManage(driver);
+        if (!p.parameterManage(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //应用功能管理
-    @Test(dependsOnMethods = "parameterManage", description = "系统管理-应用功能管理", alwaysRun = true)
+    @Test(dependsOnMethods = "parameterManage", description = "系统管理--应用功能管理", alwaysRun = true)
     public void appFunctionManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("3")).click();
+        driver.findElement(By.xpath("//a[@url='/coframe/framework/application/application_manage.jsp']")).click();
         appFunctionManage a = new appFunctionManage();
-        a.appFunctionManage(driver);
+        if (!a.appFunctionManage(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //组织机构管理
-    @Test(dependsOnMethods = "appFunctionManage", description = "系统管理-组织机构管理", alwaysRun = true)
+    @Test(dependsOnMethods = "appFunctionManage", description = "系统管理--组织机构管理", alwaysRun = true)
     public void organizationManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("8")).click();
+        driver.findElement(By.xpath("//a[@url='/coframe/org/organization/org_tree.jsp']")).click();
         organizationManage o = new organizationManage();
-        o.organizationManage(driver);
+        if (!o.organizationManage(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //接口权限管理
-    @Test(dependsOnMethods = "organizationManage", description = "系统管理-接口权限管理", alwaysRun = true)
+    @Test(dependsOnMethods = "organizationManage", description = "系统管理--接口权限管理", alwaysRun = true)
     public void interfacesPowerManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1301")).click();
+        driver.findElement(By.xpath("//a[@url='/interfacepower/interfacep/interface_power.jsp']")).click();
         interfacesPowerManage i = new interfacesPowerManage();
-        i.interfacesPowerManage(driver);
+        if (!i.interfacesPowerManage(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //客户IP设置
-    @Test(dependsOnMethods = "interfacesPowerManage", description = "系统管理-客户IP设置", alwaysRun = true)
+    @Test(dependsOnMethods = "interfacesPowerManage", description = "系统管理--客户IP设置", alwaysRun = true)
     public void customerIPSettings() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1641")).click();
+        driver.findElement(By.xpath("//a[@url='/other/customIp/customIpQueryList.jsp']")).click();
         customerIPSettings c = new customerIPSettings();
-        c.customerIPSettings(driver);
+        if (!c.customerIPSettings(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //第三方账号管理
-    @Test(dependsOnMethods = "customerIPSettings", description = "系统管理-第三方账号管理", alwaysRun = true)
+    @Test(dependsOnMethods = "customerIPSettings", description = "系统管理--第三方账号管理", alwaysRun = true)
     public void thirdPartyAccountManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("3021")).click();
+        driver.findElement(By.xpath("//a[@url='/other/thirdAccountInfo/thirdAccountInfo.jsp']")).click();
         thirdPartyAccountManage t = new thirdPartyAccountManage();
-        t.thirdPartyAccountManage(driver);
+        if (!t.thirdPartyAccountManage(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
-    //其他(设置安全策略、配置业务字典)
-    @Test(dependsOnMethods = "thirdPartyAccountManage", description = "系统管理-其他(设置安全策略、配置业务字典)", alwaysRun = true)
-    public void other() {
+    //其他--设置安全策略
+    @Test(dependsOnMethods = "thirdPartyAccountManage", description = "系统管理--其他--设置安全策略", alwaysRun = true)
+    public void installSafeStrategy() {
         driver.switchTo().defaultContent();
         driver.findElement(By.id("1102")).click();
+        driver.findElement(By.xpath("//a[@url='/policy/access_rules_list.jsp']")).click();
         other o = new other();
-        o.installSafeStrategy(driver);
+        if (!o.installSafeStrategy(driver))
+            driver.findElement(By.id("returnfalse")).click();
+    }
+
+    //其他--配置业务字典
+    @Test(dependsOnMethods = "installSafeStrategy", description = "系统管理--其他--配置业务字典", alwaysRun = true)
+    public void disposeTransactionDictionary() {
         driver.switchTo().defaultContent();
-        o.disposeTransactionDictionary(driver);
+        driver.findElement(By.xpath("//a[@url='/coframe/dict/dict_manager.jsp']")).click();
+        other o = new other();
+        if (!o.disposeTransactionDictionary(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //系统账户优分设置
-    @Test(dependsOnMethods = "other", description = "系统管理-系统账户优分设置", alwaysRun = true)
+    @Test(dependsOnMethods = "disposeTransactionDictionary", description = "系统管理--系统账户优分设置", alwaysRun = true)
     public void queryShopScore() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2344")).click();
+        driver.findElement(By.xpath("//a[@url='/other/customMember/queryShopScore.jsp']")).click();
         queryShopScore q = new queryShopScore();
-        q.queryShopScore(driver);
+        if (!q.queryShopScore(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //系统账户优分设置变更记录
-    @Test(dependsOnMethods = "queryShopScore", description = "系统管理-系统账户优分设置变更记录", alwaysRun = true)
+    @Test(dependsOnMethods = "queryShopScore", description = "系统管理--系统账户优分设置变更记录", alwaysRun = true)
     public void queryShopScoreAlter() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2361")).click();
+        driver.findElement(By.xpath("//a[@url='/other/customMember/queryShopScoreAlter.jsp']")).click();
         queryShopScoreAlter q = new queryShopScoreAlter();
-        q.queryShopScoreAlter(driver);
+        if (!q.queryShopScoreAlter(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
-    //日志查询(用户登录日志、用户操作日志)
-    @Test(dependsOnMethods = "queryShopScoreAlter", description = "系统管理-日志查询(用户登录日志、用户操作日志)", alwaysRun = true)
-    public void queryLog() {
+    //日志查询--用户登录日志
+    @Test(dependsOnMethods = "queryShopScoreAlter", description = "系统管理--日志查询--用户登录日志", alwaysRun = true)
+    public void userLoginLog() {
         driver.switchTo().defaultContent();
         driver.findElement(By.id("2301")).click();
+        driver.findElement(By.xpath("//a[@url='/coframe/auth/login/queryLoginLog.jsp']")).click();
         queryLog q = new queryLog();
-        q.userLoginLog(driver);
+        if (!q.userLoginLog(driver))
+            driver.findElement(By.id("returnfalse")).click();
+    }
+
+    //日志查询--用户操作日志
+    @Test(dependsOnMethods = "userLoginLog", description = "系统管理--日志查询--用户操作日志", alwaysRun = true)
+    public void userOperateLog() {
         driver.switchTo().defaultContent();
-        q.userOperateLog(driver);
+        driver.findElement(By.xpath("//a[@url='/other/webHandle/queryHandle.jsp']")).click();
+        queryLog q = new queryLog();
+        if (!q.userOperateLog(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 //endregion
 
 //region    客户管理
 
     //客户档案变更记录
-    @Test(dependsOnMethods = "queryLog", description = "客户管理--客户档案变更记录", alwaysRun = true)
+    @Test(dependsOnMethods = "userOperateLog", description = "客户管理--客户档案变更记录", alwaysRun = true)
     public void cusProfileAlterManager() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1061")).click();
-        driver.findElement(By.id("1481")).click();
+        listClickByText(driver, "客户管理");
+        driver.findElement(By.xpath("//a[@url='/custom/cusprofile/cusProfileAlterManager.jsp']")).click();
         cusProfileAlterManager c = new cusProfileAlterManager();
-        c.cusProfileAlterManager(driver);
+        if (!c.cusProfileAlterManager(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //合作伙伴档案管理
     @Test(dependsOnMethods = "cusProfileAlterManager", description = "客户管理--合作伙伴档案管理", alwaysRun = true)
     public void cooperationManager() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2561")).click();
+        driver.findElement(By.xpath("//a[@url='/custom/cooperation/cooperationManager.jsp']")).click();
         cooperationManager c = new cooperationManager();
-        c.cooperationManager(driver);
+        if (!c.cooperationManager(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //客户与合作伙伴关系管理
     @Test(dependsOnMethods = "cooperationManager", description = "客户管理--客户与合作伙伴关系管理", alwaysRun = true)
     public void cooperationCustomRelation() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2562")).click();
+        driver.findElement(By.xpath("//a[@url='/custom/cooperation/cooperationCustomRelation.jsp']")).click();
         cooperationCustomRelation c = new cooperationCustomRelation();
-        c.cooperationCustomRelation(driver);
+        if (!c.cooperationCustomRelation(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
 
@@ -273,7 +311,7 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "login", description = "正常开户")
     public void normalOpenCustom() {
         if (!se.normalCustom(driver)) {
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
         }
     }
 
@@ -283,7 +321,7 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "normalOpenCustom", description = "客户管理 企业审核")
     public void auditCustom() {
         if (!custom.queryCustom(driver, se.customNo) || !custom.auditCustom(driver))
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //region     特殊开户
@@ -359,19 +397,21 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "cooperationCustomRelation", description = "销售管理--银行卡库存查询", alwaysRun = true)
     public void bankCardCountList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1081")).click();
-        driver.findElement(By.id("1201")).click();
+        listClickByText(driver, "销售管理");
+        driver.findElement(By.xpath("//a[@url='/sales/salesInventory/bankCardCountList.jsp']")).click();
         bankCardCountList b = new bankCardCountList();
-        b.bankCardCountList(driver);
+        if (!b.bankCardCountList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //充值卡库存查询
     @Test(dependsOnMethods = "bankCardCountList", description = "销售管理--充值卡库存查询", alwaysRun = true)
     public void prepaidCardCountList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1241")).click();
+        driver.findElement(By.xpath("//a[@url='/sales/salesInventory/prepaidCardCountList.jsp']")).click();
         prepaidCardCountList p = new prepaidCardCountList();
-        p.prepaidCardCountList(driver);
+        if (!p.prepaidCardCountList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     /**
@@ -380,7 +420,7 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "auditCustom", description = "销售管理 订单录入")
     public void entryOrder() {
         if (!order.entryOrder(se.customNo, driver))
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     /**
@@ -390,7 +430,7 @@ public class flx extends DriverBase {
     public void checkOrder() {
         //订单复核
         if (!order.checkOrder(se.customNo, driver))
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
     }
 //endregion
 
@@ -400,19 +440,21 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "prepaidCardCountList", description = "运营管理--客户绑定", alwaysRun = true)
     public void custom_power() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1121")).click();
-        driver.findElement(By.id("1701")).click();
+        listClickByText(driver, "运营管理");
+        driver.findElement(By.xpath("//a[@url='/other/customSet/custom_power.jsp']")).click();
         custom_power q = new custom_power();
-        q.custom_power(driver);
+        if (!q.custom_power(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //代理商管理
     @Test(dependsOnMethods = "custom_power", description = "运营管理--代理商管理", alwaysRun = true)
     public void agentList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2921")).click();
+        driver.findElement(By.xpath("//a[@url='/agent/agent/agentList.jsp']")).click();
         agentList a = new agentList();
-        a.agentList(driver);
+        if (!a.agentList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
 
@@ -424,11 +466,12 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "agentList", description = "财务管理--批量代充业务（查询）", alwaysRun = true)
     public void rechargeQueryList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1261")).click();
+        listClickByText(driver, "财务管理");
         driver.findElement(By.id("1591")).click();
-        driver.findElement(By.id("1596")).click();
+        driver.findElement(By.xpath("//a[@url='/sales/recharge/rechargeQueryList_1.jsp']")).click();
         rechargeQueryList r = new rechargeQueryList();
-        r.rechargeQueryList(driver);
+        if (!r.rechargeQueryList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //金牛卡结果确认
@@ -436,9 +479,10 @@ public class flx extends DriverBase {
     public void scoretobankQueryList() {
         driver.switchTo().defaultContent();
         driver.findElement(By.id("1599")).click();
-        driver.findElement(By.id("1601")).click();
+        driver.findElement(By.xpath("//a[@url='/sales/scoretobank/scoretobankQueryList.jsp']")).click();
         scoretobankQueryList r = new scoretobankQueryList();
-        r.scoretobankQueryList(driver);
+        if (!r.scoretobankQueryList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //region 信用卡业务
@@ -447,63 +491,70 @@ public class flx extends DriverBase {
     public void scoretocredit() {
         driver.switchTo().defaultContent();
         driver.findElement(By.id("1603")).click();
-        driver.findElement(By.id("1604")).click();
+        driver.findElement(By.xpath("//a[@url='/sales/order/scoretocredit.jsp']")).click();
         scoretocredit s = new scoretocredit();
-        s.scoretocredit(driver);
+        if (!s.scoretocredit(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //信用卡业务--矩阵还款
     @Test(dependsOnMethods = "scoretocredit", description = "财务管理--信用卡业务--矩阵还款", alwaysRun = true)
     public void repayment() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1611")).click();
+        driver.findElement(By.xpath("//a[@url='/other/repayment/repayment.jsp']")).click();
         repayment r = new repayment();
-        r.repayment(driver);
+        if (!r.repayment(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //信用卡业务--还款结果查询
     @Test(dependsOnMethods = "repayment", description = "财务管理--信用卡业务--还款结果查询", alwaysRun = true)
     public void queryRepaymentAll() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1612")).click();
+        driver.findElement(By.xpath("//a[@url='/other/repayment/queryRepaymentAll.jsp']")).click();
         queryRepaymentAll r = new queryRepaymentAll();
-        r.queryRepaymentAll(driver);
-    }
-
-    //信用卡业务--信用卡财务经办
-    @Test(dependsOnMethods = "queryRepaymentAll", description = "财务管理--信用卡业务--信用卡财务经办", alwaysRun = true)
-    public void creditQueryList() {
-        driver.switchTo().defaultContent();
-        driver.findElement(By.id("1723")).click();
-        creditQueryList c = new creditQueryList();
-        c.creditQueryList(driver);
+        if (!r.queryRepaymentAll(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //信用卡业务--还款异常处理
-    @Test(dependsOnMethods = "creditQueryList", description = "财务管理--信用卡业务--还款异常处理", alwaysRun = true)
+    @Test(dependsOnMethods = "queryRepaymentAll", description = "财务管理--信用卡业务--还款异常处理", alwaysRun = true)
     public void errorRepayment() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1981")).click();
+        driver.findElement(By.xpath("//a[@url='/other/repayment/errorRepayment.jsp']")).click();
         errorRepayment e = new errorRepayment();
-        e.errorRepayment(driver);
+        if (!e.errorRepayment(driver))
+            driver.findElement(By.id("returnfalse")).click();
+    }
+
+    //信用卡业务--信用卡财务经办
+    @Test(dependsOnMethods = "errorRepayment", description = "财务管理--信用卡业务--信用卡财务经办", alwaysRun = true)
+    public void creditQueryList() {
+        driver.switchTo().defaultContent();
+        driver.findElement(By.xpath("//a[@url='/sales/credit/creditQueryList_2.jsp']")).click();
+        creditQueryList c = new creditQueryList();
+        if (!c.creditQueryList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //信用卡业务--还款结果导入
-    @Test(dependsOnMethods = "errorRepayment", description = "财务管理--信用卡业务--还款结果导入", alwaysRun = true)
+    @Test(dependsOnMethods = "creditQueryList", description = "财务管理--信用卡业务--还款结果导入", alwaysRun = true)
     public void importPaymentResult() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2681")).click();
+        driver.findElement(By.xpath("//a[@url='/other/repayment/importPaymentResult.jsp']")).click();
         importPaymentResult i = new importPaymentResult();
-        i.importPaymentResult(driver);
+        if (!i.importPaymentResult(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //信用卡业务--光大复核
     @Test(dependsOnMethods = "importPaymentResult", description = "财务管理--信用卡业务--光大复核", alwaysRun = true)
     public void paymentFileList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2721")).click();
+        driver.findElement(By.xpath("//a[@url='/other/paymentTxt/paymentFileList.jsp']")).click();
         paymentFileList p = new paymentFileList();
-        p.paymentFileList(driver);
+        if (!p.paymentFileList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
     //endregion
 
@@ -513,18 +564,20 @@ public class flx extends DriverBase {
     public void handleAcceptQueryList() {
         driver.switchTo().defaultContent();
         driver.findElement(By.id("1608")).click();
-        driver.findElement(By.id("1613")).click();
+        driver.findElement(By.xpath("//a[@url='/sales/order/handleAcceptQueryList.jsp']")).click();
         handleAcceptQueryList h = new handleAcceptQueryList();
-        h.handleAcceptQueryList(driver);
+        if (!h.handleAcceptQueryList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //账务调账业务--特殊业务调账
     @Test(dependsOnMethods = "handleAcceptQueryList", description = "财务管理--账务调账业务--特殊业务调账", alwaysRun = true)
     public void specialAccountChangeInputList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2141")).click();
+        driver.findElement(By.xpath("//a[@url='/service/specialAccountChange/specialAccountChangeInputList_1.jsp']")).click();
         specialAccountChangeInputList s = new specialAccountChangeInputList();
-        s.specialAccountChangeInputList(driver);
+        if (!s.specialAccountChangeInputList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
     //endregion
 
@@ -534,18 +587,20 @@ public class flx extends DriverBase {
     public void orderQueryList() {
         driver.switchTo().defaultContent();
         driver.findElement(By.id("1614")).click();
-        driver.findElement(By.id("1615")).click();
+        driver.findElement(By.xpath("//a[@url='/service/credentials/orderQueryList.jsp']")).click();
         orderQueryList o = new orderQueryList();
-        o.orderQueryList(driver);
+        if (!o.orderQueryList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //凭证打印--手工凭证录入
     @Test(dependsOnMethods = "orderQueryList", description = "财务管理--凭证打印--手工凭证录入", alwaysRun = true)
     public void orderCredentialHandList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1616")).click();
+        driver.findElement(By.xpath("//a[@url='/service/credentials/orderCredentialHandList.jsp']")).click();
         orderCredentialHandList o = new orderCredentialHandList();
-        o.orderCredentialHandList(driver);
+        if (!o.orderCredentialHandList(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
     //endregion
 
@@ -555,72 +610,80 @@ public class flx extends DriverBase {
     public void queryReportDailyOrderTbl() {
         driver.switchTo().defaultContent();
         driver.findElement(By.id("1617")).click();
-        driver.findElement(By.id("1618")).click();
+        driver.findElement(By.xpath("//a[@url='/report/reportV2/queryReportDailyOrderTbl.jsp']")).click();
         queryReportDailyOrderTbl q = new queryReportDailyOrderTbl();
-        q.queryReportDailyOrderTbl(driver);
+        if (!q.queryReportDailyOrderTbl(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //统计报表--平台优分使用汇总
     @Test(dependsOnMethods = "queryReportDailyOrderTbl", description = "财务管理--统计报表--平台优分使用汇总", alwaysRun = true)
     public void queryReportSpend() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1619")).click();
+        driver.findElement(By.xpath("//a[@url='/report/queryReportSpend.jsp']")).click();
         queryReportSpend q = new queryReportSpend();
-        q.queryReportSpend(driver);
+        if (!q.queryReportSpend(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //统计报表--手续费汇总
     @Test(dependsOnMethods = "queryReportSpend", description = "财务管理--统计报表--手续费汇总", alwaysRun = true)
     public void queryCounterFee() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1620")).click();
+        driver.findElement(By.xpath("//a[@url='/report/queryCounterFee.jsp']")).click();
         queryCounterFee q = new queryCounterFee();
-        q.queryCounterFee(driver);
+        if (!q.queryCounterFee(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //统计报表--凭证统计汇总
     @Test(dependsOnMethods = "queryCounterFee", description = "财务管理--统计报表--凭证统计汇总", alwaysRun = true)
     public void queryCertificateReport() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1621")).click();
+        driver.findElement(By.xpath("//a[@url='/report/certificateReport/queryCertificateReport.jsp']")).click();
         queryCertificateReport q = new queryCertificateReport();
-        q.queryCertificateReport(driver);
+        if (!q.queryCertificateReport(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //统计报表--报表处理日志
     @Test(dependsOnMethods = "queryCertificateReport", description = "财务管理--统计报表--报表处理日志", alwaysRun = true)
     public void reportlogMangaer() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1622")).click();
+        driver.findElement(By.xpath("//a[@url='/report/reportlog/reportlogMangaer.jsp']")).click();
         reportlogMangaer r = new reportlogMangaer();
-        r.reportlogMangaer(driver);
+        if (!r.reportlogMangaer(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //统计报表--账户总表
     @Test(dependsOnMethods = "reportlogMangaer", description = "财务管理--统计报表--账户总表", alwaysRun = true)
     public void queryAccountReport() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2081")).click();
+        driver.findElement(By.xpath("//a[@url='/report/queryAccountReport.jsp']")).click();
         queryAccountReport q = new queryAccountReport();
-        q.queryAccountReport(driver);
+        if (!q.queryAccountReport(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //统计报表--个人优分汇总
     @Test(dependsOnMethods = "queryAccountReport", description = "财务管理--统计报表--个人优分汇总", alwaysRun = true)
     public void queryPointsSummary() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2101")).click();
+        driver.findElement(By.xpath("//a[@url='/report/queryPointsSummary.jsp']")).click();
         queryPointsSummary q = new queryPointsSummary();
-        q.queryPointsSummary(driver);
+        if (!q.queryPointsSummary(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //统计报表--企业优分汇总
     @Test(dependsOnMethods = "queryPointsSummary", description = "财务管理--统计报表--企业优分汇总", alwaysRun = true)
     public void queryEnterSummary() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2121")).click();
+        driver.findElement(By.xpath("//a[@url='/report/queryEnterSummary.jsp']")).click();
         queryEnterSummary q = new queryEnterSummary();
-        q.queryEnterSummary(driver);
+        if (!q.queryEnterSummary(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
     //endregion
 
@@ -630,7 +693,7 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "againLoginFuYou", description = "财务管理 订单业务 订单经办")
     public void handleOrder() {
         if (!order.handleOrder(driver))
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     /**
@@ -639,7 +702,7 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "handleOrder", description = "财务管理 订单激活")
     public void activateOrder() {
         if (!order.activateOrder(driver))
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
     }
 //endregion
 
@@ -649,10 +712,11 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "queryEnterSummary", description = "客服明细--充值卡状态查询", alwaysRun = true)
     public void queryPrepaidCardInfo() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1662")).click();
-        driver.findElement(By.id("2281")).click();
+        listClickByText(driver, "客服明细");
+        driver.findElement(By.xpath("//a[@url='/audit/audit/queryPrepaidCardInfo.jsp']")).click();
         queryPrepaidCardInfo q = new queryPrepaidCardInfo();
-        q.queryPrepaidCardInfo(driver);
+        if (!q.queryPrepaidCardInfo(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     /**
@@ -661,7 +725,7 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "activateOrder", description = "客服明细查询 查询显示余额三秒后注销用户")
     public void queryDetail() {
         if (!cd.queryDetail(driver, se.customNo))
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
     }
 //endregion
 
@@ -672,29 +736,32 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "queryPrepaidCardInfo", description = "绩效管理--梯度管理--有效客户管理", alwaysRun = true)
     public void validCustomer() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2781")).click();
+        listClickByText(driver, "绩效管理");
         driver.findElement(By.id("2782")).click();
-        driver.findElement(By.id("2783")).click();
+        driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/validCustomer.jsp']")).click();
         validCustomer v = new validCustomer();
-        v.validCustomer(driver);
+        if (!v.validCustomer(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //梯度管理--平台客户管理
     @Test(dependsOnMethods = "validCustomer", description = "绩效管理--梯度管理--平台客户管理", alwaysRun = true)
     public void platformCustomer() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2784")).click();
+        driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/platformCustomer.jsp']")).click();
         platformCustomer p = new platformCustomer();
-        p.platformCustomer(driver);
+        if (!p.platformCustomer(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //梯度管理--终端客户管理
     @Test(dependsOnMethods = "platformCustomer", description = "绩效管理--梯度管理--终端客户管理", alwaysRun = true)
     public void terminalCustomer() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2785")).click();
+        driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/terminalCustomer.jsp']")).click();
         terminalCustomer t = new terminalCustomer();
-        t.terminalCustomer(driver);
+        if (!t.terminalCustomer(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
     //endregion
 
@@ -703,18 +770,20 @@ public class flx extends DriverBase {
     public void queryTotalCustomer() {
         driver.switchTo().defaultContent();
         driver.findElement(By.id("2786")).click();
-        driver.findElement(By.id("2787")).click();
+        driver.findElement(By.xpath("//a[@url='/pa/TotalCustomer/queryTotalCustomer.jsp']")).click();
         queryTotalCustomer q = new queryTotalCustomer();
-        q.queryTotalCustomer(driver);
+        if (!q.queryTotalCustomer(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     //代理商绩效
     @Test(dependsOnMethods = "queryTotalCustomer", description = "绩效管理--代理商绩效", alwaysRun = true)
     public void agentInfo() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("3101")).click();
+        driver.findElement(By.xpath("//a[@url='/pa/agentInfo/agentInfo.jsp']")).click();
         agentInfo a = new agentInfo();
-        a.agentInfo(driver);
+        if (!a.agentInfo(driver))
+            driver.findElement(By.id("returnfalse")).click();
     }
 
 //endregion
@@ -726,7 +795,7 @@ public class flx extends DriverBase {
     public void firstLoginFuYou() {
         //首次登录激活企业
         if (!fy.login(se.customNo, "123456"))
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
     }
 
     /**
@@ -736,7 +805,7 @@ public class flx extends DriverBase {
     public void againLoginFuYou() {
         //激活成功后重新登录
         if (!fy.login(se.customNo, "123456") || !fy.replyCustomOrder(se.customNo))
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnfalse")).click();
         else {
             if (journal) {
                 Reporter.log("回复企业订单成功，企业号：" + se.customNo + "订单号为：" + order.orderId + "<br/>");
@@ -745,5 +814,16 @@ public class flx extends DriverBase {
         }
     }
 
+    //点击对应text的dt
+    public boolean listClickByText(WebDriver driver, String text) {
+        List<WebElement> list = driver.findElements(By.cssSelector("dt"));
+        for (int i = 0; i < list.size(); i++) {
+            if (text.equals(list.get(i).getText())) {
+                list.get(i).click();
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

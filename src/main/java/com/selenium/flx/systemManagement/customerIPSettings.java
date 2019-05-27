@@ -40,6 +40,7 @@ public class customerIPSettings {
             updateInput(driver, "id", "ipAddress$text", "192.168.1.1");
             Thread.sleep(500);
             driver.findElement(By.id("formtab1")).click();
+            Thread.sleep(300);
             driver.findElement(By.id("savebtn1")).click();
 
             //查询选择
@@ -65,6 +66,7 @@ public class customerIPSettings {
             updateInput(driver, "id", "ipAddress$text", "192.168.1.21");
             Thread.sleep(500);
             driver.findElement(By.id("formtab1")).click();
+            Thread.sleep(300);
             driver.findElement(By.id("savebtn1")).click();
 
             //查询并删除
