@@ -230,15 +230,15 @@ public class fuYou extends DriverBase {
                     aList.get(navIndex).findElement(By.tagName("a")).click();
                     //部门添加
                     if(!dep.addDep(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                     //部门删除
                     if(!dep.deleteDep(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                     //部门编辑
                     if(!dep.updateDep(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                 }else{
                     Reporter.log("未开通此功能"+"<br/>");
@@ -263,23 +263,23 @@ public class fuYou extends DriverBase {
                     aList.get(navIndex).findElement(By.tagName("a")).click();
                     //添加员工
                     if(!emp.addEmp(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                     //批量导入员工
                     if(!emp.batchImportEmp(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                     //编辑员工
                     if(!emp.updateEmp(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                     //删除员工
                     if(!emp.deleteEmp(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                     //搜索员工
                     if(!emp.searchEmp(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                 }else{
                     Reporter.log("未开通此功能"+"<br/>");
@@ -320,7 +320,7 @@ public class fuYou extends DriverBase {
             e.printStackTrace();
             taskScreenShot(driver);
             Reporter.log("福利发放--失败。错误：" + e.toString() + "<br/>");
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnFalse")).click();
         }
     }
 
@@ -338,7 +338,7 @@ public class fuYou extends DriverBase {
                 if(navIndex != -1){
                     aList.get(navIndex).findElement(By.tagName("a")).click();
                     if (!w.companyGatheringQrcode(driver, username))
-                        driver.findElement(By.id("asdf")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                 }else{
                     Reporter.log("未开通此功能"+"<br/>");
                 }
@@ -350,7 +350,7 @@ public class fuYou extends DriverBase {
             e.printStackTrace();
             taskScreenShot(driver);
             Reporter.log("企业收款管理--失败。错误：" + e.toString() + "<br/>");
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnFalse")).click();
         }
     }
 
@@ -368,7 +368,7 @@ public class fuYou extends DriverBase {
                 if(navIndex != -1){
                     aList.get(navIndex).findElement(By.tagName("a")).click();
                     if(!w.companyCardPassExchange(driver, username))
-                        driver.findElement(By.id("asdf")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                 }else{
                     Reporter.log("未开通此功能"+"<br/>");
                 }
@@ -380,7 +380,7 @@ public class fuYou extends DriverBase {
             e.printStackTrace();
             taskScreenShot(driver);
             Reporter.log("一卡通兑换--失败。错误：" + e.toString() + "<br/>");
-            driver.findElement(By.id("asdf")).click();
+            driver.findElement(By.id("returnFalse")).click();
         }
     }
 
@@ -442,10 +442,10 @@ public class fuYou extends DriverBase {
                 if(navIndex != -1){
                     aList.get(navIndex).findElement(By.tagName("a")).click();
                     if(!notice.announcement(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                     if(!notice.deleteAnnouncement(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                 }else{
                     Reporter.log("未开通此功能"+"<br/>");
@@ -474,7 +474,7 @@ public class fuYou extends DriverBase {
                     aList.get(navIndex).findElement(By.tagName("a")).click();
                     transactionRecord tr = new transactionRecord();
                     if(!tr.transactionRecordSearch(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                 }
             }
@@ -495,7 +495,7 @@ public class fuYou extends DriverBase {
                     aList.get(navIndex).findElement(By.tagName("a")).click();
                     electronicInvoice ei = new electronicInvoice();
                     if(!ei.electronicInvoiceSearch(driver)){
-                        driver.findElement(By.id("111")).click();
+                        driver.findElement(By.id("returnFalse")).click();
                     }
                 }else{
                     Reporter.log("未开通此功能"+"<br/>");
@@ -518,7 +518,7 @@ public class fuYou extends DriverBase {
             if(navIndex != -1){
                 list.get(navIndex).click();
                 if(!as.searchStatement(driver)){
-                    driver.findElement(By.id("111")).click();
+                    driver.findElement(By.id("returnFalse")).click();
                 }
             }else{
                 Reporter.log("未开通此功能"+"<br/>");
@@ -544,26 +544,26 @@ public class fuYou extends DriverBase {
                 aList.get(navIndex).findElement(By.tagName("a")).click();
                     //新增企业采购地址
                 if(!ep.isHaveAddress(driver)){
-                    driver.findElement(By.id("1111")).click();
+                    driver.findElement(By.id("returnFalse")).click();
                 }
                     //修改企业采购地址
                 if(!ep.updateAddress(driver)){
-                    driver.findElement(By.id("1111")).click();
+                    driver.findElement(By.id("returnFalse")).click();
                 }
                     //删除企业采购地址
                 if(!ep.deleteAddress(driver)){
-                    driver.findElement(By.id("1111")).click();
+                    driver.findElement(By.id("returnFalse")).click();
                 }
                     ///查找商品
                 if(!ep.navMenu(driver)){
-                    driver.findElement(By.id("1111")).click();
+                    driver.findElement(By.id("returnFalse")).click();
                 }
                 if(!ep.searchProduct(driver)){
-                    driver.findElement(By.id("1111")).click();
+                    driver.findElement(By.id("returnFalse")).click();
                 }
                     //商品购买
                 if(!ep.purchaseGoods(driver)){
-                    driver.findElement(By.id("1111")).click();
+                    driver.findElement(By.id("returnFalse")).click();
                 }
             }else{
                 Reporter.log("未开通此功能"+"<br/>");
