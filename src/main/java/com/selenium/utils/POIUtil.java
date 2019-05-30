@@ -94,7 +94,7 @@ public class POIUtil {
             File [] files = file.listFiles();
             for(File name:files){
                 String names = name.toString();
-                if(names.indexOf("员工导入模版")==-1||names.indexOf("企业对账信息")==-1)
+//                if(names.indexOf("员工导入模版")==-1||names.indexOf("企业对账信息")==-1)
                 if(names.endsWith(".xls")){
                     System.out.println(names);
                     return names;

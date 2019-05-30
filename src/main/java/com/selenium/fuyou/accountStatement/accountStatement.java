@@ -1,10 +1,13 @@
 package com.selenium.fuyou.accountStatement;
 
+import com.selenium.utils.POIUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.springframework.util.ResourceUtils;
 import org.testng.Reporter;
 
+import java.io.File;
 import java.util.List;
 
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
@@ -44,6 +47,13 @@ public class accountStatement {
             Thread.sleep(500);
 
             driver.findElement(By.cssSelector(".qyzx_download.qyzx_btn")).click();
+            Thread.sleep(1000);
+            String fileName = POIUtil.xlsUrl("E:\\2019\\downloadFile");
+            //读取
+            Thread.sleep(1000);
+            File file = ResourceUtils.getFile(fileName);
+            Thread.sleep(1000);
+            file.delete();
 
             List<WebElement> list = getNavList(driver,null,".xsdd_time_bm.index_3","li",2);
             for (int i = 0; i < list.size(); i++) {

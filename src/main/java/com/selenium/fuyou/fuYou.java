@@ -30,7 +30,7 @@ import static com.selenium.fuyou.fuYouMethod.getNavListId;
 
 @Slf4j
 public class fuYou extends DriverBase {
-    DesiredCapabilities caps = setDownloadsPath("E:\\SeleniumDemo1\\src\\main\\resources\\downloadFile");
+    DesiredCapabilities caps = setDownloadsPath("E:\\2019\\downloadFile");
     public WebDriver driver = driverName(caps);
     //key
     public String fuYouUrl = PropertiesConfig.getInstance().getProperty("driver.fuYou.url");

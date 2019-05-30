@@ -231,7 +231,7 @@ public class welfareManager {
     //直接上传优分为0的模版
     public void testFiles(WebDriver driver) throws Exception {
         //定义文件夹
-        String path = "E:\\SeleniumDemo1\\src\\main\\resources\\downloadFile";
+        String path = "E:\\2019\\downloadFile";
         //查询文件夹下以xls结尾的文件
         Thread.sleep(1000);
         String fileName = POIUtil.xlsUrl(path);
@@ -242,7 +242,7 @@ public class welfareManager {
     //修改下载的模版优分并上传
     public String uploadFiles(WebDriver driver, String customNo) throws Exception {
         //定义文件夹
-        String path = "E:\\SeleniumDemo1\\src\\main\\resources\\downloadFile";
+        String path = "E:\\2019\\downloadFile";
         //查询文件夹下以xls结尾的文件
         Thread.sleep(1000);
         String fileName = POIUtil.xlsUrl(path);

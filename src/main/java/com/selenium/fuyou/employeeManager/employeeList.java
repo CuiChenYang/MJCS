@@ -1,15 +1,14 @@
 package com.selenium.fuyou.employeeManager;
 
 import com.selenium.fuyou.baseDB.employee;
-import com.selenium.utils.PhoneUtil;
-import com.selenium.utils.PropertiesConfig;
-import com.selenium.utils.ResourcesUrlUtil;
-import com.selenium.utils.UserIDUtil;
+import com.selenium.utils.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.springframework.util.ResourceUtils;
 import org.testng.Reporter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -307,6 +306,13 @@ public class employeeList {
             driver.findElement(By.className("yqzx_pl")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("/html/body/div[4]/div[3]/div[7]/a")).click();
+            Thread.sleep(1000);
+            String fileName = POIUtil.xlsUrl("E:\\2019\\downloadFile");
+            //读取
+            Thread.sleep(1000);
+            File file = ResourceUtils.getFile(fileName);
+            Thread.sleep(1000);
+            file.delete();
             Thread.sleep(1000);
             batchImportEmpData(driver,null);//空模板错误示例
             Thread.sleep(500);
