@@ -16,7 +16,7 @@ public class cusProfileAlterManager {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cusprofile/cusProfileAlterManager.jsp", 0);
+            switchIframe(driver, "/custom/cusprofile/cusProfileAlterManager.jsp", 0);
 
             //查询
             queryFile(driver, "", "", "2017-01-12", "2017-01-13", "");

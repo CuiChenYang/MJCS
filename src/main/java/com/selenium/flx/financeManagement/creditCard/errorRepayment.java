@@ -14,7 +14,7 @@ public class errorRepayment {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/repayment/errorRepayment.jsp", 0);
+            switchIframe(driver, "/other/repayment/errorRepayment.jsp", 0);
 
             Thread.sleep(500);
             updateInput(driver, "id", "import_time$text", "2018-11-28");
@@ -22,8 +22,8 @@ public class errorRepayment {
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span")).click();
             Thread.sleep(2000);
 
-            querySpinner(driver, 4, "orderStatus$text", "mini-5$", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span");
-            querySpinner(driver, 6, "channel$text", "mini-8$", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span");
+            querySpinner(driver, false, "orderStatus$text", "mini-5", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span", true);
+            querySpinner(driver, true, "channel$text", "mini-8", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span", false);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span")).click();
             Thread.sleep(1000);
             driver.findElement(By.id("channel$text")).click();

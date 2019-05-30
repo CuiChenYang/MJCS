@@ -16,7 +16,7 @@ public class queryShopScoreAlter {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customMember/queryShopScoreAlter.jsp", 0);
+            switchIframe(driver, "/other/customMember/queryShopScoreAlter.jsp", 0);
 
             Thread.sleep(500);
             select(driver, "", "", "");

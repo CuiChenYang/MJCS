@@ -18,15 +18,15 @@ public class repayment {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/repayment/repayment.jsp", 0);
+            switchIframe(driver, "/other/repayment/repayment.jsp", 0);
 
             updateInput(driver, "id", "import_time$text", "2019-05-15");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span")).click();
             Thread.sleep(2000);
 
-            querySpinner(driver, 4, "orderStatus$text", "mini-15$", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span");
+            querySpinner(driver, false, "orderStatus$text", "mini-15", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span", true);
             Thread.sleep(500);
-            querySpinner(driver, 4, "paymentStatus$text", "mini-19$", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span");
+            querySpinner(driver, false, "paymentStatus$text", "mini-19", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span", true);
 
             query(driver, "6259588689735205", "", "", "", "");
             query(driver, "", "上海浦东发展银行", "姚健", "", "");

@@ -15,7 +15,7 @@ public class roleManage {
     public boolean roleManage(WebDriver driver) {
         try {
             Thread.sleep(1000);
-            switchIframe(driver,"/FlxServer/coframe/rights/role/role_manager.jsp",0);
+            switchIframe(driver,"/coframe/rights/role/role_manager.jsp",0);
             //输入查询
             Thread.sleep(500);
             updateInput(driver,"name","criteria._expr[0].roleCode","admin");
@@ -32,7 +32,7 @@ public class roleManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
-            switchIframe(driver,"/FlxServer/coframe/rights/role/role_add.jsp",0);
+            switchIframe(driver,"/coframe/rights/role/role_add.jsp",0);
             //直接点击保存出现两个非空警告
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
@@ -44,7 +44,7 @@ public class roleManage {
 
             //查询新增的角色
             Thread.sleep(500);
-            switchIframe(driver,"/FlxServer/coframe/rights/role/role_manager.jsp",0);
+            switchIframe(driver,"/coframe/rights/role/role_manager.jsp",0);
             Thread.sleep(500);
             updateInput(driver,"name","criteria._expr[1].roleName","自动化测试使用");
             Thread.sleep(500);
@@ -57,17 +57,17 @@ public class roleManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
-            switchIframe(driver,"/FlxServer/coframe/rights/role/role_update.jsp",0);
+            switchIframe(driver,"/coframe/rights/role/role_update.jsp",0);
             Thread.sleep(500);
             updateInput(driver,"id","capRole.roleCode$text","test003");
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id=\"mini-12\"]/span")).click();
 
             //删除
             Thread.sleep(500);
-            switchIframe(driver,"/FlxServer/coframe/rights/role/role_manager.jsp",0);
+            switchIframe(driver,"/coframe/rights/role/role_manager.jsp",0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
             Thread.sleep(1000);

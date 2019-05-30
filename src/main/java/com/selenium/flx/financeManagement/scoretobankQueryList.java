@@ -16,7 +16,7 @@ public class scoretobankQueryList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/scoretobank/scoretobankQueryList.jsp", 0);
+            switchIframe(driver, "/sales/scoretobank/scoretobankQueryList.jsp", 0);
             query(driver, 1, "", "", 0, "", "");
             query(driver, 2, "", "", 0, "", "");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[7]/a/span")).click();
@@ -63,11 +63,11 @@ public class scoretobankQueryList {
         if (exportBatchNumber != 0) {
             driver.findElement(By.xpath("//*[@id=\"exportBatchNumber\"]/span[1]/span/span[2]/span")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/scoretobank/exportBatchNumberList.jsp", 0);
+            switchIframe(driver, "/sales/scoretobank/exportBatchNumberList.jsp", 0);
             driver.findElements(By.className("mini-grid-radio-mask")).get(exportBatchNumber - 1).click();
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/scoretobank/scoretobankQueryList.jsp", 0);
+            switchIframe(driver, "/sales/scoretobank/scoretobankQueryList.jsp", 0);
         }
         updateInput(driver, "id", "cardHolder$text", cardHolder);
         updateInput(driver, "id", "bankCardNo$text", bankCardNo);

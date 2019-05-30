@@ -16,7 +16,7 @@ public class custom_power {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customSet/custom_power.jsp", 0);
+            switchIframe(driver, "/other/customSet/custom_power.jsp", 0);
 
             Thread.sleep(500);
             updateInput(driver, "name", "entity.company", "上海演示");

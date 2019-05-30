@@ -7,9 +7,7 @@ import org.testng.Reporter;
 
 import static com.selenium.flx.financeManagement.statisticalReport.queryPointsSummary.loading;
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 
 public class queryEnterSummary {
 
@@ -18,7 +16,7 @@ public class queryEnterSummary {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/report/queryEnterSummary.jsp", 0);
+            switchIframe(driver, "/report/queryEnterSummary.jsp", 0);
 
             updateInput(driver, "id", "summaryDate$text", "2017-05-05");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[14]/a/span")).click();
@@ -38,15 +36,7 @@ public class queryEnterSummary {
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[1]/div/input[3]")).click();
             driver.findElement(By.id("seasonDate$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "2017");
-            for (int i = 1; i < 4; i++) {
-                driver.findElement(By.id("jiduDate$text")).click();
-                driver.findElement(By.id("mini-12$" + i)).click();
-                driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[14]/a/span")).click();
-                loading(driver);
-            }
-            driver.findElement(By.id("jiduDate$text")).click();
-            driver.findElement(By.id("mini-12$" + 0)).click();
-            driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[14]/a/span")).click();
+            querySpinner(driver,true,"jiduDate$text","mini-12","//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[14]/a/span",false);
             loading(driver);
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[1]/div/input[4]")).click();

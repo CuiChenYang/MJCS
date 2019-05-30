@@ -8,6 +8,7 @@ import org.testng.Reporter;
 import org.testng.annotations.Test;
 
 import static com.selenium.flx.flx.journal;
+import static com.selenium.flx.flxPublicMethod.switchIframe;
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
 import static com.selenium.flx.flxPublicMethod.updateInput;
 
@@ -34,7 +35,7 @@ public class editCustom {
         } catch (Exception e) {
             taskScreenShot(driver);
             if (journal) {
-                Reporter.log("客户管理 查询用户失败。错误：" + e.toString()+"<br/>");
+                Reporter.log("客户管理 查询用户失败。错误：" + e.toString() + "<br/>");
                 e.printStackTrace();
             }
             return false;
@@ -54,21 +55,20 @@ public class editCustom {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             //返回主窗体，进入修改页面
             Thread.sleep(1000);
-            driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/custom/cusprofile/editCusProfileNew.jsp')]")));
+            switchIframe(driver, "/custom/cusprofile/editCusProfileNew.jsp", 0);
             //企业审核
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-goto")).click();
             Thread.sleep(1000);
             driver.findElement(By.id("mini-119")).click();
             driver.switchTo().defaultContent();
             if (journal) {
-                Reporter.log("企业审核成功，企业号为：" + customNo+"<br/>");
+                Reporter.log("企业审核成功，企业号为：" + customNo + "<br/>");
             }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             if (journal) {
-                Reporter.log("客户管理--企业:" + customNo + "审核失败。错误：" + e.toString()+"<br/>");
+                Reporter.log("客户管理--企业:" + customNo + "审核失败。错误：" + e.toString() + "<br/>");
             }
             return false;
         }

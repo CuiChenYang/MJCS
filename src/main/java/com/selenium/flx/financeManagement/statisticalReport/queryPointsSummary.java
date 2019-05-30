@@ -15,7 +15,7 @@ public class queryPointsSummary {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/report/queryPointsSummary.jsp", 0);
+            switchIframe(driver, "/report/queryPointsSummary.jsp", 0);
 
             updateInput(driver, "id", "summaryDate$text", "2017-05-02");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[15]/a/span")).click();
@@ -35,16 +35,16 @@ public class queryPointsSummary {
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[1]/div/input[3]")).click();
             driver.findElement(By.id("seasonDate$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "2017");
-            for (int i = 1; i < 4; i++) {
+            for (int i = 0; i < 4; i++) {
                 driver.findElement(By.id("jiduDate$text")).click();
                 driver.findElement(By.id("mini-12$" + i)).click();
                 driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[15]/a/span")).click();
                 loading(driver);
             }
-            driver.findElement(By.id("jiduDate$text")).click();
-            driver.findElement(By.id("mini-12$" + 0)).click();
-            driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[15]/a/span")).click();
-            loading(driver);
+//            driver.findElement(By.id("jiduDate$text")).click();
+//            driver.findElement(By.id("mini-12$" + 0)).click();
+//            driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[15]/a/span")).click();
+//            loading(driver);
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[1]/div/input[4]")).click();
             driver.findElement(By.id("yearDate$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "2017");

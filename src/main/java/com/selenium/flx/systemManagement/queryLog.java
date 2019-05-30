@@ -14,7 +14,7 @@ public class queryLog {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/auth/login/queryLoginLog.jsp", 0);
+            switchIframe(driver, "/coframe/auth/login/queryLoginLog.jsp", 0);
 
             Thread.sleep(500);
             queryUserLoginLog(driver, "2019-04-18", "", "", "");
@@ -25,11 +25,11 @@ public class queryLog {
             Thread.sleep(1000);
             queryUserLoginLog(driver, "", "", "", "100002");
             Thread.sleep(1000);
-            queryUserLoginLog(driver, "2019-04-18", "2019-04-18", "", "");
+            queryUserLoginLog(driver, "2019-04-18", "2019-04-22", "", "");
             Thread.sleep(1000);
-            queryUserLoginLog(driver, "2019-04-18", "2019-04-18", "sysadmin", "");
+            queryUserLoginLog(driver, "2019-04-18", "2019-04-22", "sysadmin", "");
             Thread.sleep(1000);
-            queryUserLoginLog(driver, "2019-04-18", "2019-04-18", "", "100002");
+            queryUserLoginLog(driver, "2019-04-18", "2019-04-22", "", "100002");
             Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr/td[8]/a/span")).click();
 
@@ -54,14 +54,14 @@ public class queryLog {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/webHandle/queryHandle.jsp", 0);
+            switchIframe(driver, "/other/webHandle/queryHandle.jsp", 0);
 
             queryOver(driver,"mini-grid-cell");
-            queryUserOperateLog(driver, "2019-04-18", "2019-04-18", "", "", "");
+            queryUserOperateLog(driver, "2019-04-22", "2019-04-22", "", "", "");
             queryOver(driver,"mini-grid-cell");
-            queryUserOperateLog(driver, "2019-04-18", "2019-04-18", "sysadmin", "", "");
+            queryUserOperateLog(driver, "2019-04-22", "2019-04-22", "sysadmin", "", "");
             queryOver(driver,"mini-grid-cell");
-            queryUserOperateLog(driver, "2019-04-18", "2019-04-18", "sysadmin", "", "custom/cusprofile/com.primeton.components.nui.DictLoader.getDictData.biz.ext");
+            queryUserOperateLog(driver, "2019-04-22", "2019-04-22", "sysadmin", "", "skins/default/index.jsp");
             queryOver(driver,"mini-grid-cell");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[8]/a/span")).click();
             queryOver(driver,"mini-grid-cell");

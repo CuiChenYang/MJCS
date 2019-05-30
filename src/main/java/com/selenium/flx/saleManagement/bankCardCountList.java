@@ -10,6 +10,7 @@ import java.util.List;
 import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.switchIframe;
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
+import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 public class bankCardCountList {
 
@@ -18,7 +19,14 @@ public class bankCardCountList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/salesInventory/bankCardCountList.jsp", 0);
+            switchIframe(driver, "/sales/salesInventory/bankCardCountList.jsp", 0);
+
+            if (!isExistBoxOrExistButton(driver, "bankCode$text", 0)) {
+                if (journal) {
+                    Reporter.log("销售管理--银行卡库存查询--跳过测试。原因：暂无此功能 <br/>");
+                }
+                return true;
+            }
 
             Thread.sleep(500);
             driver.findElement(By.id("bankCode$text")).click();

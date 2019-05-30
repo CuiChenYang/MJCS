@@ -2,8 +2,10 @@ package com.selenium.flx.financeManagement.orderPrinting;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
+import java.util.List;
 import java.util.Set;
 
 import static com.selenium.flx.flx.journal;
@@ -16,7 +18,7 @@ public class orderQueryList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/service/credentials/orderQueryList.jsp", 0);
+            switchIframe(driver, "/service/credentials/orderQueryList.jsp", 0);
 
             Thread.sleep(500);
             updateInput(driver, "id", "createTimeStart$text", "2017-05-01");
@@ -24,8 +26,8 @@ public class orderQueryList {
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[5]/a/span")).click();
             Thread.sleep(1500);
 
-            querySpinner(driver, 11, "orderState$text", "mini-6$", "//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[5]/a/span");
-            querySpinner(driver, 37, "orderDistinction$text", "mini-15$", "//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[5]/a/span");
+            querySpinner(driver, false, "orderState$text", "mini-6", "//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[5]/a/span", true);
+            querySpinner(driver, false, "orderDistinction$text", "mini-15", "//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[5]/a/span", true);
 
             updateInput(driver, "id", "orderNoFlx$text", "20170222153859607624");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[5]/a/span")).click();
@@ -35,7 +37,7 @@ public class orderQueryList {
             lookTabAndCloseTab(driver, ".mini-button-text.mini-button-icon.icon-search");
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/service/credentials/orderQueryList.jsp", 1);
+            switchIframe(driver, "/service/credentials/orderQueryList.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[6]/a/span")).click();
             Thread.sleep(500);

@@ -24,16 +24,16 @@ public class editOrder {
             driver.findElement(By.id("1103")).click();
             Thread.sleep(1000);
             driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/sales/order/orderQueryList.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/orderQueryList.jsp')]")));
             //点击订单录入按钮
             driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div[2]/div[2]/div/table/tbody/tr/td/a[1]/span")).click();
             driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/sales/order/entry_order.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/entry_order.jsp')]")));
             //选择客户编号
             driver.findElement(By.xpath("//*[@id=\"customCode\"]/span/span/span[2]/span")).click();
             //输入客户编号查询
             driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/pub/customPub/getCustom.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/pub/customPub/getCustom.jsp')]")));
             updateInput(driver, "xpath", "//*[@id=\"customNo$text\"]", customNo);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
             Thread.sleep(1000);
@@ -42,7 +42,7 @@ public class editOrder {
             Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
             driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/sales/order/entry_order.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/entry_order.jsp')]")));
             //进入购买优分，输入优分
             orderId = driver.findElement(By.name("orderInfo.orderNo")).getAttribute("value");
             driver.findElement(By.xpath("//*[@id=\"form1\"]/div/div/div[5]")).click();
@@ -74,7 +74,7 @@ public class editOrder {
         try {
             //订单录入时复核
             driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/sales/order/orderQueryList.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/orderQueryList.jsp')]")));
             driver.findElement(By.id("orderNo$text")).sendKeys(orderId);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[9]/a")).click();
             Thread.sleep(1000);
@@ -82,7 +82,7 @@ public class editOrder {
             Thread.sleep(1000);
             driver.findElement(By.id("btn_editDictType")).click();
             driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/sales/order/entry_order.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/entry_order.jsp')]")));
             Thread.sleep(1000);
             driver.findElement(By.id("savebtn1")).click();
             Thread.sleep(1000);
@@ -115,7 +115,7 @@ public class editOrder {
             driver.findElement(By.id("1594")).click();
             Thread.sleep(1000);
             //查询订单 处理订单
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/sales/order/orderQueryList_1.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/orderQueryList_1.jsp')]")));
             driver.findElement(By.id("orderNo$text")).sendKeys(orderId);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[5]/a/span")).click();
             Thread.sleep(1000);
@@ -125,7 +125,7 @@ public class editOrder {
             //订单经办
             Thread.sleep(1000);
             driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/sales/order/entry_order_1.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/entry_order_1.jsp')]")));
             driver.findElement(By.id("savebtn1")).click();
             Thread.sleep(2000);
             driver.findElement(By.id("savebtn3")).click();
@@ -165,7 +165,7 @@ public class editOrder {
             Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/sales/order/entry_order_2.jsp')]")));
+            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/entry_order_2.jsp')]")));
             driver.findElement(By.xpath("//*[@id=\"savebtn2\"]/span")).click();
             Thread.sleep(1000);
             driver.findElement(By.id("savebtn1")).click();

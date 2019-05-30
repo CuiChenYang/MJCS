@@ -141,23 +141,18 @@ public class sepecEditCustom {
             driver.switchTo().frame("mainframe");
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             //返回主窗体
-            driver.switchTo().defaultContent();
-            Thread.sleep(1000);
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/custom/cusprofile/editCusProfileNew.jsp')]")));
+            switchIframe(driver,"/custom/cusprofile/editCusProfileNew.jsp",0);
             customNo = driver.findElement(By.name("entity.customNo")).getAttribute("value");
             driver.findElement(By.id("entity.company$text")).sendKeys("ceshi");
             //点击选择业务员
             driver.findElement(By.xpath("//*[@id=\"entity.salesmanid\"]/span/span/span[2]/span")).click();
             //返回主窗体切换业务员iframe
-            driver.switchTo().defaultContent();
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/pub/selectcontrol/choice.jsp')]")));
+            switchIframe(driver,"/pub/selectcontrol/choice.jsp",0);
             //获取第一个checkbox---业务员姓名
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
             //返回主窗体切换业务员iframe---进入添加页面
-            driver.switchTo().defaultContent();
-            Thread.sleep(1000);
-            driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/FlxServer/custom/cusprofile/editCusProfileNew.jsp')]")));
+            switchIframe(driver,"/custom/cusprofile/editCusProfileNew.jsp",0);
             //正确的授权人姓名，身份证和电话
             updateInput(driver, "id", "entity.contactPerson$text", "test");
             driver.findElement(By.id("entity.contactPersonIdcard$text")).sendKeys("370281197811137612");

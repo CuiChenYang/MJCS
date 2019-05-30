@@ -14,7 +14,7 @@ public class scoretocredit {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/order/scoretocredit.jsp", 0);
+            switchIframe(driver, "/sales/order/scoretocredit.jsp", 0);
 
             //查询未完成则不进行后面的操作
             queryOver(driver, "mini-grid-row");

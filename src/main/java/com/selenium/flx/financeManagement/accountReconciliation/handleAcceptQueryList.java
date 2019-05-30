@@ -16,7 +16,7 @@ public class handleAcceptQueryList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/order/handleAcceptQueryList.jsp", 0);
+            switchIframe(driver, "/sales/order/handleAcceptQueryList.jsp", 0);
 
             Thread.sleep(500);
             query(driver, "", "18801613734");

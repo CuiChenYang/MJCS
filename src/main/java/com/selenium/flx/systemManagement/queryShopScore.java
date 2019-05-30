@@ -14,14 +14,14 @@ public class queryShopScore {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customMember/queryShopScore.jsp", 0);
+            switchIframe(driver, "/other/customMember/queryShopScore.jsp", 0);
 
             Thread.sleep(500);
             driver.findElements(By.className("mini-grid-radio-mask")).get(0).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customMember/editShopScore.jsp", 0);
+            switchIframe(driver, "/other/customMember/editShopScore.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-cancel")).click();
 

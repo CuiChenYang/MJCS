@@ -15,7 +15,7 @@ public class queryTotalCustomer {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/pa/TotalCustomer/queryTotalCustomer.jsp", 0);
+            switchIframe(driver, "/pa/TotalCustomer/queryTotalCustomer.jsp", 0);
 
             Thread.sleep(500);
             driver.findElement(By.id("cname$text")).sendKeys("测试1129");
@@ -52,7 +52,7 @@ public class queryTotalCustomer {
 
     public void add(WebDriver driver, String name) throws InterruptedException {
         Thread.sleep(500);
-        switchIframe(driver, "/FlxServer/pa/TotalCustomer/relationTotalCustomer.jsp", 0);
+        switchIframe(driver, "/pa/TotalCustomer/relationTotalCustomer.jsp", 0);
         Thread.sleep(500);
         driver.findElement(By.id("buname$text")).sendKeys(name);
         Thread.sleep(500);
@@ -62,6 +62,6 @@ public class queryTotalCustomer {
         Thread.sleep(500);
         driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
         Thread.sleep(500);
-        switchIframe(driver, "/FlxServer/pa/TotalCustomer/queryTotalCustomer.jsp", 0);
+        switchIframe(driver, "/pa/TotalCustomer/queryTotalCustomer.jsp", 0);
     }
 }

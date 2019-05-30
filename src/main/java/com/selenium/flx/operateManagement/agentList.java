@@ -17,7 +17,7 @@ public class agentList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/agent/agent/agentList.jsp", 0);
+            switchIframe(driver, "/agent/agent/agentList.jsp", 0);
 
             //查询
             queryInput(driver, "", "", "", "", "2018-07-27", "2018-08-14");
@@ -33,7 +33,7 @@ public class agentList {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/agent/agent/addAgent.jsp", 0);
+            switchIframe(driver, "/agent/agent/addAgent.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             Thread.sleep(1000);
@@ -48,7 +48,7 @@ public class agentList {
             driver.findElement(By.xpath("//*[@id=\"userId\"]/span/span/span[2]/span")).click();
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/agent/agent/getSales.jsp", 0);
+            switchIframe(driver, "/agent/agent/getSales.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "userName$text", "测试");
             Thread.sleep(500);
@@ -59,7 +59,7 @@ public class agentList {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/agent/agent/addAgent.jsp", 0);
+            switchIframe(driver, "/agent/agent/addAgent.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             Thread.sleep(1000);
@@ -73,7 +73,7 @@ public class agentList {
 
             //修改
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/agent/agent/agentList.jsp", 0);
+            switchIframe(driver, "/agent/agent/agentList.jsp", 0);
             Thread.sleep(500);
             queryInput(driver, "test001", "", "", "", "", "");
             Thread.sleep(500);
@@ -82,7 +82,7 @@ public class agentList {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/agent/agent/editAgent.jsp", 0);
+            switchIframe(driver, "/agent/agent/editAgent.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "agentName$text", "test003");
             Thread.sleep(500);
@@ -94,7 +94,7 @@ public class agentList {
 
             //删除
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/agent/agent/agentList.jsp", 0);
+            switchIframe(driver, "/agent/agent/agentList.jsp", 0);
             Thread.sleep(500);
             queryInput(driver, "test003", "", "", "", "", "");
             Thread.sleep(500);

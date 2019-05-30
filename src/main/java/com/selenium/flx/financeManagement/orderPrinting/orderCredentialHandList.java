@@ -14,7 +14,7 @@ public class orderCredentialHandList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/service/credentials/orderCredentialHandList.jsp", 0);
+            switchIframe(driver, "/service/credentials/orderCredentialHandList.jsp", 0);
 
             Thread.sleep(500);
             query(driver, "", "2017-01-17", "");
@@ -25,7 +25,7 @@ public class orderCredentialHandList {
             lookTabAndCloseTab(driver, ".mini-button-text.mini-button-icon.icon-search");
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/service/credentials/orderCredentialHandList.jsp", 1);
+            switchIframe(driver, "/service/credentials/orderCredentialHandList.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[4]/a/span")).click();
             Thread.sleep(500);

@@ -9,6 +9,7 @@ import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.switchIframe;
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
 import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 public class cooperationCustomRelation {
 
@@ -17,7 +18,14 @@ public class cooperationCustomRelation {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cooperation/cooperationCustomRelation.jsp", 0);
+            switchIframe(driver, "/custom/cooperation/cooperationCustomRelation.jsp", 0);
+
+            if (!isExistBoxOrExistButton(driver, ".mini-button-text.mini-button-icon.icon-add", 2)) {
+                if (journal) {
+                    Reporter.log("客户管理--客户与合作伙伴关系管理--跳过测试。原因：暂无此功能 <br/>");
+                }
+                return true;
+            }
 
             //查询
             query(driver, "01510120", "", "", "", "");
@@ -33,7 +41,7 @@ public class cooperationCustomRelation {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cooperation/addCooperationCustomRelation.jsp", 0);
+            switchIframe(driver, "/custom/cooperation/addCooperationCustomRelation.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             Thread.sleep(500);
@@ -42,14 +50,14 @@ public class cooperationCustomRelation {
             driver.findElement(By.xpath("//*[@id=\"cooperationid\"]/span/span/span[2]/span")).click();
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cooperation/getCooperation.jsp", 0);
+            switchIframe(driver, "/custom/cooperation/getCooperation.jsp", 0);
             Thread.sleep(500);
             driver.findElements(By.className("mini-grid-radio-mask")).get(0).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cooperation/addCooperationCustomRelation.jsp", 0);
+            switchIframe(driver, "/custom/cooperation/addCooperationCustomRelation.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             Thread.sleep(500);
@@ -64,7 +72,7 @@ public class cooperationCustomRelation {
             driver.findElement(By.xpath("//*[@id=\"customno\"]/span/span/span[2]/span")).click();
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/pub/customPub/getCustom.jsp", 0);
+            switchIframe(driver, "/pub/customPub/getCustom.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "customNo$text", "01510182");
             Thread.sleep(500);
@@ -75,20 +83,20 @@ public class cooperationCustomRelation {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cooperation/addCooperationCustomRelation.jsp", 0);
+            switchIframe(driver, "/custom/cooperation/addCooperationCustomRelation.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
 
             //修改
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cooperation/cooperationCustomRelation.jsp", 0);
+            switchIframe(driver, "/custom/cooperation/cooperationCustomRelation.jsp", 0);
             Thread.sleep(500);
             query(driver, "01510182", "", "", "", "");
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cooperation/editCooperationCustomRelation.jsp", 0);
+            switchIframe(driver, "/custom/cooperation/editCooperationCustomRelation.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "corpaccounts$text", "test003");
             Thread.sleep(500);
@@ -96,7 +104,7 @@ public class cooperationCustomRelation {
 
             //删除
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cooperation/cooperationCustomRelation.jsp", 0);
+            switchIframe(driver, "/custom/cooperation/cooperationCustomRelation.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
             Thread.sleep(500);

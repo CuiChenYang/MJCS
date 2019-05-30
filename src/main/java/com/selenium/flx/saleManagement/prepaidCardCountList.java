@@ -10,6 +10,7 @@ import java.util.List;
 import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.switchIframe;
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
+import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 public class prepaidCardCountList {
 
@@ -18,7 +19,14 @@ public class prepaidCardCountList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/salesInventory/prepaidCardCountList.jsp", 0);
+            switchIframe(driver, "/sales/salesInventory/prepaidCardCountList.jsp", 0);
+
+            if (!isExistBoxOrExistButton(driver, "//*[@id=\"queryForm\"]/table/tbody/tr/td[5]/a/span", 3)) {
+                if (journal) {
+                    Reporter.log("销售管理--充值卡库存查询--跳过测试。原因：暂无此功能 <br/>");
+                }
+                return true;
+            }
 
             queryInput(driver, 12, "orgcode$text", "mini-5$");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr/td[5]/a/span")).click();

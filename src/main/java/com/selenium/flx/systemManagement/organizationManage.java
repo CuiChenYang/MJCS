@@ -17,7 +17,7 @@ public class organizationManage {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             Thread.sleep(500);
             //判断是否需要删除
             judge(driver);
@@ -26,10 +26,12 @@ public class organizationManage {
             Actions mouse = new Actions(driver);
             List<WebElement> list = driver.findElements(By.className("mini-tree-nodetext"));
             Thread.sleep(500);
+            mouse.click(list.get(0)).perform();
+            Thread.sleep(500);
             mouse.contextClick(list.get(0)).perform();
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"treeMenu\"]/div/div/div[1]/div[1]/div/div[2]")).click();
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_add.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_add.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "orgname$text", "test公司");
             Thread.sleep(500);
@@ -57,10 +59,10 @@ public class organizationManage {
 
             //本级机构  修改
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             mouseClick(driver, "mini-tree-nodeshow", "test公司", 0);
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_update.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_update.jsp", 1);
             Thread.sleep(500);
             updateInput(driver, "id", "sortno$text", "3");
             Thread.sleep(500);
@@ -82,15 +84,15 @@ public class organizationManage {
 
             //下级机构 新增
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$4")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/sub_org_list.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/sub_org_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_add.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_add.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "orgname$text", "测试机构开发部");
             Thread.sleep(500);
@@ -103,14 +105,14 @@ public class organizationManage {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //编辑
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/sub_org_list.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/sub_org_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_update.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_update.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "orgname$text", "测试下级机构");
             Thread.sleep(500);
@@ -119,8 +121,8 @@ public class organizationManage {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //删除
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/sub_org_list.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/sub_org_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -130,15 +132,15 @@ public class organizationManage {
 
             //下级岗位 新增
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$5")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/position/position_list.jsp", 1);
+            switchIframe(driver, "/coframe/org/position/position_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/position/position_org_add.jsp", 0);
+            switchIframe(driver, "/coframe/org/position/position_org_add.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "posiname$text", "测试岗");
             Thread.sleep(500);
@@ -147,14 +149,14 @@ public class organizationManage {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //编辑
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
-            switchIframe(driver, "/FlxServer/coframe/org/position/position_list.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/position/position_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/position/position_org_update.jsp", 0);
+            switchIframe(driver, "/coframe/org/position/position_org_update.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "posiname$text", "开发岗");
             Thread.sleep(500);
@@ -166,13 +168,13 @@ public class organizationManage {
             Thread.sleep(500);
             driver.findElement(By.className("mini-calendar-tadayButton")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/position/position_org_update.jsp", 0);
+            switchIframe(driver, "/coframe/org/position/position_org_update.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //删除
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
-            switchIframe(driver, "/FlxServer/coframe/org/position/position_list.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/position/position_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -182,15 +184,15 @@ public class organizationManage {
 
             //员工信息 新增
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$6")).click();
-            Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/employee/employee_list.jsp", 1);
-            Thread.sleep(500);
+            Thread.sleep(1000);
+            switchIframe(driver, "/coframe/org/employee/employee_list.jsp", 1);
+            Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/employee/employee_add.jsp", 0);
+            switchIframe(driver, "/coframe/org/employee/employee_add.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "empname$text", "李四");
             Thread.sleep(500);
@@ -214,7 +216,7 @@ public class organizationManage {
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"major\"]/span/span/span[2]/span")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/employee/select_major.jsp", 0);
+            switchIframe(driver, "/coframe/org/employee/select_major.jsp", 0);
             Thread.sleep(1000);
             updateInput(driver, "xpath", "//*[@id=\"table1\"]/tbody/tr[1]/td[2]/span/span/input", "测试丁");
             Thread.sleep(500);
@@ -224,19 +226,19 @@ public class organizationManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/employee/employee_add.jsp", 0);
+            switchIframe(driver, "/coframe/org/employee/employee_add.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //编辑
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
-            switchIframe(driver, "/FlxServer/coframe/org/employee/employee_list.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/employee/employee_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/employee/employee_update.jsp", 0);
+            switchIframe(driver, "/coframe/org/employee/employee_update.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.id("empstatus$text")).click();
             Thread.sleep(500);
@@ -245,8 +247,8 @@ public class organizationManage {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //删除
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
-            switchIframe(driver, "/FlxServer/coframe/org/employee/employee_list.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/employee/employee_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -256,11 +258,11 @@ public class organizationManage {
 
             //权限设置
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$7")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/auth/partyauth/auth.jsp", 1);
+            switchIframe(driver, "/coframe/auth/partyauth/auth.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.xpath("/html/body/div[1]/table/tbody/tr/td[2]/a[3]/span")).click();
             Thread.sleep(500);
@@ -277,8 +279,7 @@ public class organizationManage {
             list.get(6).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("/html/body/div[1]/table/tbody/tr/td[2]/a[4]/span")).click();
-            Thread.sleep(500);
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
             Thread.sleep(500);
             list = driver.findElements(By.className("mini-listbox-item"));
@@ -292,11 +293,11 @@ public class organizationManage {
 
             //权限计算
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 0);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$8")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/auth/authgraph/auth_graph.jsp", 1);
+            switchIframe(driver, "/coframe/auth/authgraph/auth_graph.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[name()='svg']/*[name()='text'][5]/*[name()='tspan']")).click();
             Thread.sleep(500);
@@ -306,7 +307,7 @@ public class organizationManage {
 
             //删除测试组织
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_tree.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 1);
             mouseClick(driver, "mini-tree-nodeshow", "test公司", 2);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"treeMenu\"]/div/div/div[1]/div[5]/div/div[2]")).click();

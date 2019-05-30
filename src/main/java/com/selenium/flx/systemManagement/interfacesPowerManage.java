@@ -18,20 +18,20 @@ public class interfacesPowerManage {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/interfacepower/interfacep/interface_power.jsp", 0);
+            switchIframe(driver, "/interfacepower/interfacep/interface_power.jsp", 0);
 
             //查询接口
             Thread.sleep(500);
-            updateInput(driver, "name", "customInfo.company", "ceshi0322");
+            updateInput(driver, "name", "customInfo.company", "测试-3");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
             Thread.sleep(500);
-            updateInput(driver, "name", "customInfo.customNo", "02560027");
+            updateInput(driver, "name", "customInfo.customNo", "01510089");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
             //点击配置
             Thread.sleep(500);
-            driver.findElement(By.id("02560027")).click();
+            driver.findElement(By.id("01510089")).click();
 
             //更改与还原接口权限
             for (int i = 0; i < 2; i++) {

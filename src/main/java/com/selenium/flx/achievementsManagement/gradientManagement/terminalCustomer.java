@@ -15,7 +15,7 @@ public class terminalCustomer {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/pa/ValidCustomer/terminalCustomer.jsp", 0);
+            switchIframe(driver, "/pa/ValidCustomer/terminalCustomer.jsp", 0);
 
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();

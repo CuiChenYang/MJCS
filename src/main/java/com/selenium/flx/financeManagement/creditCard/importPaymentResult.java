@@ -14,15 +14,15 @@ public class importPaymentResult {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/repayment/importPaymentResult.jsp", 0);
+            switchIframe(driver, "/other/repayment/importPaymentResult.jsp", 0);
 
             Thread.sleep(500);
             updateInput(driver, "id", "importTime$text", "2018-11-28");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[6]/a[1]/span")).click();
             Thread.sleep(1000);
 
-            querySpinner(driver, 3, "isUpdate$text", "mini-7$", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[6]/a[1]/span");
-            querySpinner(driver, 3, "paymentStatus$text", "mini-14$", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[6]/a[1]/span");
+            querySpinner(driver, false, "isUpdate$text", "mini-7", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[6]/a[1]/span", true);
+            querySpinner(driver, false, "paymentStatus$text", "mini-14", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[6]/a[1]/span", true);
 
             query(driver, "", "04");
             query(driver, "20181128133627305390", "04");

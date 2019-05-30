@@ -14,9 +14,9 @@ public class creditQueryList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/credit/creditQueryList_2.jsp", 0);
+            switchIframe(driver, "/sales/credit/creditQueryList_2.jsp", 0);
 
-            querySpinner(driver, 10, "orderStatus$text", "mini-6$", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span");
+            querySpinner(driver, false, "orderStatus$text", "mini-6", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span", true);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span")).click();
             Thread.sleep(1000);
 
@@ -31,7 +31,7 @@ public class creditQueryList {
             Thread.sleep(1000);
             driver.findElement(By.xpath("//span[@style=';']")).click();
 
-            switchIframe(driver,"/FlxServer/sales/credit/creditQueryList_2.jsp",1);
+            switchIframe(driver,"/sales/credit/creditQueryList_2.jsp",1);
             Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a/span")).click();
             Thread.sleep(1000);

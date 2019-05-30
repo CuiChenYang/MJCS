@@ -15,7 +15,7 @@ public class queryCounterFee {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/report/queryCounterFee.jsp", 0);
+            switchIframe(driver, "/report/queryCounterFee.jsp", 0);
 
             updateInput(driver, "id", "startDate$text", "2017-01-17");
             updateInput(driver, "id", "endDate$text", "2017-01-17");
@@ -28,9 +28,8 @@ public class queryCounterFee {
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[1]/div/input[3]")).click();
             driver.findElement(By.id("seasonDate$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "2017");
-            querySpinner(driver, 4, "jiduDate$text", "mini-14$", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[13]/a/span");
-            driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[13]/a/span")).click();
-            Thread.sleep(1500);
+            querySpinner(driver, true, "jiduDate$text", "mini-14", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[13]/a/span", false);
+            Thread.sleep(1000);
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[1]/div/input[4]")).click();
             driver.findElement(By.id("yearDate$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "2017");

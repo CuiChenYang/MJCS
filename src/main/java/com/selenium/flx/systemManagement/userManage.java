@@ -21,7 +21,7 @@ public class userManage {
     //  用户管理 查询用户
     public boolean selectUser(WebDriver driver) {
         try {
-            switchIframe(driver, "/FlxServer/coframe/rights/user/user_list.jsp", 0);
+            switchIframe(driver, "/coframe/rights/user/user_list.jsp", 0);
             updateInput(driver, "className", "mini-textbox-input", "admin");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();

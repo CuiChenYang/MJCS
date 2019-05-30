@@ -17,7 +17,7 @@ public class queryReportSpend {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/report/queryReportSpend.jsp", 0);
+            switchIframe(driver, "/report/queryReportSpend.jsp", 0);
 
             Thread.sleep(500);
             updateInput(driver, "id", "startDate$text", "2015-10-10");

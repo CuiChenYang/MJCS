@@ -16,7 +16,7 @@ public class queryPrepaidCardInfo {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/audit/audit/queryPrepaidCardInfo.jsp", 0);
+            switchIframe(driver, "/audit/audit/queryPrepaidCardInfo.jsp", 0);
 
             updateInput(driver, "id", "cardNo$text", "1201181210000048");
             Thread.sleep(500);

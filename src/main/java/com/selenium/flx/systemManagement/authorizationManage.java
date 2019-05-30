@@ -13,7 +13,7 @@ public class authorizationManage {
     //角色授权
     public boolean roleAuthorization(WebDriver driver) {
         try {
-            switchIframe(driver, "/FlxServer/coframe/auth/role_auth.jsp", 1);
+            switchIframe(driver, "/coframe/auth/role_auth.jsp", 1);
             //输入并查询
             Thread.sleep(1000);
             updateInput(driver, "xpath", "//*[@id=\"table1\"]/tbody/tr/td[1]/span/span/input", "test");
@@ -27,10 +27,10 @@ public class authorizationManage {
 
             //配置
             Thread.sleep(1000);
-            driver.findElement(By.id("1281")).click();
+            driver.findElement(By.xpath("//a[@style='color:#1B3F91;text-decoration:underline;']")).click();
 
             //功能
-            switchIframe(driver, "/FlxServer/coframe/framework/function/function_role_auth.jsp", 1);
+            switchIframe(driver, "/coframe/framework/function/function_role_auth.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"panel1\"]/div/div[2]/div[1]/div/table/tbody/tr/td[1]/a[2]/span")).click();
             Thread.sleep(500);
@@ -57,10 +57,10 @@ public class authorizationManage {
 
             //机构
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/auth/role_auth.jsp", 0);
+            switchIframe(driver, "/coframe/auth/role_auth.jsp", 0);
             driver.findElement(By.id("mini-24$2")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_auth.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_auth.jsp", 1);
             Thread.sleep(500);
             updateInput(driver, "id", "key$text", "北京");
             Thread.sleep(500);
@@ -95,25 +95,25 @@ public class authorizationManage {
 
             //工作组
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/auth/role_auth.jsp", 0);
+            switchIframe(driver, "/coframe/auth/role_auth.jsp", 0);
             driver.findElement(By.id("mini-24$3")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/group/group_auth.jsp", 1);
+            switchIframe(driver, "/coframe/org/group/group_auth.jsp", 1);
 
             //数据实体
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/auth/role_auth.jsp", 0);
+            switchIframe(driver, "/coframe/auth/role_auth.jsp", 0);
             driver.findElement(By.id("mini-24$4")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/entityauth/rule/entity_rule_auth.jsp", 1);
+            switchIframe(driver, "/entityauth/rule/entity_rule_auth.jsp", 1);
 
             //测试完成后删除测试数据
             //功能
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/auth/role_auth.jsp", 0);
+            switchIframe(driver, "/coframe/auth/role_auth.jsp", 0);
             driver.findElement(By.id("mini-24$1")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/framework/function/function_role_auth.jsp", 1);
+            switchIframe(driver, "/coframe/framework/function/function_role_auth.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.id("mini-15$checkbox$1")).click();
             Thread.sleep(500);
@@ -124,10 +124,10 @@ public class authorizationManage {
             waitClick(driver, "//*[@id=\"mini-27\"]/span", 3);
             //机构
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/auth/role_auth.jsp", 0);
+            switchIframe(driver, "/coframe/auth/role_auth.jsp", 0);
             driver.findElement(By.id("mini-24$2")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/org/organization/org_auth.jsp", 1);
+            switchIframe(driver, "/coframe/org/organization/org_auth.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"allDeleteBtn\"]/span")).click();
             Thread.sleep(500);

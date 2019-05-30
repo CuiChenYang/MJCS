@@ -1,5 +1,6 @@
 package com.selenium.flx.systemManagement;
 
+import org.apache.catalina.filters.WebdavFixFilter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +21,7 @@ public class parameterManage {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver,"/FlxServer/parameter/code/bank_sys_code.jsp",0);
+            switchIframe(driver, "/parameter/code/bank_sys_code.jsp", 0);
 
             //点击添加提示需要选中一条记录
             Thread.sleep(500);
@@ -46,21 +47,22 @@ public class parameterManage {
             //选中并编辑第四个测试参数
             Thread.sleep(1000);
             list = driver.findElements(By.className("mini-grid-radio-mask"));
-            list.get(3).click();
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
+            if (judge(list)) {
+                list.get(3).click();
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
 
-            Thread.sleep(500);
-            switchIframe(driver,"/FlxServer/parameter/code/bank_sys_code_update.jsp",0);
-            Thread.sleep(500);
-            updateInput(driver, "name", "sysCode.codeName", "测试" + getNum(1, 999) + getNum(1, 999));
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(1000);
-            if (isExistBoxOrExistButton(driver, "//*[@class=\"mini-messagebox-buttons\"]/a/span", 3)) {
-                driver.findElement(By.xpath("//*[@class=\"mini-messagebox-buttons\"]/a/span")).click();
+                Thread.sleep(500);
+                switchIframe(driver, "/parameter/code/bank_sys_code_update.jsp", 0);
+                Thread.sleep(500);
+                updateInput(driver, "name", "sysCode.codeName", "测试" + getNum(1, 999) + getNum(1, 999));
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
+                Thread.sleep(1000);
+                if (isExistBoxOrExistButton(driver, "//*[@class=\"mini-messagebox-buttons\"]/a/span", 3)) {
+                    driver.findElement(By.xpath("//*[@class=\"mini-messagebox-buttons\"]/a/span")).click();
+                }
             }
-
             Thread.sleep(1000);
 
             if (journal) {
@@ -73,6 +75,18 @@ public class parameterManage {
                 taskScreenShot(driver);
                 Reporter.log("系统管理--参数管理--测试失败。错误：" + e.toString() + "<br/>");
             }
+            return false;
+        }
+
+
+    }
+
+    public boolean judge(List<WebElement> list) {
+        try {
+            list.get(3);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

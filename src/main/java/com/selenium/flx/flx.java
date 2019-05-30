@@ -41,6 +41,7 @@ import java.util.List;
 
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
 import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 @Slf4j
 public class flx extends DriverBase {
@@ -50,7 +51,6 @@ public class flx extends DriverBase {
     public editCustom custom = new editCustom();
     public editOrder order = new editOrder();
     public customDetail cd = new customDetail();
-    public fuYou fy = new fuYou();
     //测试地址
     public String flxUrl = PropertiesConfig.getInstance().getProperty("driver.flx.url");
     //登录用户名
@@ -192,20 +192,32 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "interfacesPowerManage", description = "系统管理--客户IP设置", alwaysRun = true)
     public void customerIPSettings() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/other/customIp/customIpQueryList.jsp']")).click();
-        customerIPSettings c = new customerIPSettings();
-        if (!c.customerIPSettings(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/other/customIp/customIpQueryList.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/other/customIp/customIpQueryList.jsp']")).click();
+            customerIPSettings c = new customerIPSettings();
+            if (!c.customerIPSettings(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("系统管理--客户IP设置--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //第三方账号管理
     @Test(dependsOnMethods = "customerIPSettings", description = "系统管理--第三方账号管理", alwaysRun = true)
     public void thirdPartyAccountManage() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/other/thirdAccountInfo/thirdAccountInfo.jsp']")).click();
-        thirdPartyAccountManage t = new thirdPartyAccountManage();
-        if (!t.thirdPartyAccountManage(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/other/thirdAccountInfo/thirdAccountInfo.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/other/thirdAccountInfo/thirdAccountInfo.jsp']")).click();
+            thirdPartyAccountManage t = new thirdPartyAccountManage();
+            if (!t.thirdPartyAccountManage(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("系统管理--第三方账号管理--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //其他--设置安全策略
@@ -229,8 +241,24 @@ public class flx extends DriverBase {
             driver.findElement(By.id("returnFalse")).click();
     }
 
+    //webIp白名单
+    @Test(dependsOnMethods = "disposeTransactionDictionary", description = "系统管理--webIp白名单", alwaysRun = true)
+    public void webIpList() {
+        driver.switchTo().defaultContent();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/other/webIp/webIpList.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/other/webIp/webIpList.jsp']")).click();
+            webIpList w = new webIpList();
+            if (!w.webIpList(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("系统管理--webIp白名单--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
+    }
+
     //系统账户优分设置
-    @Test(dependsOnMethods = "disposeTransactionDictionary", description = "系统管理--系统账户优分设置", alwaysRun = true)
+    @Test(dependsOnMethods = "webIpList", description = "系统管理--系统账户优分设置", alwaysRun = true)
     public void queryShopScore() {
         driver.switchTo().defaultContent();
         driver.findElement(By.xpath("//a[@url='/other/customMember/queryShopScore.jsp']")).click();
@@ -474,87 +502,118 @@ public class flx extends DriverBase {
             driver.findElement(By.id("returnFalse")).click();
     }
 
-    //金牛卡结果确认
-    @Test(dependsOnMethods = "rechargeQueryList", description = "财务管理--金牛卡结果确认", alwaysRun = true)
-    public void scoretobankQueryList() {
-        driver.switchTo().defaultContent();
-        driver.findElement(By.id("1599")).click();
-        driver.findElement(By.xpath("//a[@url='/sales/scoretobank/scoretobankQueryList.jsp']")).click();
-        scoretobankQueryList r = new scoretobankQueryList();
-        if (!r.scoretobankQueryList(driver))
-            driver.findElement(By.id("returnFalse")).click();
-    }
-
     //region 信用卡业务
     //信用卡业务--信用卡导出
-    @Test(dependsOnMethods = "scoretobankQueryList", description = "财务管理--信用卡业务--信用卡导出", alwaysRun = true)
+    @Test(dependsOnMethods = "rechargeQueryList", description = "财务管理--信用卡业务--信用卡导出", alwaysRun = true)
     public void scoretocredit() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("1603")).click();
-        driver.findElement(By.xpath("//a[@url='/sales/order/scoretocredit.jsp']")).click();
-        scoretocredit s = new scoretocredit();
-        if (!s.scoretocredit(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "1603", 0)) {
+            driver.findElement(By.id("1603")).click();
+            driver.findElement(By.xpath("//a[@url='/sales/order/scoretocredit.jsp']")).click();
+            scoretocredit s = new scoretocredit();
+            if (!s.scoretocredit(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("财务管理--信用卡业务--信用卡导出--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //信用卡业务--矩阵还款
     @Test(dependsOnMethods = "scoretocredit", description = "财务管理--信用卡业务--矩阵还款", alwaysRun = true)
     public void repayment() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/other/repayment/repayment.jsp']")).click();
-        repayment r = new repayment();
-        if (!r.repayment(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/other/repayment/repayment.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/other/repayment/repayment.jsp']")).click();
+            repayment r = new repayment();
+            if (!r.repayment(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("财务管理--信用卡业务--矩阵还款--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //信用卡业务--还款结果查询
     @Test(dependsOnMethods = "repayment", description = "财务管理--信用卡业务--还款结果查询", alwaysRun = true)
     public void queryRepaymentAll() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/other/repayment/queryRepaymentAll.jsp']")).click();
-        queryRepaymentAll r = new queryRepaymentAll();
-        if (!r.queryRepaymentAll(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/other/repayment/queryRepaymentAll.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/other/repayment/queryRepaymentAll.jsp']")).click();
+            queryRepaymentAll r = new queryRepaymentAll();
+            if (!r.queryRepaymentAll(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("财务管理--信用卡业务--还款结果查询--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //信用卡业务--还款异常处理
     @Test(dependsOnMethods = "queryRepaymentAll", description = "财务管理--信用卡业务--还款异常处理", alwaysRun = true)
     public void errorRepayment() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/other/repayment/errorRepayment.jsp']")).click();
-        errorRepayment e = new errorRepayment();
-        if (!e.errorRepayment(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/other/repayment/errorRepayment.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/other/repayment/errorRepayment.jsp']")).click();
+            errorRepayment e = new errorRepayment();
+            if (!e.errorRepayment(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("财务管理--信用卡业务--还款异常处理--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //信用卡业务--信用卡财务经办
     @Test(dependsOnMethods = "errorRepayment", description = "财务管理--信用卡业务--信用卡财务经办", alwaysRun = true)
     public void creditQueryList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/sales/credit/creditQueryList_2.jsp']")).click();
-        creditQueryList c = new creditQueryList();
-        if (!c.creditQueryList(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/sales/credit/creditQueryList_2.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/sales/credit/creditQueryList_2.jsp']")).click();
+            creditQueryList c = new creditQueryList();
+            if (!c.creditQueryList(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("财务管理--信用卡业务--信用卡财务经办--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //信用卡业务--还款结果导入
     @Test(dependsOnMethods = "creditQueryList", description = "财务管理--信用卡业务--还款结果导入", alwaysRun = true)
     public void importPaymentResult() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/other/repayment/importPaymentResult.jsp']")).click();
-        importPaymentResult i = new importPaymentResult();
-        if (!i.importPaymentResult(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/other/repayment/importPaymentResult.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/other/repayment/importPaymentResult.jsp']")).click();
+            importPaymentResult i = new importPaymentResult();
+            if (!i.importPaymentResult(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("财务管理--信用卡业务--还款结果导入--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //信用卡业务--光大复核
     @Test(dependsOnMethods = "importPaymentResult", description = "财务管理--信用卡业务--光大复核", alwaysRun = true)
     public void paymentFileList() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/other/paymentTxt/paymentFileList.jsp']")).click();
-        paymentFileList p = new paymentFileList();
-        if (!p.paymentFileList(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/other/paymentTxt/paymentFileList.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/other/paymentTxt/paymentFileList.jsp']")).click();
+            paymentFileList p = new paymentFileList();
+            if (!p.paymentFileList(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("财务管理--信用卡业务--光大复核--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
     //endregion
 
@@ -690,7 +749,7 @@ public class flx extends DriverBase {
     /**
      * 财务管理 订单业务 订单经办
      */
-    @Test(dependsOnMethods = "againLoginFuYou", description = "财务管理 订单业务 订单经办")
+    @Test(dependsOnMethods = "firstLoginFuYou", description = "财务管理 订单业务 订单经办")
     public void handleOrder() {
         if (!order.handleOrder(driver))
             driver.findElement(By.id("returnFalse")).click();
@@ -737,31 +796,49 @@ public class flx extends DriverBase {
     public void validCustomer() {
         driver.switchTo().defaultContent();
         listClickByText(driver, "绩效管理");
-        driver.findElement(By.id("2782")).click();
-        driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/validCustomer.jsp']")).click();
-        validCustomer v = new validCustomer();
-        if (!v.validCustomer(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "2782", 0)) {
+            driver.findElement(By.id("2782")).click();
+            driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/validCustomer.jsp']")).click();
+            validCustomer v = new validCustomer();
+            if (!v.validCustomer(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("绩效管理--梯度管理--有效客户管理--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //梯度管理--平台客户管理
     @Test(dependsOnMethods = "validCustomer", description = "绩效管理--梯度管理--平台客户管理", alwaysRun = true)
     public void platformCustomer() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/platformCustomer.jsp']")).click();
-        platformCustomer p = new platformCustomer();
-        if (!p.platformCustomer(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/pa/ValidCustomer/platformCustomer.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/platformCustomer.jsp']")).click();
+            platformCustomer p = new platformCustomer();
+            if (!p.platformCustomer(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("绩效管理--梯度管理--平台客户管理--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //梯度管理--终端客户管理
     @Test(dependsOnMethods = "platformCustomer", description = "绩效管理--梯度管理--终端客户管理", alwaysRun = true)
     public void terminalCustomer() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/terminalCustomer.jsp']")).click();
-        terminalCustomer t = new terminalCustomer();
-        if (!t.terminalCustomer(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/pa/ValidCustomer/terminalCustomer.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/pa/ValidCustomer/terminalCustomer.jsp']")).click();
+            terminalCustomer t = new terminalCustomer();
+            if (!t.terminalCustomer(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("绩效管理--梯度管理--终端客户管理--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
     //endregion
 
@@ -769,42 +846,44 @@ public class flx extends DriverBase {
     @Test(dependsOnMethods = "terminalCustomer", description = "绩效管理--企业关联关系--列表信息管理", alwaysRun = true)
     public void queryTotalCustomer() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.id("2786")).click();
-        driver.findElement(By.xpath("//a[@url='/pa/TotalCustomer/queryTotalCustomer.jsp']")).click();
-        queryTotalCustomer q = new queryTotalCustomer();
-        if (!q.queryTotalCustomer(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "2786", 0)) {
+            driver.findElement(By.id("2786")).click();
+            driver.findElement(By.xpath("//a[@url='/pa/TotalCustomer/queryTotalCustomer.jsp']")).click();
+            queryTotalCustomer q = new queryTotalCustomer();
+            if (!q.queryTotalCustomer(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("绩效管理--梯度管理--有效客户管理--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
     //代理商绩效
     @Test(dependsOnMethods = "queryTotalCustomer", description = "绩效管理--代理商绩效", alwaysRun = true)
     public void agentInfo() {
         driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//a[@url='/pa/agentInfo/agentInfo.jsp']")).click();
-        agentInfo a = new agentInfo();
-        if (!a.agentInfo(driver))
-            driver.findElement(By.id("returnFalse")).click();
+        if (isExistBoxOrExistButton(driver, "//a[@url='/pa/agentInfo/agentInfo.jsp']", 3)) {
+            driver.findElement(By.xpath("//a[@url='/pa/agentInfo/agentInfo.jsp']")).click();
+            agentInfo a = new agentInfo();
+            if (!a.agentInfo(driver))
+                driver.findElement(By.id("returnFalse")).click();
+        } else {
+            if (journal) {
+                Reporter.log("绩效管理--梯度管理--有效客户管理--跳过测试。原因：暂无此权限或功能 <br/>");
+            }
+        }
     }
 
 //endregion
 
     /**
-     * 首次登录激活企业
+     * 首次登录激活企业 并回复订单
      */
-    @Test(dependsOnMethods = "checkOrder", description = "首次登录激活企业")
+    @Test(dependsOnMethods = "checkOrder", description = "首次登录激活企业 并回复订单")
     public void firstLoginFuYou() {
-        //首次登录激活企业
-        if (!fy.login(se.customNo, "123456"))
-            driver.findElement(By.id("returnFalse")).click();
-    }
-
-    /**
-     * 激活成功后重新登录 并回复订单
-     */
-    @Test(dependsOnMethods = "firstLoginFuYou", description = "激活成功后重新登录 并回复订单")
-    public void againLoginFuYou() {
-        //激活成功后重新登录
-        if (!fy.login(se.customNo, "123456") || !fy.replyCustomOrder(se.customNo))
+        fuYou fy = new fuYou();
+        if (!fy.login(se.customNo, "123456") || !fy.login(se.customNo, "123456") || !fy.replyCustomOrder(se.customNo))
             driver.findElement(By.id("returnFalse")).click();
         else {
             if (journal) {
@@ -814,7 +893,7 @@ public class flx extends DriverBase {
         }
     }
 
-    //点击对应text的dt
+    //点击对应的菜单
     public boolean listClickByText(WebDriver driver, String text) {
         List<WebElement> list = driver.findElements(By.cssSelector("dt"));
         for (int i = 0; i < list.size(); i++) {

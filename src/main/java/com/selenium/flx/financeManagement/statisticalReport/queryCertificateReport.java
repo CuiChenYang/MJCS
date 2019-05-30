@@ -16,7 +16,7 @@ public class queryCertificateReport {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/report/certificateReport/queryCertificateReport.jsp", 0);
+            switchIframe(driver, "/report/certificateReport/queryCertificateReport.jsp", 0);
 
             updateInput(driver, "id", "startDate$text", "2017-01-15");
             updateInput(driver, "id", "endDate$text", "2017-01-17");

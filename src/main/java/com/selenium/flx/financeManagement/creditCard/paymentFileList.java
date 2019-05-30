@@ -14,14 +14,14 @@ public class paymentFileList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/paymentTxt/paymentFileList.jsp", 0);
+            switchIframe(driver, "/other/paymentTxt/paymentFileList.jsp", 0);
 
             Thread.sleep(500);
             updateInput(driver, "id", "operatetime$text", "2018-11-28");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr/td[9]/a/span")).click();
             Thread.sleep(1000);
 
-            querySpinner(driver, 2, "isreview$text", "mini-11$", "//*[@id=\"queryForm\"]/table/tbody/tr/td[9]/a/span");
+            querySpinner(driver, false, "isreview$text", "mini-11", "//*[@id=\"queryForm\"]/table/tbody/tr/td[9]/a/span", true);
 
             query(driver, "201811281337000812", "");
             query(driver, "", "mj20181128_1003_shmj_2_2500_5144.txt");

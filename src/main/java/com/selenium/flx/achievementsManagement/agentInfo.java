@@ -16,7 +16,7 @@ public class agentInfo {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/pa/agentInfo/agentInfo.jsp", 0);
+            switchIframe(driver, "/pa/agentInfo/agentInfo.jsp", 0);
 
             Thread.sleep(500);
             query(driver, "代理商", "", "", "");

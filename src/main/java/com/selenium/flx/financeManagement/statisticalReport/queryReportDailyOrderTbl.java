@@ -15,7 +15,7 @@ public class queryReportDailyOrderTbl {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/report/reportV2/queryReportDailyOrderTbl.jsp", 0);
+            switchIframe(driver, "/report/reportV2/queryReportDailyOrderTbl.jsp", 0);
 
             query(driver, "startDate$text", "2018-05-17", "endDate$text", "2019-05-17");
 
@@ -33,8 +33,7 @@ public class queryReportDailyOrderTbl {
             driver.findElement(By.id("seasonRadio")).click();
             Thread.sleep(500);
             driver.findElement(By.id("year$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "2018");
-            querySpinner(driver, 4, "season$text", "mini-18$", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span");
-            driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span")).click();
+            querySpinner(driver, true, "season$text", "mini-18", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span", false);
 
             Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a/span")).click();

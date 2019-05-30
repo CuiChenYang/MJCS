@@ -15,17 +15,17 @@ public class customerIPSettings {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customIp/customIpQueryList.jsp", 0);
+            switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
 
             //新增
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customIp/editCustomIp.jsp", 0);
+            switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.className("mini-buttonedit-icon")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/custom/cusprofile/cusProfileManagerNew.jsp", 0);
+            switchIframe(driver, "/custom/cusprofile/cusProfileManagerNew.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "customNo$text", "01510182");
             Thread.sleep(500);
@@ -35,7 +35,7 @@ public class customerIPSettings {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customIp/editCustomIp.jsp", 0);
+            switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "ipAddress$text", "192.168.1.1");
             Thread.sleep(500);
@@ -45,7 +45,7 @@ public class customerIPSettings {
 
             //查询选择
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customIp/customIpQueryList.jsp", 0);
+            switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "name", "customIp.ipAddress", "192.168.1.1");
             Thread.sleep(500);
@@ -61,7 +61,7 @@ public class customerIPSettings {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customIp/editCustomIp.jsp", 0);
+            switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "ipAddress$text", "192.168.1.21");
             Thread.sleep(500);
@@ -71,7 +71,7 @@ public class customerIPSettings {
 
             //查询并删除
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/customIp/customIpQueryList.jsp", 0);
+            switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a[2]/span")).click();
             Thread.sleep(500);

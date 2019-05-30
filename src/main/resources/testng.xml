@@ -21,6 +21,7 @@
                     <include name="thirdPartyAccountManage"/>
                     <include name="installSafeStrategy"/>
                     <include name="disposeTransactionDictionary"/>
+                    <include name="webIpList"/>
                     <include name="queryShopScore"/>
                     <include name="queryShopScoreAlter"/>
                     <include name="userLoginLog"/>
@@ -37,7 +38,6 @@
                     <include name="agentList"/>
                     <!--财务管理-->
                     <include name="rechargeQueryList"/>
-                    <include name="scoretobankQueryList"/>
                     <include name="scoretocredit"/>
                     <include name="repayment"/>
                     <include name="queryRepaymentAll"/>
@@ -76,7 +76,6 @@
                     <!--<include name="entryOrder"/>-->
                     <!--<include name="checkOrder"/>-->
                     <!--<include name="firstLoginFuYou"/>-->
-                    <!--<include name="againLoginFuYou"/>-->
                     <!--<include name="handleOrder"/>-->
                     <!--<include name="activateOrder"/>-->
                     <!--<include name="queryDetail"/>-->

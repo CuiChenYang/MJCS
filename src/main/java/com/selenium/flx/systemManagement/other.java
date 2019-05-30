@@ -20,13 +20,13 @@ public class other {
     public boolean installSafeStrategy(WebDriver driver) {
         try {
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/policy/access_rules_list.jsp", 0);
+            switchIframe(driver, "/policy/access_rules_list.jsp", 0);
 
             //新增
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/policy/access_rules_edit.jsp", 0);
+            switchIframe(driver, "/policy/access_rules_edit.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             Thread.sleep(500);
@@ -45,7 +45,7 @@ public class other {
 
             //编辑
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/policy/access_rules_list.jsp", 0);
+            switchIframe(driver, "/policy/access_rules_list.jsp", 0);
             Thread.sleep(500);
             List<WebElement> list = driver.findElements(By.className("mini-grid-cell"));
             Thread.sleep(500);
@@ -58,7 +58,7 @@ public class other {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/policy/access_rules_edit.jsp", 0);
+            switchIframe(driver, "/policy/access_rules_edit.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "endIP$text", "192.168.7.77");
             Thread.sleep(500);
@@ -67,11 +67,12 @@ public class other {
             driver.findElement(By.id("mini-10$1")).click();
             Thread.sleep(500);
             driver.findElement(By.className("mini-fit")).click();
+            Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
 
             //删除
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/policy/access_rules_list.jsp", 0);
+            switchIframe(driver, "/policy/access_rules_list.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
             Thread.sleep(500);
@@ -97,24 +98,25 @@ public class other {
     public boolean disposeTransactionDictionary(WebDriver driver) {
         try {
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
+            switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
 
             // 业务字典类型
             //添加
             Thread.sleep(500);
             driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/div/div/div/div[2]/div[2]/div[2]/div/table/tbody/tr/td/a[1]/span")).click();
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/dict/edit_dict_type.jsp", 0);
+            switchIframe(driver, "/coframe/dict/edit_dict_type.jsp", 0);
             Thread.sleep(500);
             updatedicttype(driver, "test", "测试");
             //若已存在先删除再添加
+            Thread.sleep(1000);
             if (isExistBoxOrExistButton(driver, "mini-messagebox-buttons", 1)) {
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
                 Thread.sleep(500);
                 driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-close")).click();
                 Thread.sleep(500);
-                switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
+                switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
                 Thread.sleep(500);
                 updateInput(driver, "id", "dicttypeid$text", "test");
                 Thread.sleep(500);
@@ -127,13 +129,13 @@ public class other {
                 Thread.sleep(500);
                 driver.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/div/div/div/div[2]/div[2]/div[2]/div/table/tbody/tr/td/a[1]/span")).click();
                 Thread.sleep(500);
-                switchIframe(driver, "/FlxServer/coframe/dict/edit_dict_type.jsp", 0);
+                switchIframe(driver, "/coframe/dict/edit_dict_type.jsp", 0);
                 Thread.sleep(500);
                 updatedicttype(driver, "test", "测试");
             }
             //添加子类型
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
+            switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
             Thread.sleep(500);
             updateInput(driver, "id", "dicttypeid$text", "test");
             Thread.sleep(500);
@@ -144,7 +146,7 @@ public class other {
             updatedicttype(driver, "test_test", "测试子类型");
             //修改
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
+            switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"btn_editDictType\"]/span")).click();
             Thread.sleep(500);
@@ -153,15 +155,15 @@ public class other {
             //业务字典项
             //新增
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
+            switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("/html/body/table/tbody/tr/td[2]/div/div/div/div[2]/div[1]/div/a[1]/span")).click();
             Thread.sleep(500);
             updatedict(driver, "false", "test01", "测试字典项01", "1");
             //添加子项
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
-            Thread.sleep(500);
+            switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
+            Thread.sleep(1000);
             driver.findElements(By.className("mini-grid-radio-mask")).get(2).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"btn_addSubDict\"]/span")).click();
@@ -169,14 +171,14 @@ public class other {
             updatedict(driver, "true", "test01_test01", "测试字典项01子项", "1");
             //修改
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
+            switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"btn_editDict\"]/span")).click();
             Thread.sleep(500);
             updatedict(driver, "false", "", "测试字典项02", "2");
             //删除  业务字典项
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/coframe/dict/dict_manager.jsp", 0);
+            switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-tree-node-ecicon.mini-tree-node-ecicon-firstAndlast")).click();
             Thread.sleep(1000);
@@ -208,7 +210,7 @@ public class other {
     }
 
     public void updatedicttype(WebDriver driver, String dicttypeid$text, String dicttypename$text) throws InterruptedException {
-        switchIframe(driver, "/FlxServer/coframe/dict/edit_dict_type.jsp", 0);
+        switchIframe(driver, "/coframe/dict/edit_dict_type.jsp", 0);
         Thread.sleep(500);
         if (!(dicttypeid$text == null || "".equals(dicttypeid$text)))
             updateInput(driver, "id", "dicttypeid$text", dicttypeid$text);
@@ -219,11 +221,11 @@ public class other {
     }
 
     public void updatedict(WebDriver driver, String dicttypeid$text, String dictid$text, String dictname$text, String sortno$text) throws InterruptedException {
-        switchIframe(driver, "/FlxServer/coframe/dict/edit_dict.jsp", 0);
+        switchIframe(driver, "/coframe/dict/edit_dict.jsp", 0);
         if ("true".equals(dicttypeid$text)) {
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.id("dicttypeid$text")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.className("mini-listbox-item")).click();
         }
         if (!(dictid$text == null || "".equals(dictid$text))) {

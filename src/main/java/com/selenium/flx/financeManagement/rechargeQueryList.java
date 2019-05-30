@@ -8,6 +8,7 @@ import org.testng.Reporter;
 
 import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.*;
+import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 public class rechargeQueryList {
 
@@ -16,9 +17,9 @@ public class rechargeQueryList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/sales/recharge/rechargeQueryList_1.jsp", 0);
+            switchIframe(driver, "/sales/recharge/rechargeQueryList_1.jsp", 0);
 
-            querySpinner(driver, 10, "orderStatus$text", "mini-6$", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span");
+            querySpinner(driver, false, "orderStatus$text", "mini-6", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span", true);
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a/span")).click();
 
@@ -26,12 +27,14 @@ public class rechargeQueryList {
             updateInput(driver, "id", "orderNo$text", "20170405001");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[5]/a/span")).click();
             Thread.sleep(1000);
-            driver.findElement(By.className("mini-grid-radio-mask")).click();
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
-            Thread.sleep(2000);
-            driver.switchTo().defaultContent();
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//span[@style=';']")).click();
+            if (isExistBoxOrExistButton(driver, "mini-grid-radio-mask", 1)) {
+                driver.findElement(By.className("mini-grid-radio-mask")).click();
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
+                Thread.sleep(2000);
+                driver.switchTo().defaultContent();
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//span[@style=';']")).click();
+            }
 
             if (journal) {
                 Reporter.log("财务管理--批量代充业务（查询）--测试完成 <br/>");

@@ -135,21 +135,33 @@ public class flxPublicMethod {
      * 查询下拉列表
      *
      * @param driver
-     * @param num          值的个数
-     * @param spinnerId    下拉列表的id
-     * @param listIdPrefix 值的id前缀
-     * @param queryXpath   查询按钮的xpath
+     * @param zero       是否从第一个开始（0为）
+     * @param spinnerId  下拉框的id
+     * @param listId     列表所在div的id
+     * @param queryXpath 查询按钮的xpath
+     * @param first      是否重新选择列表的第一个值
      * @throws InterruptedException
      */
-    public static void querySpinner(WebDriver driver, int num, String spinnerId, String listIdPrefix, String queryXpath) throws InterruptedException {
-        for (int i = 1; i < num; i++) {
-            driver.findElement(By.id(spinnerId)).click();
-            driver.findElement(By.id(listIdPrefix + i)).click();
-            driver.findElement(By.xpath(queryXpath)).click();
-            Thread.sleep(1500);
-        }
+    public static void querySpinner(WebDriver driver, boolean zero, String spinnerId, String listId, String queryXpath, boolean first) throws InterruptedException {
+
+        //点击下拉框
         driver.findElement(By.id(spinnerId)).click();
-        driver.findElement(By.id(listIdPrefix + 0)).click();
+        Thread.sleep(1000);
+        //获取列表
+        List<WebElement> list = driver.findElements(By.xpath("//div[@id='" + listId + "']/div[1]/div[2]/div/table/tbody/tr"));
+        //循环点击列表的每个值
+        for (int i = zero ? 0 : 1; i < list.size(); i++) {
+            list.get(i).click();
+            driver.findElement(By.xpath(queryXpath)).click();
+            Thread.sleep(2000);
+            if (i != list.size() - 1)
+                driver.findElement(By.id(spinnerId)).click();
+        }
+        if (first) {
+            driver.findElement(By.id(spinnerId)).click();
+            Thread.sleep(300);
+            list.get(0).click();
+        }
     }
 
     /**

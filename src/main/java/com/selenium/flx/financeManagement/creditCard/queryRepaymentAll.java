@@ -14,7 +14,7 @@ public class queryRepaymentAll {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/other/repayment/queryRepaymentAll.jsp", 0);
+            switchIframe(driver, "/other/repayment/queryRepaymentAll.jsp", 0);
 
             updateInput(driver, "id", "importTimeStart$text", "2018-11-01");
             updateInput(driver, "id", "importTimeEnd$text", "2018-11-30");
@@ -29,9 +29,9 @@ public class queryRepaymentAll {
             query(driver, "", "", "10", "100", "6225768673856546", "18655137085");
             query(driver, "2018-11-28", "2018-11-29", "10", "100", "6225768673856546", "18655137085");
 
-            querySpinner(driver, 4, "orderStatus$text", "mini-12$", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span");
+            querySpinner(driver, false, "orderStatus$text", "mini-12", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span", true);
             Thread.sleep(500);
-            querySpinner(driver, 6, "paymentStatus$text", "mini-15$", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span");
+            querySpinner(driver, false, "paymentStatus$text", "mini-15", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span", true);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
             Thread.sleep(1000);
 

@@ -16,7 +16,7 @@ public class specialAccountChangeInputList {
         try {
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/service/specialAccountChange/specialAccountChangeInputList_1.jsp", 0);
+            switchIframe(driver, "/service/specialAccountChange/specialAccountChangeInputList_1.jsp", 0);
 
             Thread.sleep(500);
             driver.findElement(By.id("status$text")).click();
@@ -53,7 +53,7 @@ public class specialAccountChangeInputList {
             driver.findElement(By.xpath("//span[@style=';']")).click();
 
             Thread.sleep(500);
-            switchIframe(driver, "/FlxServer/service/specialAccountChange/specialAccountChangeInputList_1.jsp", 1);
+            switchIframe(driver, "/service/specialAccountChange/specialAccountChangeInputList_1.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[9]/a/span")).click();
             Thread.sleep(500);
