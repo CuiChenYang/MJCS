@@ -93,7 +93,7 @@ public class appFunctionManage {
             Thread.sleep(500);
             switchIframe(driver, "/coframe/framework/application/application_manage.jsp", 0);
             switchIframe(driver, "/coframe/framework/functiongroup/funcgroup_list.jsp", 1);
-            Thread.sleep(500);
+            Thread.sleep(1500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();

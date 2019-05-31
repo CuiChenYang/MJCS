@@ -17,18 +17,16 @@ public class scoretocredit {
             switchIframe(driver, "/sales/order/scoretocredit.jsp", 0);
 
             //查询未完成则不进行后面的操作
-            queryOver(driver, "mini-grid-row");
+            Thread.sleep(2000);
             query(driver, "4392250037952164", "", "");
-            queryOver(driver, "mini-grid-row");
+            Thread.sleep(2000);
             query(driver, "", "2018-03-01", "2018-03-02");
-            queryOver(driver, "mini-grid-row");
+            Thread.sleep(2000);
             query(driver, "4392250035736320", "2018-03-01", "2018-03-02");
-            queryOver(driver, "mini-grid-row");
+            Thread.sleep(2000);
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[3]/td[4]/a/span")).click();
-            queryOver(driver, "mini-grid-row");
-
-            Thread.sleep(500);
+            Thread.sleep(2000);
 
             if (journal) {
                 Reporter.log("财务管理--信用卡业务--信用卡导出--测试完成 <br/>");

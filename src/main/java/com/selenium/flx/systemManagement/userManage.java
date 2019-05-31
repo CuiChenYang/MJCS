@@ -34,9 +34,8 @@ public class userManage {
             for (int i = 1; i < list.size(); i++) {
                 Thread.sleep(500);
                 list.get(i).click();
-                Thread.sleep(500);
                 driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
-                Thread.sleep(1000);
+                Thread.sleep(1500);
                 if (i != list.size() - 1)
                     driver.findElement(By.className("mini-buttonedit-icon")).click();
             }

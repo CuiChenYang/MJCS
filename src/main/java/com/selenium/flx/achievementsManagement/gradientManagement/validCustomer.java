@@ -16,6 +16,7 @@ public class validCustomer {
     //绩效管理--梯度管理--有效客户管理
     public boolean validCustomer(WebDriver driver) {
         try {
+            //编号5     47      56      12
 
             Thread.sleep(500);
             switchIframe(driver, "/pa/ValidCustomer/validCustomer.jsp", 0);

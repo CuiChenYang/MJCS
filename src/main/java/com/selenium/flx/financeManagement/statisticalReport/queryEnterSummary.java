@@ -5,7 +5,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
-import static com.selenium.flx.financeManagement.statisticalReport.queryPointsSummary.loading;
 import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.*;
 

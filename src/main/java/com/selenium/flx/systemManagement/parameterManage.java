@@ -45,7 +45,7 @@ public class parameterManage {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
 
             //选中并编辑第四个测试参数
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             list = driver.findElements(By.className("mini-grid-radio-mask"));
             if (judge(list)) {
                 list.get(3).click();

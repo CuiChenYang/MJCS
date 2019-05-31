@@ -53,20 +53,6 @@ public class flxPublicMethod {
 
     }
 
-    //查询未执行完毕则休眠程序(查询结果有数据存在)
-    public static void queryOver(WebDriver driver, String className) throws InterruptedException {
-        boolean b = true;
-        do {
-            try {
-                driver.findElements(By.className(className)).get(0);
-                b = false;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Thread.sleep(1000);
-        } while (b);
-    }
-
     //出现此元素就点击若不出现则一直等（每一秒判断一次）
     public static void waitClick(WebDriver driver, String url, int num) throws InterruptedException {
         while (!isExistBoxOrExistButton(driver, url, num)) {
@@ -153,7 +139,8 @@ public class flxPublicMethod {
         for (int i = zero ? 0 : 1; i < list.size(); i++) {
             list.get(i).click();
             driver.findElement(By.xpath(queryXpath)).click();
-            Thread.sleep(2000);
+            loading(driver);
+            Thread.sleep(1500);
             if (i != list.size() - 1)
                 driver.findElement(By.id(spinnerId)).click();
         }
@@ -227,5 +214,20 @@ public class flxPublicMethod {
             }
         }
         return false;
+    }
+
+    //页面加载完毕前，休眠程序
+    public static void loading(WebDriver driver) throws InterruptedException {
+        boolean b = true;
+        do {
+            try {
+                Thread.sleep(1000);
+                driver.findElement(By.cssSelector(".mini-mask-msg.mini-mask-loading"));
+            } catch (Exception e) {
+                e.printStackTrace();
+                b = false;
+            }
+        } while (b);
+        Thread.sleep(1000);
     }
 }

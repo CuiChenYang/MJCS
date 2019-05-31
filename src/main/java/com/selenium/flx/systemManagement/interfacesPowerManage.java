@@ -43,7 +43,7 @@ public class interfacesPowerManage {
                 list.get(15).click();
                 Thread.sleep(500);
                 driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
-                Thread.sleep(500);
+                Thread.sleep(1000);
                 driver.findElement(By.xpath("//*[@class=\"mini-messagebox-buttons\"]/a/span")).click();
             }
 

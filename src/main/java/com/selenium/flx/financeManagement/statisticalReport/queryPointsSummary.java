@@ -41,10 +41,6 @@ public class queryPointsSummary {
                 driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[15]/a/span")).click();
                 loading(driver);
             }
-//            driver.findElement(By.id("jiduDate$text")).click();
-//            driver.findElement(By.id("mini-12$" + 0)).click();
-//            driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[15]/a/span")).click();
-//            loading(driver);
 
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[1]/div/input[4]")).click();
             driver.findElement(By.id("yearDate$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "2017");
@@ -68,17 +64,4 @@ public class queryPointsSummary {
         }
     }
 
-    public static void loading(WebDriver driver) throws InterruptedException {
-        boolean b = true;
-        do {
-            try {
-                Thread.sleep(1000);
-                driver.findElement(By.cssSelector(".mini-mask-msg.mini-mask-loading"));
-            } catch (Exception e) {
-                e.printStackTrace();
-                b = false;
-            }
-        } while (b);
-        Thread.sleep(1000);
-    }
 }

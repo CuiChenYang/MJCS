@@ -3,7 +3,8 @@
 <suite name="All Test Suite" allow-return-values="true">
     <test verbose="2" name="D:/IDEA/SeleniumDemo3">
         <classes>
-            <class name="com.selenium.flx.flx">
+            <class name="com.selenium.flx.flx" >
+
                 <!--flx测试-->
                 <methods>
                     <include name="flx"/>
@@ -67,6 +68,7 @@
                     <include name="agentInfo"/>
                 </methods>
 
+
                 <!--flx开户充值流程测试-->
                 <!--<methods>-->
                     <!--<include name="flx"/>-->
@@ -83,6 +85,7 @@
                     <!--<include name="specialOpenCustom_1"/>-->
                 <!--</methods>-->
             </class>
+
             <!--<class name="com.selenium.fuyou.fuYou">-->
             <!--</class>-->
         </classes>

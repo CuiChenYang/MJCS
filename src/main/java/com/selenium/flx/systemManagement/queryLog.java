@@ -56,15 +56,15 @@ public class queryLog {
             Thread.sleep(500);
             switchIframe(driver, "/other/webHandle/queryHandle.jsp", 0);
 
-            queryOver(driver,"mini-grid-cell");
+            loading(driver);
             queryUserOperateLog(driver, "2019-04-22", "2019-04-22", "", "", "");
-            queryOver(driver,"mini-grid-cell");
+            loading(driver);
             queryUserOperateLog(driver, "2019-04-22", "2019-04-22", "sysadmin", "", "");
-            queryOver(driver,"mini-grid-cell");
+            loading(driver);
             queryUserOperateLog(driver, "2019-04-22", "2019-04-22", "sysadmin", "", "skins/default/index.jsp");
-            queryOver(driver,"mini-grid-cell");
+            loading(driver);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[8]/a/span")).click();
-            queryOver(driver,"mini-grid-cell");
+            loading(driver);
 
             Thread.sleep(1000);
 

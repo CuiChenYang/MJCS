@@ -97,7 +97,9 @@ public class menuManage {
             Thread.sleep(1000);
             switchIframe(driver, "/coframe/framework/menu/menu_manage.jsp", 0);
             switchIframe(driver, "/coframe/framework/menu/menu_list.jsp", 1);
+            Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
+            Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"mini-25\"]/span")).click();
             Thread.sleep(1000);
             switchIframe(driver, "/coframe/framework/menu/menu_manage.jsp", 0);

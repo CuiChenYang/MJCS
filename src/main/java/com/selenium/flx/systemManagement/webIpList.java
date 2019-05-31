@@ -60,7 +60,7 @@ public class webIpList {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             Thread.sleep(500);

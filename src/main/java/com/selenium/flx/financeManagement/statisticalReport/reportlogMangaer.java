@@ -16,7 +16,9 @@ public class reportlogMangaer {
             Thread.sleep(500);
             switchIframe(driver, "/report/reportlog/reportlogMangaer.jsp", 0);
 
+            Thread.sleep(1000);
             queryInput(driver, 5, "//*[@id=\"form1\"]/table/tbody/tr/td[4]/span/span/input", "mini-9$", "//*[@id=\"form1\"]/table/tbody/tr/td[7]/a/span");
+            Thread.sleep(1000);
             queryInput(driver, 3, "//*[@id=\"form1\"]/table/tbody/tr/td[6]/span/span/input", "mini-12$", "//*[@id=\"form1\"]/table/tbody/tr/td[7]/a/span");
 
             updateInput(driver, "id", "startDate$text", "2017-01-16");

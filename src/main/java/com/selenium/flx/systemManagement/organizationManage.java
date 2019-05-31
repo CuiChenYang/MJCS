@@ -269,7 +269,7 @@ public class organizationManage {
             driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("/html/body/div[1]/table/tbody/tr/td[2]/a[2]/span")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
             list = driver.findElements(By.className("mini-listbox-item"));
             Thread.sleep(500);
@@ -279,17 +279,16 @@ public class organizationManage {
             list.get(6).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("/html/body/div[1]/table/tbody/tr/td[2]/a[4]/span")).click();
-            Thread.sleep(1000);
-            driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
             Thread.sleep(500);
             list = driver.findElements(By.className("mini-listbox-item"));
             Thread.sleep(500);
             list.get(1).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("/html/body/div[1]/table/tbody/tr/td[2]/a[1]/span")).click();
-            Thread.sleep(500);
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
+            Thread.sleep(1000);
+            driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             //权限计算
             Thread.sleep(500);

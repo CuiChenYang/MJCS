@@ -507,10 +507,9 @@ public class welfareManager {
             Thread.sleep(1000);
             if (isExistBoxOrExistButton(driver, "zeromodal-title1", 1)) {
                 if (!"兑换成功".equals(driver.findElement(By.className("zeromodal-title1")).getText())) {
-                    taskScreenShot(driver);
-                    Reporter.log("一卡通兑换失败。失败原因见截图" + "<br/>");
+                    Reporter.log("一卡通兑换失败。失败原因：" + driver.findElement(By.className("zeromodal-title1")).getText() + "<br/>");
                     waitClick(driver, "zeromodal-close", 1);
-                    return false;
+                    return true;
                 }
             }
             waitClick(driver, "zeromodal-close", 1);
