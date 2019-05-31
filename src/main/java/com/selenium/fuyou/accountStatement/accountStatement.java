@@ -72,12 +72,12 @@ public class accountStatement {
                 Thread.sleep(500);
             }
             Thread.sleep(500);
-            Reporter.log("对账单 账单查询成功"+"<br/>");
+            Reporter.log("对账单--账单查询成功"+"<br/>");
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("对账单 账单查询失败，错误："+e.toString()+"<br/>");
+            Reporter.log("对账单--账单查询失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }

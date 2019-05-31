@@ -31,20 +31,20 @@ public class electronicInvoice {
                 Thread.sleep(500);
                 driver.findElement(By.className("qyzx_search")).click();
             }
-            Reporter.log("交易管理 电子发票 电子发票查询成功"+"<br/>");
+            Reporter.log("交易管理--电子发票--电子发票查询成功"+"<br/>");
 
             //下载
             boolean flag = isExistBoxOrExistButton(driver,"//*[@id=\"aspnetForm\"]/div[4]/div[3]/div[3]/table/tbody/tr[2]/td[8]/a",3);
             if(flag){
                 driver.findElement(By.xpath("//*[@id=\"aspnetForm\"]/div[4]/div[3]/div[3]/table/tbody/tr[2]/td[8]/a")).click();
-                Reporter.log("交易管理 电子发票 电子发票下载成功"+"<br/>");
+                Reporter.log("交易管理--电子发票--电子发票下载成功"+"<br/>");
             }
             Thread.sleep(500);
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("交易管理 电子发票 电子发票查询失败，错误："+e.toString()+"<br/>");
+            Reporter.log("交易管理--电子发票--电子发票查询失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }

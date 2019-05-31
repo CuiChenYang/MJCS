@@ -31,7 +31,7 @@ public class departmentList {
                     driver.findElement(By.id("orgName")).clear();
                     continue;
                 }
-                Reporter.log("部门列表 部门添加成功，部门名称：" + dep[i]+"<br/>");
+                Reporter.log("部门列表--部门添加成功，部门名称：" + dep[i]+"<br/>");
                 if(i != dep.length - 1){
                     Thread.sleep(500);
                     driver.findElement(By.id("bumen")).click();
@@ -47,7 +47,7 @@ public class departmentList {
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("部门列表 部门添加失败,错误："+e.toString()+"<br/>");
+            Reporter.log("部门列表--部门添加失败,错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -69,15 +69,15 @@ public class departmentList {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".zeromodal-btn.zeromodal-btn-default")).click();
             }else {
-                Reporter.log("员工管理 部门列表 部门删除成功"+"<br/>");
+                Reporter.log("员工管理--部门列表--部门删除成功"+"<br/>");
                 return true;
             }
-            Reporter.log("员工管理 部门列表 部门删除成功"+"<br/>");
+            Reporter.log("员工管理--部门列表--部门删除成功"+"<br/>");
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("员工管理 部门列表 部门删除失败,错误："+e.toString()+"<br/>");
+            Reporter.log("员工管理--部门列表--部门删除失败,错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -99,15 +99,15 @@ public class departmentList {
                 Thread.sleep(500);
                 driver.findElement(By.name("btnupdate")).click();
             }else {
-                Reporter.log("员工管理 部门列表 部门修改成功"+"<br/>");
+                Reporter.log("员工管理--部门列表--部门修改成功"+"<br/>");
                 return true;
             }
-            Reporter.log("员工管理 部门列表 部门修改成功"+"<br/>");
+            Reporter.log("员工管理--部门列表--部门修改成功"+"<br/>");
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("员工管理 部门修改失败,错误："+e.toString()+"<br/>");
+            Reporter.log("员工管理--部门修改失败,错误："+e.toString()+"<br/>");
             return false;
         }
     }

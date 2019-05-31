@@ -11,6 +11,7 @@ import org.testng.Reporter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
 import static com.selenium.fuyou.fuYouMethod.*;
@@ -26,24 +27,27 @@ public class employeeList {
             //分页测试
             paging(driver);
 
-            ArrayList<employee> staff = new ArrayList<>();
-            staff.add(new employee("张三", 1, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2017-01-04"));
-            staff.add(new employee("李四", 1, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2017-03-07"));
-            staff.add(new employee("王五", 2, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2017-11-12"));
-            staff.add(new employee("赵柳", 2, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2018-10-05"));
-            staff.add(new employee("贤七", 3, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2018-07-17"));
-            staff.add(new employee("杨八", 3, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2018-08-13"));
             //循环插入员工
             driver.findElement(By.id("bgcreate")).click();
+            Select downList = new Select(driver.findElement(By.id("CompanyEmployeesList_ddlOrganization")));
+            int num = downList.getOptions().size() - 1;
+            Random random = new Random();
+
+            ArrayList<employee> staff = new ArrayList<>();
+            staff.add(new employee("张三", random.nextInt(num) + 1, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2017-01-04"));
+            staff.add(new employee("李四", random.nextInt(num) + 1, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2017-03-07"));
+            staff.add(new employee("王五", random.nextInt(num) + 1, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2017-11-12"));
+            staff.add(new employee("赵柳", random.nextInt(num) + 1, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2018-10-05"));
+            staff.add(new employee("贤七", random.nextInt(num) + 1, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2018-07-17"));
+            staff.add(new employee("杨八", random.nextInt(num) + 1, UserIDUtil.getUserId(), PhoneUtil.getTelephone(), "2018-08-13"));
+
             for (employee e : staff) {
                 //输入员工姓名
                 driver.findElement(By.id("RealName")).sendKeys(e.getRealName());
                 Thread.sleep(500);
                 //员工部门
-                WebElement ele = driver.findElement(By.id("CompanyEmployeesList_ddlOrganization"));
-                Select downList = new Select(ele);
-                int num = trySelectGet(driver,"CompanyEmployeesList_ddlOrganization",e.getDepartmentID());
-                downList.selectByIndex(num);
+                downList = new Select(driver.findElement(By.id("CompanyEmployeesList_ddlOrganization")));
+                downList.selectByIndex(e.getDepartmentID());
 
                 Thread.sleep(500);
                 //员工工号
@@ -72,7 +76,7 @@ public class employeeList {
                 Thread.sleep(500);
                 driver.findElement(By.id("bgcreate")).click();
                 Thread.sleep(500);
-                Reporter.log("员工管理 员工列表 员工添加成功，员工登陆账号：" + e.getPhoneNum()+"<br/>");
+                Reporter.log("员工管理--员工列表--员工添加成功，员工登陆账号：" + e.getPhoneNum()+"<br/>");
             }
             boolean flag = isExistBoxOrExistButton(driver,".xubox_layer.xubox_layer_0",2);
             if(flag){
@@ -82,7 +86,7 @@ public class employeeList {
         } catch (Exception e) {
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("员工管理 员工列表 员工添加失败，错误："+e.toString()+"<br/>");
+            Reporter.log("员工管理--员工列表--员工添加失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -179,15 +183,15 @@ public class employeeList {
                 Thread.sleep(1000);
             }
             else{
-                Reporter.log("员工管理 员工列表 员工信息修改成功"+"<br/>");
+                Reporter.log("员工管理--员工列表--员工信息修改成功"+"<br/>");
                 return true;
             }
-            Reporter.log("员工管理 员工列表 员工信息修改成功"+"<br/>");
+            Reporter.log("员工管理--员工列表--员工信息修改成功"+"<br/>");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("员工管理 员工列表 员工信息修改失败，错误："+e.toString()+"<br/>");
+            Reporter.log("员工管理--员工列表--员工信息修改失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -265,12 +269,12 @@ public class employeeList {
             }else{
                 return true;
             }
-            Reporter.log("员工管理 员工列表 员工删除成功"+"<br/>");
+            Reporter.log("员工管理--员工列表--员工删除成功"+"<br/>");
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("员工管理 员工列表 员工删除失败，错误："+e.toString()+"<br/>");
+            Reporter.log("员工管理--员工列表--员工删除失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -286,12 +290,12 @@ public class employeeList {
             driver.findElement(By.className("qyzx_key_input")).sendKeys(s);
             driver.findElement(By.className("yqzx_key_search")).click();
             Thread.sleep(1000);
-            Reporter.log("员工管理 员工列表 员工查询成功，查询手机号："+s+"<br/>");
+            Reporter.log("员工管理--员工列表--员工查询成功，查询手机号："+s+"<br/>");
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("员工管理 员工列表 员工查询失败，错误："+e.toString()+"<br/>");
+            Reporter.log("员工管理--员工列表--员工查询失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -345,7 +349,7 @@ public class employeeList {
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("员工管理 员工列表 员工批量导入失败，错误："+e.toString()+"<br/>");
+            Reporter.log("员工管理--员工列表--员工批量导入失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -387,7 +391,7 @@ public class employeeList {
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("员工管理 员工列表 员工批量导入失败，错误："+e.toString()+"<br/>");
+            Reporter.log("员工管理--员工列表--员工批量导入失败，错误："+e.toString()+"<br/>");
         }
     }
 

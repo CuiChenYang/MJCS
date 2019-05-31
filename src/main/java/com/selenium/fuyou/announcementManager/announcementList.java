@@ -34,7 +34,7 @@ public class announcementList {
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("公告发布失败，错误："+e.toString()+"<br/>");
+            Reporter.log("公告管理--公告发布失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -101,12 +101,12 @@ public class announcementList {
             flag = isExistBoxOrExistButton(driver,".zeromodal-body.zeromodal-overflow-y",2);
             if(flag){
                 releaseSuccess(driver);
-                Reporter.log("公告管理 公告列表 公告发布成功，公告标题：" + title+"<br/>");
+                Reporter.log("公告管理--公告列表--公告发布成功，公告标题：" + title+"<br/>");
             }
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("公告管理 公告列表 公告发布失败，错误："+e.toString()+"<br/>");
+            Reporter.log("公告管理--公告列表--公告发布失败，错误："+e.toString()+"<br/>");
         }
     }
 
@@ -151,7 +151,7 @@ public class announcementList {
                 if(flag){
                     Thread.sleep(500);
                     driver.findElement(By.cssSelector(".zeromodal-btn.zeromodal-btn-primary.anblock")).click();
-                    Reporter.log("公告管理 公告列表  公告删除成功"+"<br/>");
+                    Reporter.log("公告管理--公告列表--公告删除成功"+"<br/>");
                     return true;
                 }else{
                     return true;
@@ -162,7 +162,7 @@ public class announcementList {
         }catch (Exception e) {
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("公告管理 公告列表 公告发布失败，错误："+e.toString()+"<br/>");
+            Reporter.log("公告管理--公告列表--公告发布失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }

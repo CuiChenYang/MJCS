@@ -45,7 +45,7 @@ public class enterpriseProcurement {
                     addAddress(driver,"张三",1,5,0,"东大名路888弄","","", PhoneUtil.getTelephone(),false);
                     isClearData(driver);
                     addAddress(driver,"李三",1,6,0,"国康路47号","","", PhoneUtil.getTelephone(),true);
-                    Reporter.log("企业采购 新增地址 新增收获地址成功，企业账号：" + PropertiesConfig.getInstance().getProperty("fuYou.username")+"<br/>");
+                    Reporter.log("企业采购--新增地址--新增收获地址成功，企业账号：" + PropertiesConfig.getInstance().getProperty("fuYou.username")+"<br/>");
                     driver.findElement(By.className("chooseAddressHeader")).click();
                     Thread.sleep(500);
                     driver.findElement(By.id("CompanyFinishOrder_list_CompanyCommon_Consignee_ConsigneeList___repeaterRegionsSelectm_ctl01_btnSetDefault")).click();
@@ -56,7 +56,7 @@ public class enterpriseProcurement {
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("企业采购 新增地址 新增收货地址失败失败，错误："+e.toString()+"<br/>");
+            Reporter.log("企业采购--新增地址--新增收货地址失败失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -111,7 +111,7 @@ public class enterpriseProcurement {
             isClearData(driver);
         }catch (Exception e){
             e.printStackTrace();
-            Reporter.log("企业采购 新增地址 新增收货地址失败失败，错误："+e.toString()+"<br/>");
+            Reporter.log("企业采购--新增地址--新增收货地址失败失败，错误："+e.toString()+"<br/>");
         }
     }
 
@@ -138,7 +138,7 @@ public class enterpriseProcurement {
             boolean flag = isExistBoxOrExistButton(driver,"CompanyFinishOrder_list_CompanyCommon_Consignee_ConsigneeList___repeaterRegionsSelectm_ctl00_btnEdit",0);
             if(!flag){
                 driver.findElement(By.id("imgCloseLogin")).click();
-                Reporter.log("企业采购 修改地址 地址修成功" +"<br/>");
+                Reporter.log("企业采购--修改地址--地址修成功" +"<br/>");
                 return true;
             }
             addressData(driver,"CompanyFinishOrder_list_CompanyCommon_Consignee_ConsigneeList___repeaterRegionsSelectm_ctl00_btnEdit",null,null,null,null,null,null,null,PhoneUtil.getTelephone(),true);
@@ -147,12 +147,12 @@ public class enterpriseProcurement {
             if(flag){
                 driver.findElement(By.id("CompanyFinishOrder_list_CompanyCommon_Consignee_ConsigneeList___repeaterRegionsSelectm_ctl00_btnSetDefault")).click();
             }
-            Reporter.log("企业采购 修改地址 地址修成功"+"<br/>");
+            Reporter.log("企业采购--修改地址--地址修成功"+"<br/>");
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("企业采购 修改地址 地址修改失败，错误："+e.toString()+"<br/>");
+            Reporter.log("企业采购--修改地址--地址修改失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -262,12 +262,12 @@ public class enterpriseProcurement {
                 }
                 driver.findElement(By.className("imgCloseLogin")).click();
             }
-            Reporter.log("企业采购 删除地址 地址删除成功"+"<br/>");
+            Reporter.log("企业采购--删除地址--地址删除成功"+"<br/>");
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("企业采购 删除地址 地址删除失败，错误："+e.toString()+"<br/>");
+            Reporter.log("企业采购--删除地址--地址删除失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -348,12 +348,12 @@ public class enterpriseProcurement {
                 Thread.sleep(500);
                 list.get(i).click();
             }
-            Reporter.log("企业采购 商品搜索成功"+"<br/>");
+            Reporter.log("企业采购--商品搜索成功"+"<br/>");
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("企业采购 商品搜索失败，错误："+e.toString()+"<br/>");
+            Reporter.log("企业采购--商品搜索失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }
@@ -436,7 +436,7 @@ public class enterpriseProcurement {
                     po.orderProcessRefund(driver,s);
                     Thread.sleep(500);
                 }
-                Reporter.log("企业采购 商品退款成功，企业号：" + PropertiesConfig.getInstance().getProperty("fuYou.username") + "，订单号：" + s+"<br/>");
+                Reporter.log("企业采购--商品退款成功，企业号：" + PropertiesConfig.getInstance().getProperty("fuYou.username") + "，订单号：" + s+"<br/>");
                 driver.close();
             }else{
                 driver.close();
@@ -450,7 +450,7 @@ public class enterpriseProcurement {
             Thread.sleep(500);
             jumpPurchaseOrder(driver,mouse);
             po.orderProcessCancelPayment(driver,s);
-            Reporter.log("企业采购 商品购买取消成功，企业号：" + PropertiesConfig.getInstance().getProperty("fuYou.username") + "，订单号：" + s+"<br/>");
+            Reporter.log("企业采购--商品购买取消成功，企业号：" + PropertiesConfig.getInstance().getProperty("fuYou.username") + "，订单号：" + s+"<br/>");
             driver.close();
 
 
@@ -463,14 +463,14 @@ public class enterpriseProcurement {
             jumpPurchaseOrder(driver,mouse);
             Thread.sleep(500);
             po.orderProcess(driver,s);
-            Reporter.log("企业采购 商品购买成功，企业号：" + PropertiesConfig.getInstance().getProperty("fuYou.username") + "，订单号：" + s+"<br/>");
+            Reporter.log("企业采购--商品购买成功，企业号：" + PropertiesConfig.getInstance().getProperty("fuYou.username") + "，订单号：" + s+"<br/>");
             driver.close();
 
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("企业采购 商品购买失败，错误："+e.toString()+"<br/>");
+            Reporter.log("企业采购--商品购买失败，错误："+e.toString()+"<br/>");
             return false;
         }
 

@@ -46,13 +46,13 @@ public class transactionRecord {
                 Thread.sleep(500);
                 liList.get(i).findElement(By.tagName("a")).click();
             }
-            Reporter.log("交易管理 交易记录 交易记录查询成功"+"<br/>");
+            Reporter.log("交易管理--交易记录--交易记录查询成功"+"<br/>");
             Thread.sleep(500);
             return true;
         }catch (Exception e){
             e.printStackTrace();
             taskScreenShot(driver);
-            Reporter.log("交易管理 交易记录 交易记录查询失败，错误："+e.toString()+"<br/>");
+            Reporter.log("交易管理--交易记录--交易记录查询失败，错误："+e.toString()+"<br/>");
             return false;
         }
     }

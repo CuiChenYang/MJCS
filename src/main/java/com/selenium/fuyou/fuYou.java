@@ -241,10 +241,10 @@ public class fuYou extends DriverBase {
                         driver.findElement(By.id("returnFalse")).click();
                     }
                 }else{
-                    Reporter.log("未开通此功能"+"<br/>");
+                    Reporter.log("部门列表--未开通此功能"+"<br/>");
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("部门列表--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
     }
@@ -282,10 +282,10 @@ public class fuYou extends DriverBase {
                         driver.findElement(By.id("returnFalse")).click();
                     }
                 }else{
-                    Reporter.log("未开通此功能"+"<br/>");
+                    Reporter.log("员工列表--未开通此功能"+"<br/>");
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("员工列表--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
     }
@@ -310,10 +310,10 @@ public class fuYou extends DriverBase {
                     if (!provideWelfare())
                         driver.findElement(By.id("asdf")).click();
                 }else{
-                    Reporter.log("未开通此功能"+"<br/>");
+                    Reporter.log("福利发放--未开通此功能"+"<br/>");
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("福利发放--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
         }catch (Exception e){
@@ -340,10 +340,10 @@ public class fuYou extends DriverBase {
                     if (!w.companyGatheringQrcode(driver, username))
                         driver.findElement(By.id("returnFalse")).click();
                 }else{
-                    Reporter.log("未开通此功能"+"<br/>");
+                    Reporter.log("企业收款管理--未开通此功能"+"<br/>");
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("企业收款管理--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
         }catch (Exception e){
@@ -370,10 +370,10 @@ public class fuYou extends DriverBase {
                     if(!w.companyCardPassExchange(driver, username))
                         driver.findElement(By.id("returnFalse")).click();
                 }else{
-                    Reporter.log("未开通此功能"+"<br/>");
+                    Reporter.log("一卡通兑换--未开通此功能"+"<br/>");
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("一卡通兑换--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
         }catch (Exception e){
@@ -448,10 +448,10 @@ public class fuYou extends DriverBase {
                         driver.findElement(By.id("returnFalse")).click();
                     }
                 }else{
-                    Reporter.log("未开通此功能"+"<br/>");
+                    Reporter.log("公告管理--未开通此功能"+"<br/>");
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("公告管理--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
     }
@@ -481,7 +481,7 @@ public class fuYou extends DriverBase {
             Thread.sleep(500);
     }
 
-    @Test(dependsOnMethods = "electronicInvoiceManager",description = "电子发票",enabled = false)
+    @Test(dependsOnMethods = "electronicInvoiceManager",description = "电子发票",alwaysRun = false)
     public void transactionRecordManager() throws Exception {
             Thread.sleep(500);
             list = getNavList(driver,null,"fbgg_menu","li",0);
@@ -498,10 +498,10 @@ public class fuYou extends DriverBase {
                         driver.findElement(By.id("returnFalse")).click();
                     }
                 }else{
-                    Reporter.log("未开通此功能"+"<br/>");
+                    Reporter.log("电子发票--未开通此功能"+"<br/>");
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("电子发票--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
     }
@@ -510,7 +510,7 @@ public class fuYou extends DriverBase {
 
     //region 对账单
 
-    @Test(dependsOnMethods = "electronicInvoiceManager",description = "对账单")
+    @Test(dependsOnMethods = "transactionRecordManager",description = "对账单")
     public void accountStatementManager() throws Exception {
             Thread.sleep(500);
             list = getNavList(driver,null,"fbgg_menu","li",0);
@@ -521,7 +521,7 @@ public class fuYou extends DriverBase {
                     driver.findElement(By.id("returnFalse")).click();
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("对账单--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
     }
@@ -566,11 +566,11 @@ public class fuYou extends DriverBase {
                     driver.findElement(By.id("returnFalse")).click();
                 }
             }else{
-                Reporter.log("未开通此功能"+"<br/>");
+                Reporter.log("企业采购--未开通此功能"+"<br/>");
             }
             Thread.sleep(500);
         }else{
-            Reporter.log("未开通此功能"+"<br/>");
+            Reporter.log("企业采购--未开通此功能"+"<br/>");
         }
     }
 
