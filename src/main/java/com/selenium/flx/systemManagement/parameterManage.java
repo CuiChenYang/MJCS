@@ -9,9 +9,7 @@ import org.testng.Reporter;
 import java.util.List;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 import static com.selenium.utils.PhoneUtil.getNum;
 
@@ -31,14 +29,16 @@ public class parameterManage {
 
             //选择类型名称并查询
             Thread.sleep(500);
-            driver.findElement(By.xpath("//*[@id=\"codeType\"]/span/span/span[2]/span")).click();
-            Thread.sleep(500);
-            List<WebElement> list = driver.findElements(By.className("mini-listbox-item"));
-            list.get(1).click();
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//*[@id=\"codeType\"]/span/span/span[2]/span")).click();
+            driver.findElement(By.id("codeType$text")).click();
+            Thread.sleep(1000);
+            List<WebElement> list = driver.findElements(By.xpath("//div[@id='mini-4']/div[1]/div[2]/div/table/tbody/tr"));
+            for (int i = 0; i < list.size(); i++) {
+                Thread.sleep(300);
+                list.get(i).click();
+                waitSearch(driver,By.xpath("//*[@id=\"table1\"]/tbody/tr/td[3]/a/span")).click();
+                loading(driver);
+                waitSearch(driver,By.id("codeType$text")).click();
+            }
             Thread.sleep(500);
             list.get(6).click();
             Thread.sleep(500);

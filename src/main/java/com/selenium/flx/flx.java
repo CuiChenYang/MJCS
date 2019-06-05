@@ -105,12 +105,167 @@ public class flx extends DriverBase {
         }
     }
 
+    //region 开户充值
 
-//region    系统管理
+    /**
+     * 正常开户
+     */
+    @Test(dependsOnMethods = "login", description = "正常开户")
+    public void normalOpenCustom() {
+        if (!se.normalCustom(driver)) {
+            driver.findElement(By.id("returnFalse")).click();
+        }
+    }
+
+    /**
+     * 客户管理 企业审核
+     */
+    @Test(dependsOnMethods = "normalOpenCustom", description = "客户管理 企业审核")
+    public void auditCustom() {
+        if (!custom.queryCustom(driver, se.customNo) || !custom.auditCustom(driver))
+            driver.findElement(By.id("returnFalse")).click();
+    }
+
+    /**
+     * 销售管理 订单录入
+     */
+    @Test(dependsOnMethods = "auditCustom", description = "销售管理 订单录入")
+    public void entryOrder() {
+        if (!order.entryOrder(se.customNo, driver))
+            driver.findElement(By.id("returnFalse")).click();
+    }
+
+    /**
+     * 销售管理 订单复核
+     */
+    @Test(dependsOnMethods = "entryOrder", description = "销售管理 订单复核")
+    public void checkOrder() {
+        //订单复核
+        if (!order.checkOrder(se.customNo, driver))
+            driver.findElement(By.id("returnFalse")).click();
+    }
+
+    /**
+     * 首次登录激活企业 并回复订单
+     */
+    @Test(dependsOnMethods = "checkOrder", description = "首次登录激活企业 并回复订单")
+    public void firstLoginFuYou() {
+        fuYou fy = new fuYou();
+        if (!fy.login(se.customNo, "123456") || !fy.login(se.customNo, "123456") || !fy.replyCustomOrder(se.customNo))
+            driver.findElement(By.id("returnFalse")).click();
+        else {
+            if (journal) {
+                Reporter.log("回复企业订单成功，企业号：" + se.customNo + "订单号为：" + order.orderId + "<br/>");
+            }
+            fy.driver.close();
+        }
+    }
+
+    /**
+     * 财务管理 订单业务 订单经办
+     */
+    @Test(dependsOnMethods = "firstLoginFuYou", description = "财务管理 订单业务 订单经办")
+    public void handleOrder() {
+        if (!order.handleOrder(driver))
+            driver.findElement(By.id("returnFalse")).click();
+    }
+
+    /**
+     * 财务管理 订单激活
+     */
+    @Test(dependsOnMethods = "handleOrder", description = "财务管理 订单激活")
+    public void activateOrder() {
+        if (!order.activateOrder(driver))
+            driver.findElement(By.id("returnFalse")).click();
+    }
+
+    /**
+     * 客服明细查询 查询显示余额三秒后注销用户
+     */
+    @Test(dependsOnMethods = "activateOrder", description = "客服明细查询 查询显示余额三秒后注销用户")
+    public void queryDetail() {
+        if (!cd.queryDetail(driver, se.customNo))
+            driver.findElement(By.id("returnFalse")).click();
+    }
+
+    //region     特殊开户
+
+    /**
+     * 特殊开户
+     */
+    @Test(dependsOnMethods = "queryDetail", description = "特殊开户")
+    public void specialOpenCustom_1() {
+        //判断是否开启特殊开户
+        if (Boolean.parseBoolean(flxOpenSwitch)) {
+            Reporter.log("-----------以下为特殊开户。" + "<br/>");
+            journal = false;
+
+            login();
+            if (se.custom01(driver) && specialOpenCustomProcedure())
+                Reporter.log("特殊开户1----开户并充值一千万优分成功。企业号：" + se.customNo + "<br/>");
+            else
+                Reporter.log("特殊开户1----开户失败" + "<br/>");
+
+            login();
+            if (se.custom02(driver) && specialOpenCustomProcedure())
+                Reporter.log("特殊开户2----开户并充值一千万优分成功。企业号：" + se.customNo + "<br/>");
+            else
+                Reporter.log("特殊开户1----开户失败" + "<br/>");
+        } else {
+            Reporter.log("特殊开户未开启" + "<br/>");
+        }
+    }
+
+    //特殊开户流程
+    public boolean specialOpenCustomProcedure() {
+        //客户管理 企业审核
+        if (!custom.queryCustom(driver, se.customNo))
+            return false;
+        if (!custom.auditCustom(driver))
+            return false;
+        //销售管理 订单录入
+        if (!order.entryOrder(se.customNo, driver))
+            return false;
+        //销售管理 订单复核
+        if (!order.checkOrder(se.customNo, driver))
+            return false;
+        //首次登录激活企业
+        fuYou fy = new fuYou();
+        if (!fy.login(se.customNo, "123456"))
+            return false;
+        //激活成功后重新登录 并回复订单
+        if (!fy.login(se.customNo, "123456"))
+            return false;
+        if (!fy.replyCustomOrder(se.customNo))
+            return false;
+        else
+            fy.driver.close();
+        //财务管理 订单业务 订单经办
+        if (!order.handleOrder(driver))
+            return false;
+        //财务管理 订单激活
+        if (!order.activateOrder(driver))
+            return false;
+        //完成后注销
+        driver.switchTo().defaultContent();
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/div[1]/p/span[2]/a[2]")).click();
+        return true;
+    }
+    //endregion
+
+    //endregion
+
+    //region    系统管理
 
     //用户管理
+//    @Test(dependsOnMethods = "specialOpenCustom_1", description = "系统管理--用户管理", alwaysRun = true)
     @Test(dependsOnMethods = "login", description = "系统管理--用户管理", alwaysRun = true)
     public void userManage() {
+//        driver.switchTo().defaultContent();
+//        if (isExistBoxOrExistButton(driver,"//*[@id=\"wrapper\"]/div[1]/div[1]/p/span[2]/a[2]",3)){
+//            driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/div[1]/p/span[2]/a[2]")).click();
+//        }
+//        login();
         listClickByText(driver, "系统管理");
         driver.findElement(By.xpath("//a[@url='/coframe/rights/user/user_list.jsp']")).click();
         userManage u = new userManage();
@@ -299,7 +454,7 @@ public class flx extends DriverBase {
     }
 //endregion
 
-//region    客户管理
+    //region    客户管理
 
     //客户档案变更记录
     @Test(dependsOnMethods = "userOperateLog", description = "客户管理--客户档案变更记录", alwaysRun = true)
@@ -332,94 +487,9 @@ public class flx extends DriverBase {
             driver.findElement(By.id("returnFalse")).click();
     }
 
-
-    /**
-     * 正常开户
-     */
-    @Test(dependsOnMethods = "login", description = "正常开户")
-    public void normalOpenCustom() {
-        if (!se.normalCustom(driver)) {
-            driver.findElement(By.id("returnFalse")).click();
-        }
-    }
-
-    /**
-     * 客户管理 企业审核
-     */
-    @Test(dependsOnMethods = "normalOpenCustom", description = "客户管理 企业审核")
-    public void auditCustom() {
-        if (!custom.queryCustom(driver, se.customNo) || !custom.auditCustom(driver))
-            driver.findElement(By.id("returnFalse")).click();
-    }
-
-    //region     特殊开户
-
-    /**
-     * 特殊开户
-     */
-    @Test(dependsOnMethods = "queryDetail", description = "特殊开户")
-    public void specialOpenCustom_1() {
-        //判断是否开启特殊开户
-        if (Boolean.parseBoolean(flxOpenSwitch)) {
-            Reporter.log("-----------以下为特殊开户。" + "<br/>");
-            journal = false;
-
-            login();
-            if (se.custom01(driver) && specialOpenCustomProcedure())
-                Reporter.log("特殊开户1----开户并充值一千万优分成功。企业号：" + se.customNo + "<br/>");
-            else
-                Reporter.log("特殊开户1----开户失败" + "<br/>");
-
-            login();
-            if (se.custom02(driver) && specialOpenCustomProcedure())
-                Reporter.log("特殊开户2----开户并充值一千万优分成功。企业号：" + se.customNo + "<br/>");
-            else
-                Reporter.log("特殊开户1----开户失败" + "<br/>");
-        } else {
-            Reporter.log("特殊开户未开启" + "<br/>");
-        }
-    }
-
-    //特殊开户流程
-    public boolean specialOpenCustomProcedure() {
-        //客户管理 企业审核
-        if (!custom.queryCustom(driver, se.customNo))
-            return false;
-        if (!custom.auditCustom(driver))
-            return false;
-        //销售管理 订单录入
-        if (!order.entryOrder(se.customNo, driver))
-            return false;
-        //销售管理 订单复核
-        if (!order.checkOrder(se.customNo, driver))
-            return false;
-        //首次登录激活企业
-        fuYou fy = new fuYou();
-        if (!fy.login(se.customNo, "123456"))
-            return false;
-        //激活成功后重新登录 并回复订单
-        if (!fy.login(se.customNo, "123456"))
-            return false;
-        if (!fy.replyCustomOrder(se.customNo))
-            return false;
-        else
-            fy.driver.close();
-        //财务管理 订单业务 订单经办
-        if (!order.handleOrder(driver))
-            return false;
-        //财务管理 订单激活
-        if (!order.activateOrder(driver))
-            return false;
-        //完成后注销
-        driver.switchTo().defaultContent();
-        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/div[1]/p/span[2]/a[2]")).click();
-        return true;
-    }
-    //endregion
-
 //endregion
 
-//region    销售管理
+    //region    销售管理
 
     //银行卡库存查询
     @Test(dependsOnMethods = "cooperationCustomRelation", description = "销售管理--银行卡库存查询", alwaysRun = true)
@@ -442,27 +512,9 @@ public class flx extends DriverBase {
             driver.findElement(By.id("returnFalse")).click();
     }
 
-    /**
-     * 销售管理 订单录入
-     */
-    @Test(dependsOnMethods = "auditCustom", description = "销售管理 订单录入")
-    public void entryOrder() {
-        if (!order.entryOrder(se.customNo, driver))
-            driver.findElement(By.id("returnFalse")).click();
-    }
-
-    /**
-     * 销售管理 订单复核
-     */
-    @Test(dependsOnMethods = "entryOrder", description = "销售管理 订单复核")
-    public void checkOrder() {
-        //订单复核
-        if (!order.checkOrder(se.customNo, driver))
-            driver.findElement(By.id("returnFalse")).click();
-    }
 //endregion
 
-//region    运营管理
+    //region    运营管理
 
     //客户绑定
     @Test(dependsOnMethods = "prepaidCardCountList", description = "运营管理--客户绑定", alwaysRun = true)
@@ -485,10 +537,9 @@ public class flx extends DriverBase {
             driver.findElement(By.id("returnFalse")).click();
     }
 
-
 //endregion
 
-//region    财务管理
+    //region    财务管理
 
     //批量代充业务（查询）
     @Test(dependsOnMethods = "agentList", description = "财务管理--批量代充业务（查询）", alwaysRun = true)
@@ -746,26 +797,9 @@ public class flx extends DriverBase {
     }
     //endregion
 
-    /**
-     * 财务管理 订单业务 订单经办
-     */
-    @Test(dependsOnMethods = "firstLoginFuYou", description = "财务管理 订单业务 订单经办")
-    public void handleOrder() {
-        if (!order.handleOrder(driver))
-            driver.findElement(By.id("returnFalse")).click();
-    }
-
-    /**
-     * 财务管理 订单激活
-     */
-    @Test(dependsOnMethods = "handleOrder", description = "财务管理 订单激活")
-    public void activateOrder() {
-        if (!order.activateOrder(driver))
-            driver.findElement(By.id("returnFalse")).click();
-    }
 //endregion
 
-//region    客服明细
+    //region    客服明细
 
     //充值卡状态查询
     @Test(dependsOnMethods = "queryEnterSummary", description = "客服明细--充值卡状态查询", alwaysRun = true)
@@ -778,17 +812,9 @@ public class flx extends DriverBase {
             driver.findElement(By.id("returnFalse")).click();
     }
 
-    /**
-     * 客服明细查询 查询显示余额三秒后注销用户
-     */
-    @Test(dependsOnMethods = "activateOrder", description = "客服明细查询 查询显示余额三秒后注销用户")
-    public void queryDetail() {
-        if (!cd.queryDetail(driver, se.customNo))
-            driver.findElement(By.id("returnFalse")).click();
-    }
 //endregion
 
-//region    绩效管理
+    //region    绩效管理
 
     //region 梯度管理
     //梯度管理--有效客户管理
@@ -876,22 +902,6 @@ public class flx extends DriverBase {
     }
 
 //endregion
-
-    /**
-     * 首次登录激活企业 并回复订单
-     */
-    @Test(dependsOnMethods = "checkOrder", description = "首次登录激活企业 并回复订单")
-    public void firstLoginFuYou() {
-        fuYou fy = new fuYou();
-        if (!fy.login(se.customNo, "123456") || !fy.login(se.customNo, "123456") || !fy.replyCustomOrder(se.customNo))
-            driver.findElement(By.id("returnFalse")).click();
-        else {
-            if (journal) {
-                Reporter.log("回复企业订单成功，企业号：" + se.customNo + "订单号为：" + order.orderId + "<br/>");
-            }
-            fy.driver.close();
-        }
-    }
 
     //点击对应的菜单
     public boolean listClickByText(WebDriver driver, String text) {

@@ -28,11 +28,6 @@ public class cooperationCustomRelation {
             }
 
             //查询
-            query(driver, "01510120", "", "", "", "");
-            query(driver, "", "测试", "", "", "");
-            query(driver, "", "", "0002", "", "");
-            query(driver, "", "", "", "福优管家", "");
-            query(driver, "", "", "", "", "MJCom");
             query(driver, "01510120", "上海满嘉***测试企业", "", "", "");
             query(driver, "01510120", "上海满嘉***测试企业", "0002", "福优管家", "");
             query(driver, "01510120", "上海满嘉***测试企业", "0002", "福优管家", "MJCom");

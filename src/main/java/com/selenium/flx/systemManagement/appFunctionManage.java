@@ -29,6 +29,7 @@ public class appFunctionManage {
             }
             Thread.sleep(500);
             switchIframe(driver, "/coframe/framework/application/application_list.jsp", 1);
+            Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
             switchIframe(driver, "/coframe/framework/application/application_add.jsp", 0);

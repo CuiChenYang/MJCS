@@ -13,10 +13,10 @@ public class errorRepayment {
     public boolean errorRepayment(WebDriver driver) {
         try {
 
-            Thread.sleep(500);
+            Thread.sleep(1000);
             switchIframe(driver, "/other/repayment/errorRepayment.jsp", 0);
 
-            Thread.sleep(500);
+            Thread.sleep(1000);
             updateInput(driver, "id", "import_time$text", "2018-11-28");
             driver.findElement(By.id("payment_time$text")).clear();
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span")).click();

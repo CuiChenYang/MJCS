@@ -53,7 +53,7 @@ public class authorizationManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-iconOnly.icon-save")).click();
             Thread.sleep(500);
-            waitClick(driver, "//*[@id=\"mini-27\"]/span", 3);
+            waitSearch(driver, By.xpath("//*[@id=\"mini-27\"]/span"));
 
             //机构
             Thread.sleep(500);
@@ -91,7 +91,7 @@ public class authorizationManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-iconOnly.icon-save")).click();
             Thread.sleep(500);
-            waitClick(driver, "//*[@id=\"mini-30\"]/span", 3);
+            waitSearch(driver, By.xpath("//*[@id=\"mini-30\"]/span"));
 
             //工作组
             Thread.sleep(500);
@@ -121,7 +121,7 @@ public class authorizationManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-iconOnly.icon-save")).click();
             Thread.sleep(500);
-            waitClick(driver, "//*[@id=\"mini-27\"]/span", 3);
+            waitSearch(driver, By.xpath("//*[@id=\"mini-27\"]/span"));
             //机构
             Thread.sleep(500);
             switchIframe(driver, "/coframe/auth/role_auth.jsp", 0);
@@ -133,7 +133,7 @@ public class authorizationManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-iconOnly.icon-save")).click();
             Thread.sleep(500);
-            waitClick(driver, "//*[@id=\"mini-30\"]/span", 3);
+            waitSearch(driver, By.xpath("//*[@id=\"mini-30\"]/span"));
 
             Thread.sleep(1000);
 

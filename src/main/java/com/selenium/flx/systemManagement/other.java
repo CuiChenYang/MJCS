@@ -36,7 +36,7 @@ public class other {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             Thread.sleep(500);
-            updateInput(driver, "id", "startIP$text", "192.168.5.55");
+            updateInput(driver, "id", "startIP$text", "192.168.5.67");
             Thread.sleep(500);
             updateInput(driver, "id", "endIP$text", "192.168.6.66");
             Thread.sleep(500);
@@ -50,7 +50,7 @@ public class other {
             List<WebElement> list = driver.findElements(By.className("mini-grid-cell"));
             Thread.sleep(500);
             for (int i = 1; i < list.size(); i += 6) {
-                if ("192.168.5.55".equals(list.get(i).getText())) {
+                if ("192.168.5.67".equals(list.get(i).getText())) {
                     list.get(i).click();
                     break;
                 }

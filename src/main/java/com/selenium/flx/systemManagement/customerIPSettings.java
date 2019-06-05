@@ -1,6 +1,7 @@
 package com.selenium.flx.systemManagement;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
@@ -63,7 +64,7 @@ public class customerIPSettings {
             Thread.sleep(500);
             switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
             Thread.sleep(500);
-            updateInput(driver, "id", "ipAddress$text", "192.168.1.21");
+            driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.1.21");
             Thread.sleep(500);
             driver.findElement(By.id("formtab1")).click();
             Thread.sleep(300);
