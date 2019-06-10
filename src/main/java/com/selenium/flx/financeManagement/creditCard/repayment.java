@@ -22,10 +22,9 @@ public class repayment {
 
             updateInput(driver, "id", "import_time$text", "2019-05-15");
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span")).click();
-            Thread.sleep(2000);
+            loading(driver);
 
             querySpinner(driver, false, "orderStatus$text", "mini-15", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span", true);
-            Thread.sleep(500);
             querySpinner(driver, false, "paymentStatus$text", "mini-19", "//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span", true);
 
             query(driver, "6259588689735205", "", "", "", "");
@@ -35,7 +34,7 @@ public class repayment {
             query(driver, "6259588689735206", "上海浦东发展银行", "姚健", "01510096", "YJ");
 
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
-            Thread.sleep(2000);
+            loading(driver);
             driver.switchTo().defaultContent();
             Thread.sleep(500);
             driver.findElement(By.xpath("//span[@style=';']")).click();
@@ -62,6 +61,6 @@ public class repayment {
         updateInput(driver, "id", "company$text", company);
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[2]/td[7]/a/span")).click();
-        Thread.sleep(2000);
+        loading(driver);
     }
 }

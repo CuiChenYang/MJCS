@@ -86,7 +86,7 @@ public class menuManage {
 
             Thread.sleep(500);
             switchIframe(driver, "/coframe/framework/menu/menu_function_select.jsp", 0);
-            Thread.sleep(1000);
+            loading(driver);
             driver.findElements(By.className("mini-grid-radio-mask")).get(0).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("/html/body/div[3]/a[1]/span")).click();

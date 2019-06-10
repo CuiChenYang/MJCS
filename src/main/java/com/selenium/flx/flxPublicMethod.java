@@ -115,15 +115,11 @@ public class flxPublicMethod {
         List<WebElement> list = driver.findElements(By.xpath("//div[@id='" + divId + "']/div[1]/div[2]/div/table/tbody/tr"));
         //循环点击列表的每个值
         for (int i = zero ? 0 : 1; i < list.size(); i++) {
-            //element_to_be_selected:判断某个元素是否被选中,一般用于select下拉表
-//            if (new WebDriverWait(driver, 1).until(ExpectedConditions.elementToBeSelected(By.id(spinnerId)))) {
             //判断某个元素是可见并且是enable(有效)的,这样的话才叫clickable
             new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(list.get(i))).click();
             waitSearch(driver, By.xpath(queryXpath)).click();
             loading(driver);
             Thread.sleep(500);
-//            }
-//            i--;
             if (i != list.size() - 1)
                 waitSearch(driver, By.id(spinnerId)).click();
         }

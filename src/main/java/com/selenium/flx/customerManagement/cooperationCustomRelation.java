@@ -27,6 +27,17 @@ public class cooperationCustomRelation {
                 return true;
             }
 
+            query(driver, "01510182", "", "", "", "");
+            if (isExistBoxOrExistButton(driver, "mini-grid-radio-mask", 1)) {
+                driver.findElement(By.className("mini-grid-radio-mask")).click();
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).click();
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
+            }
+
             //查询
             query(driver, "01510120", "上海满嘉***测试企业", "", "", "");
             query(driver, "01510120", "上海满嘉***测试企业", "0002", "福优管家", "");

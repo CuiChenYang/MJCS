@@ -20,12 +20,12 @@ public class errorRepayment {
             updateInput(driver, "id", "import_time$text", "2018-11-28");
             driver.findElement(By.id("payment_time$text")).clear();
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span")).click();
-            Thread.sleep(2000);
+            loading(driver);
 
             querySpinner(driver, false, "orderStatus$text", "mini-5", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span", true);
             querySpinner(driver, true, "channel$text", "mini-8", "//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span", false);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span")).click();
-            Thread.sleep(1000);
+            loading(driver);
             driver.findElement(By.id("channel$text")).click();
             driver.findElement(By.id("mini-8$3")).click();
 
@@ -65,6 +65,6 @@ public class errorRepayment {
         updateInput(driver, "id", "cardholder$text", cardholder);
         Thread.sleep(500);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[9]/a/span")).click();
-        Thread.sleep(1500);
+        loading(driver);
     }
 }
