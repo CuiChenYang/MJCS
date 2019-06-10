@@ -62,7 +62,6 @@ public class queryRepaymentAll {
         updateInput(driver, "id", "customNo$text", customNo);
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
-        Thread.sleep(2000);
-
+        loading(driver);
     }
 }

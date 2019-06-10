@@ -172,7 +172,7 @@ public class sepecEditCustom {
             if (isExistBoxOrExistButton(driver, "certbtn", 0)) {
                 driver.findElement(By.id("certbtn")).click();
                 //认证失败---点击alert继续
-                waitSearch(driver, By.xpath("//*[@class='mini-messagebox-buttons']//a"));
+                waitSearch(driver, By.xpath("//*[@class='mini-messagebox-buttons']//a")).click();
             }
             return true;
         } catch (Exception e) {

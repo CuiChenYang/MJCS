@@ -258,14 +258,14 @@ public class flx extends DriverBase {
     //region    系统管理
 
     //用户管理
-//    @Test(dependsOnMethods = "specialOpenCustom_1", description = "系统管理--用户管理", alwaysRun = true)
-    @Test(dependsOnMethods = "login", description = "系统管理--用户管理", alwaysRun = true)
+    @Test(dependsOnMethods = "specialOpenCustom_1", description = "系统管理--用户管理", alwaysRun = true)
+//    @Test(dependsOnMethods = "login", description = "系统管理--用户管理", alwaysRun = true)
     public void userManage() {
-//        driver.switchTo().defaultContent();
-//        if (isExistBoxOrExistButton(driver,"//*[@id=\"wrapper\"]/div[1]/div[1]/p/span[2]/a[2]",3)){
-//            driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/div[1]/p/span[2]/a[2]")).click();
-//        }
-//        login();
+        driver.switchTo().defaultContent();
+        if (isExistBoxOrExistButton(driver,"//*[@id=\"wrapper\"]/div[1]/div[1]/p/span[2]/a[2]",3)){
+            driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/div[1]/p/span[2]/a[2]")).click();
+        }
+        login();
         listClickByText(driver, "系统管理");
         driver.findElement(By.xpath("//a[@url='/coframe/rights/user/user_list.jsp']")).click();
         userManage u = new userManage();

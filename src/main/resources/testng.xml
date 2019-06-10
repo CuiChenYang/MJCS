@@ -8,16 +8,16 @@
                     <!--flx开户充值流程测试-->
                     <include name="flx"/>
                     <include name="login"/>
-                    <!--<include name="normalOpenCustom"/>-->
-                    <!--<include name="auditCustom"/>-->
-                    <!--<include name="entryOrder"/>-->
-                    <!--<include name="checkOrder"/>-->
-                    <!--<include name="firstLoginFuYou"/>-->
-                    <!--<include name="handleOrder"/>-->
-                    <!--<include name="activateOrder"/>-->
-                    <!--<include name="queryDetail"/>-->
+                    <include name="normalOpenCustom"/>
+                    <include name="auditCustom"/>
+                    <include name="entryOrder"/>
+                    <include name="checkOrder"/>
+                    <include name="firstLoginFuYou"/>
+                    <include name="handleOrder"/>
+                    <include name="activateOrder"/>
+                    <include name="queryDetail"/>
                     <!--特殊开户-->
-                    <!--<include name="specialOpenCustom_1"/>-->
+                    <include name="specialOpenCustom_1"/>
 
                     <!--flx测试-->
                     <!--系统管理-->

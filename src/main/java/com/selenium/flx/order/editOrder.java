@@ -170,7 +170,7 @@ public class editOrder {
             Thread.sleep(1000);
             driver.findElement(By.id("savebtn1")).click();
             Thread.sleep(1000);
-            waitSearch(driver, By.id("mini-144"));
+            waitSearch(driver, By.id("mini-144")).click();
             if (journal) {
                 Reporter.log("财务管理 订单激活成功，订单号为：" + orderId + "<br/>");
             }

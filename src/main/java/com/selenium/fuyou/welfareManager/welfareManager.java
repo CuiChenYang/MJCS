@@ -168,7 +168,7 @@ public class welfareManager {
             Thread.sleep(1000);
             //是否优分不足
             if (isElementPresent(driver)) {
-                waitSearch(driver, By.className("zeromodal-close"));
+                waitSearch(driver, By.className("zeromodal-close")).click();
             } else {
                 Thread.sleep(1000);
                 driver.findElement(By.className("btn-again")).click();
@@ -195,7 +195,7 @@ public class welfareManager {
             String info = uploadFiles(driver, customNo);
             if (isElementPresent(driver)) {
                 Thread.sleep(1000);
-                waitSearch(driver, By.className("zeromodal-close"));
+                waitSearch(driver, By.className("zeromodal-close")).click();
             }
             Reporter.log("通过分配模板(员工工号)批量福利发放成功。" + info + "<br/>");
             return true;
@@ -326,13 +326,13 @@ public class welfareManager {
                 return false;
             //删除
             Thread.sleep(1000);
-            waitSearch(driver, By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/table/tbody/tr[1]/td[7]/div/button[1]/span"));
+            waitSearch(driver, By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/table/tbody/tr[1]/td[7]/div/button[1]/span")).click();
             Thread.sleep(1000);
-            waitSearch(driver, By.xpath("/html/body/div[5]/div/div[3]/button[2]/span"));
+            waitSearch(driver, By.xpath("/html/body/div[5]/div/div[3]/button[2]/span")).click();
             Thread.sleep(1000);
-            waitSearch(driver, By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/table/tbody/tr/td[7]/div/button[1]/span"));
+            waitSearch(driver, By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[3]/table/tbody/tr/td[7]/div/button[1]/span")).click();
             Thread.sleep(1000);
-            waitSearch(driver, By.xpath("/html/body/div[5]/div/div[3]/button[2]"));
+            waitSearch(driver, By.xpath("/html/body/div[5]/div/div[3]/button[2]")).click();
             Thread.sleep(1000);
             Reporter.log("企业收款管理测试成功，企业号：" + customNo + "<br/>");
             return true;
@@ -473,7 +473,7 @@ public class welfareManager {
             Thread.sleep(1000);
             driver.findElement(By.id("btnSubmit")).click();
             Thread.sleep(1000);
-            waitSearch(driver, By.className("zeromodal-close"));
+            waitSearch(driver, By.className("zeromodal-close")).click();
             Thread.sleep(1000);
             driver.findElement(By.id("exchangeAmount")).sendKeys("00");
 
@@ -481,19 +481,19 @@ public class welfareManager {
             Thread.sleep(1000);
             driver.findElement(By.id("btnSubmit")).click();
             Thread.sleep(1000);
-            waitSearch(driver,  By.className("zeromodal-close"));
+            waitSearch(driver,  By.className("zeromodal-close")).click();
 
             //获取验证码
             driver.findElement(By.id("btnyzm")).click();
             Thread.sleep(1000);
-            waitSearch(driver,  By.className("zeromodal-close"));
+            waitSearch(driver,  By.className("zeromodal-close")).click();
             //输入错误验证码 确认兑换 提示验证码错误
             Thread.sleep(1000);
             driver.findElement(By.id("mobileCode")).sendKeys("asdf");
             Thread.sleep(1000);
             driver.findElement(By.id("btnSubmit")).click();
             Thread.sleep(1000);
-            waitSearch(driver,  By.className("zeromodal-close"));
+            waitSearch(driver,  By.className("zeromodal-close")).click();
             //输入正确验证码
             Thread.sleep(1000);
             String cord = getCord(customNo);
@@ -508,11 +508,11 @@ public class welfareManager {
             if (isExistBoxOrExistButton(driver, "zeromodal-title1", 1)) {
                 if (!"兑换成功".equals(driver.findElement(By.className("zeromodal-title1")).getText())) {
                     Reporter.log("一卡通兑换失败。失败原因：" + driver.findElement(By.className("zeromodal-title1")).getText() + "<br/>");
-                    waitSearch(driver,  By.className("zeromodal-close"));
+                    waitSearch(driver,  By.className("zeromodal-close")).click();
                     return true;
                 }
             }
-            waitSearch(driver,  By.className("zeromodal-close"));
+            waitSearch(driver,  By.className("zeromodal-close")).click();
             Reporter.log("一卡通兑换成功，兑换金额：100" + "<br/>");
             return true;
         } catch (Exception e) {
