@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 public class cooperationCustomRelation {
@@ -116,7 +114,7 @@ public class cooperationCustomRelation {
             Thread.sleep(500);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).click();
             Thread.sleep(500);
-            driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
+            waitSearch(driver,By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             //重置
             Thread.sleep(500);

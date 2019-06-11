@@ -22,7 +22,7 @@ public class terminalCustomer {
             Thread.sleep(500);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
             Thread.sleep(500);
-            //0.5   11
+            //3500000      null       0.5   11
             String str1 = driver.findElement(By.id("7$cell$6")).getText();
             String str2 = driver.findElement(By.id("7$cell$7")).getText();
             driver.findElement(By.id("7$cell$7")).click();

@@ -80,8 +80,8 @@
                 </methods>
             </class>
 
-            <!--<class name="com.selenium.fuyou.fuYou">-->
-            <!--</class>-->
+            <class name="com.selenium.fuyou.fuYou">
+            </class>
         </classes>
     </test>
 </suite>
