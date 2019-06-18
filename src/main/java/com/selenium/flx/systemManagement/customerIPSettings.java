@@ -116,7 +116,8 @@ public class customerIPSettings {
         Thread.sleep(500);
         updateInput(driver, "id", "customNo$text", "01510182");
         Thread.sleep(500);
-        driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
+//        driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
+        driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[11]/a/span")).click();
         Thread.sleep(500);
         driver.findElement(By.className("mini-grid-radio-mask")).click();
         Thread.sleep(500);
