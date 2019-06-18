@@ -9,6 +9,7 @@ import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.switchIframe;
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
 import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 public class customerIPSettings {
     //客户IP设置
@@ -19,29 +20,26 @@ public class customerIPSettings {
             switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
 
             //新增
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
-            Thread.sleep(500);
-            switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
-            Thread.sleep(500);
-            driver.findElement(By.className("mini-buttonedit-icon")).click();
-            Thread.sleep(500);
-            switchIframe(driver, "/custom/cusprofile/cusProfileManagerNew.jsp", 0);
-            Thread.sleep(500);
-            updateInput(driver, "id", "customNo$text", "01510182");
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
-            Thread.sleep(500);
-            driver.findElement(By.className("mini-grid-radio-mask")).click();
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
-            Thread.sleep(500);
-            switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
-            Thread.sleep(500);
-            updateInput(driver, "id", "ipAddress$text", "192.168.1.1");
-            Thread.sleep(500);
-            driver.findElement(By.id("butdiv")).click();
-            driver.findElement(By.id("butdiv")).click();
+            add(driver);
+            if (isExistBoxOrExistButton(driver, "//div[@class='mini-messagebox-buttons']/a", 3)) {
+                driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-cancel")).click();
+                Thread.sleep(500);
+                switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
+                Thread.sleep(500);
+                query(driver, "01510182", "");
+                Thread.sleep(500);
+                driver.findElement(By.className("mini-grid-radio-mask")).click();
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//*[@id=\"add\"]/../a[3]")).click();
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a[1]")).click();
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
+                Thread.sleep(500);
+                add(driver);
+            }
             Thread.sleep(500);
             driver.findElement(By.id("savebtn1")).click();
 
@@ -49,13 +47,8 @@ public class customerIPSettings {
             Thread.sleep(500);
             switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
             Thread.sleep(500);
-            updateInput(driver, "name", "customIp.ipAddress", "192.168.1.1");
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
-            Thread.sleep(500);
-            updateInput(driver, "name", "customIp.customNo", "01510182");
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
+            query(driver, "", "192.168.1.1");
+            query(driver, "01510182", "192.168.1.1");
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
 
@@ -76,11 +69,7 @@ public class customerIPSettings {
             switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a[2]/span")).click();
-            Thread.sleep(500);
-            updateInput(driver, "name", "customIp.customNo", "01510182");
-            updateInput(driver, "name", "customIp.ipAddress", "192.168.1.21");
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
+            query(driver, "01510182", "192.168.1.21");
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -106,4 +95,38 @@ public class customerIPSettings {
         }
     }
 
+    public void query(WebDriver driver, String customNo, String ipAddress) throws InterruptedException {
+        Thread.sleep(500);
+        updateInput(driver, "name", "customIp.customNo", customNo);
+        updateInput(driver, "name", "customIp.ipAddress", ipAddress);
+        Thread.sleep(500);
+        driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
+        Thread.sleep(1000);
+    }
+
+    public void add(WebDriver driver) throws InterruptedException {
+        Thread.sleep(500);
+        driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
+        Thread.sleep(500);
+        switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
+        Thread.sleep(500);
+        driver.findElement(By.className("mini-buttonedit-icon")).click();
+        Thread.sleep(500);
+        switchIframe(driver, "/custom/cusprofile/cusProfileManagerNew.jsp", 0);
+        Thread.sleep(500);
+        updateInput(driver, "id", "customNo$text", "01510182");
+        Thread.sleep(500);
+        driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[7]/a/span")).click();
+        Thread.sleep(500);
+        driver.findElement(By.className("mini-grid-radio-mask")).click();
+        Thread.sleep(500);
+        driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-ok")).click();
+        Thread.sleep(500);
+        switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
+        Thread.sleep(500);
+        driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.1.1");
+        Thread.sleep(500);
+        driver.findElement(By.id("formtab1")).click();
+        Thread.sleep(500);
+    }
 }
