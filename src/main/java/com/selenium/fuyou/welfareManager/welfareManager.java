@@ -286,6 +286,7 @@ public class welfareManager {
             Thread.sleep(1000);
             driver.findElement(By.xpath("//tbody/tr[@id='spqingdan_title']/following-sibling::tr/td[9]/a")).click();
             //获取验证码
+            Thread.sleep(1000);
             driver.findElement(By.id("btnyzm")).click();
             Thread.sleep(1000);
             driver.findElement(By.className("zeromodal-close")).click();

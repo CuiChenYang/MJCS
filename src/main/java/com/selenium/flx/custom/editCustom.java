@@ -59,7 +59,7 @@ public class editCustom {
             //企业审核
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-goto")).click();
             Thread.sleep(1000);
-            driver.findElement(By.id("mini-119")).click();
+            driver.findElements(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).get(1).click();
             driver.switchTo().defaultContent();
             if (journal) {
                 Reporter.log("企业审核成功，企业号为：" + customNo + "<br/>");

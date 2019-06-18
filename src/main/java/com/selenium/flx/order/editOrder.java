@@ -52,7 +52,7 @@ public class editOrder {
             Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@id=\"savebtn0\"]/span")).click();
             Thread.sleep(2000);
-            driver.findElement(By.id("mini-147")).click();
+            driver.findElements(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).get(1).click();
             if (journal) {
                 Reporter.log("销售管理 订单录入成功，企业号为：" + customNo + " 。订单号为：" + orderId + "<br/>");
             }
@@ -88,7 +88,7 @@ public class editOrder {
             Thread.sleep(1000);
             driver.findElement(By.id("savebtn2")).click();
             Thread.sleep(2000);
-            driver.findElement(By.id("mini-151")).click();
+            driver.findElements(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).get(1).click();
             driver.switchTo().defaultContent();
             if (journal) {
                 Reporter.log("销售管理 订单复核成功，企业号为：" + customNo + " 。订单号为：" + orderId + "<br/>");
