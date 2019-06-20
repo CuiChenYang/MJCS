@@ -42,6 +42,12 @@ public class customerIPSettings {
             }
             Thread.sleep(500);
             driver.findElement(By.id("savebtn1")).click();
+            Thread.sleep(500);
+            while(isExistBoxOrExistButton(driver,"savebtn1",0)){
+                driver.findElement(By.id("savebtn1")).click();
+                Thread.sleep(500);
+            }
+
 
             //查询选择
             Thread.sleep(500);
@@ -61,8 +67,13 @@ public class customerIPSettings {
             driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.1.21");
             Thread.sleep(500);
             driver.findElement(By.id("formtab1")).click();
-            Thread.sleep(300);
+            Thread.sleep(500);
             driver.findElement(By.id("savebtn1")).click();
+            Thread.sleep(500);
+            while(isExistBoxOrExistButton(driver,"savebtn1",0)){
+                driver.findElement(By.id("savebtn1")).click();
+                Thread.sleep(500);
+            }
 
             //查询并删除
             Thread.sleep(500);

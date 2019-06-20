@@ -27,7 +27,7 @@ public class authorizationManage {
 
             //配置
             Thread.sleep(1000);
-            driver.findElement(By.xpath("//a[@style='color:#1B3F91;text-decoration:underline;']")).click();
+            waitSearch(driver,By.xpath("//a[@style='color:#1B3F91;text-decoration:underline;']")).click();
 
             //功能
             switchIframe(driver, "/coframe/framework/function/function_role_auth.jsp", 1);

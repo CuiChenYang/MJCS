@@ -2,7 +2,10 @@ package com.selenium.flx.systemManagement;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
+
+import java.util.List;
 
 import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.switchIframe;
@@ -28,6 +31,22 @@ public class roleManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
 
+            //如果已存在，先删除
+            Thread.sleep(500);
+            List<WebElement> list = driver.findElements(By.cssSelector(".mini-grid-cell-inner.mini-grid-cell-nowrap"));
+            for (int i = 0; i < list.size(); i++) {
+                if ("自动化测试使用".equals(list.get(i).getText())){
+                    list.get(i).click();
+                    Thread.sleep(500);
+                    driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
+                    Thread.sleep(1000);
+                    driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).click();
+                    Thread.sleep(1000);
+                    driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
+                    break;
+                }
+            }
+
             //增加
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
@@ -50,7 +69,7 @@ public class roleManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
             //选择新增的角色
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
 
             //编辑
@@ -63,7 +82,7 @@ public class roleManage {
             Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             Thread.sleep(1000);
-            driver.findElement(By.xpath("//*[@id=\"mini-12\"]/span")).click();
+            driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             //删除
             Thread.sleep(500);
@@ -71,9 +90,9 @@ public class roleManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
             Thread.sleep(1000);
-            driver.findElement(By.xpath("//*[@id=\"mini-28\"]/span")).click();
+            driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).click();
             Thread.sleep(1000);
-            driver.findElement(By.xpath("//*[@id=\"mini-31\"]/span")).click();
+            driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
 
             Thread.sleep(1000);
 
