@@ -26,7 +26,7 @@ public class authorizationManage {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
 
             //配置
-            Thread.sleep(1000);
+            loading(driver);
             waitSearch(driver,By.xpath("//a[@style='color:#1B3F91;text-decoration:underline;']")).click();
 
             //功能

@@ -301,8 +301,8 @@ public class organizationManage {
             driver.findElement(By.xpath("//*[name()='svg']/*[name()='text'][5]/*[name()='tspan']")).click();
             Thread.sleep(500);
             driver.switchTo().defaultContent();
-            Thread.sleep(3000);
-            driver.findElement(By.xpath("//span[@id='3' and @class='mini-tools-close ']")).click();
+            Thread.sleep(2000);
+            waitSearch(driver,By.xpath("//span[@id='3' and @class='mini-tools-close ']")).click();
 
             //删除测试组织
             Thread.sleep(500);

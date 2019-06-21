@@ -3,6 +3,7 @@ package com.selenium.flx.systemManagement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
 import static com.selenium.flx.flx.journal;
@@ -21,40 +22,22 @@ public class customerIPSettings {
 
             //新增
             add(driver);
-            if (isExistBoxOrExistButton(driver, "//div[@class='mini-messagebox-buttons']/a", 3)) {
-                driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
-                Thread.sleep(500);
-                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-cancel")).click();
-                Thread.sleep(500);
-                switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
-                Thread.sleep(500);
-                query(driver, "01510182", "");
-                Thread.sleep(500);
-                driver.findElement(By.className("mini-grid-radio-mask")).click();
-                Thread.sleep(500);
-                driver.findElement(By.xpath("//*[@id=\"add\"]/../a[3]")).click();
-                Thread.sleep(500);
-                driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a[1]")).click();
-                Thread.sleep(500);
-                driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
-                Thread.sleep(500);
+            //若已存在，先删除原有
+            if (delete(driver, "01510182", "192.168.7.77"))
                 add(driver);
-            }
             Thread.sleep(500);
             driver.findElement(By.id("savebtn1")).click();
             Thread.sleep(500);
-            while(isExistBoxOrExistButton(driver,"savebtn1",0)){
+            while (isExistBoxOrExistButton(driver, "savebtn1", 0)) {
                 driver.findElement(By.id("savebtn1")).click();
                 Thread.sleep(500);
             }
-
 
             //查询选择
             Thread.sleep(500);
             switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
             Thread.sleep(500);
-            query(driver, "", "192.168.1.1");
-            query(driver, "01510182", "192.168.1.1");
+            query(driver, "01510182", "192.168.7.77");
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
 
@@ -64,13 +47,31 @@ public class customerIPSettings {
             Thread.sleep(500);
             switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
             Thread.sleep(500);
-            driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.1.21");
+            driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.7.87");
             Thread.sleep(500);
             driver.findElement(By.id("formtab1")).click();
+            Thread.sleep(1000);
+            //若已存在，先删除原有
+            if (delete(driver, "01510182", "192.168.7.87")) {
+                Thread.sleep(500);
+                switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
+                Thread.sleep(500);
+                query(driver, "01510182", "192.168.7.77");
+                Thread.sleep(500);
+                driver.findElement(By.className("mini-grid-radio-mask")).click();
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
+                Thread.sleep(500);
+                switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
+                Thread.sleep(500);
+                driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.7.21");
+                Thread.sleep(500);
+                driver.findElement(By.id("formtab1")).click();
+            }
             Thread.sleep(500);
             driver.findElement(By.id("savebtn1")).click();
             Thread.sleep(500);
-            while(isExistBoxOrExistButton(driver,"savebtn1",0)){
+            while (isExistBoxOrExistButton(driver, "savebtn1", 0)) {
                 driver.findElement(By.id("savebtn1")).click();
                 Thread.sleep(500);
             }
@@ -80,7 +81,7 @@ public class customerIPSettings {
             switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a[2]/span")).click();
-            query(driver, "01510182", "192.168.1.21");
+            query(driver, "01510182", "192.168.7.87");
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -136,9 +137,32 @@ public class customerIPSettings {
         Thread.sleep(500);
         switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
         Thread.sleep(500);
-        driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.1.1");
+        driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.7.77");
         Thread.sleep(500);
         driver.findElement(By.id("formtab1")).click();
         Thread.sleep(500);
+    }
+
+    public boolean delete(WebDriver driver, String queryid, String queryip) throws InterruptedException {
+        if (isExistBoxOrExistButton(driver, "//div[@class='mini-messagebox-buttons']/a", 3)) {
+            driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
+            Thread.sleep(500);
+            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-cancel")).click();
+            Thread.sleep(500);
+            switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
+            Thread.sleep(500);
+            query(driver, queryid, queryip);
+            Thread.sleep(500);
+            driver.findElement(By.className("mini-grid-radio-mask")).click();
+            Thread.sleep(500);
+            driver.findElement(By.xpath("//*[@id=\"add\"]/../a[3]")).click();
+            Thread.sleep(500);
+            driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a[1]")).click();
+            Thread.sleep(500);
+            driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
+            Thread.sleep(500);
+            return true;
+        }
+        return false;
     }
 }

@@ -142,7 +142,7 @@ public class flxPublicMethod {
         String oldHandle = driver.getWindowHandle();
         //点击按钮跳出页面
         driver.findElement(By.cssSelector(cssSelector)).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         //获取当前浏览器打开的页面Handle集合
         Set<String> set = driver.getWindowHandles();
         //定位到新打开的tab页

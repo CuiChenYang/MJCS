@@ -18,11 +18,12 @@ public class firstLogin {
     public boolean verificationCustom(WebDriver driver, String custom) {
         try {
             //短信确认
+            Thread.sleep(1000);
             driver.findElement(By.id("sendcodebt")).click();
             //获取手机验证码
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             driver.findElement(By.className("zeromodal-close")).click();
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             JdbcUtil j = new JdbcUtil();
             String cord = j.querySmsCode(j.queryCellPhone(custom));
             driver.findElement(By.id("Telcode")).sendKeys(cord);
