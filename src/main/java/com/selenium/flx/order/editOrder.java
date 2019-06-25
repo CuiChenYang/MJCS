@@ -85,7 +85,7 @@ public class editOrder {
             driver.switchTo().frame(driver.findElement(By.xpath("//iframe[contains(@src,'/sales/order/entry_order.jsp')]")));
             Thread.sleep(1000);
             driver.findElement(By.id("savebtn1")).click();
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             driver.findElement(By.id("savebtn2")).click();
             Thread.sleep(2000);
             driver.findElements(By.xpath("//div[@class='mini-messagebox-buttons']/a[1]")).get(1).click();

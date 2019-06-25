@@ -52,7 +52,7 @@ public class menuManage {
             Thread.sleep(1000);
             switchIframe(driver, "/coframe/framework/menu/menu_manage.jsp", 0);
             mouseClick(driver, "mini-tree-nodeshow", "测试1", 0);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.findElements(By.className("mini-tab-text")).get(1).click();
 
             Thread.sleep(1000);
@@ -67,7 +67,7 @@ public class menuManage {
             Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             switchIframe(driver, "/coframe/framework/menu/menu_manage.jsp", 0);
             switchIframe(driver, "/coframe/framework/menu/menu_list.jsp", 1);
             driver.findElement(By.className("mini-grid-radio-mask")).click();

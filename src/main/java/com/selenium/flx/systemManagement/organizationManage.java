@@ -58,7 +58,7 @@ public class organizationManage {
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
 
             //本级机构  修改
-            Thread.sleep(500);
+            loading(driver);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             mouseClick(driver, "mini-tree-nodeshow", "test公司", 0);
             Thread.sleep(500);
@@ -104,9 +104,10 @@ public class organizationManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //编辑
-            Thread.sleep(500);
+            loading(driver);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             switchIframe(driver, "/coframe/org/organization/sub_org_list.jsp", 1);
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -117,12 +118,12 @@ public class organizationManage {
             updateInput(driver, "id", "orgname$text", "测试下级机构");
             Thread.sleep(500);
             updateInput(driver, "id", "orgcode$text", "98");
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //删除
-            Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             switchIframe(driver, "/coframe/org/organization/sub_org_list.jsp", 1);
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -131,11 +132,11 @@ public class organizationManage {
             driver.findElement(By.xpath("//a[contains(@style,'width: 58px; margin-right: 15px;')]")).click();
 
             //下级岗位 新增
-            Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$5")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             switchIframe(driver, "/coframe/org/position/position_list.jsp", 1);
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
@@ -145,12 +146,13 @@ public class organizationManage {
             updateInput(driver, "id", "posiname$text", "测试岗");
             Thread.sleep(500);
             updateInput(driver, "id", "posicode$text", "01");
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             //编辑
-            Thread.sleep(500);
+            Thread.sleep(1000);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             switchIframe(driver, "/coframe/org/position/position_list.jsp", 1);
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -175,7 +177,8 @@ public class organizationManage {
             Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             switchIframe(driver, "/coframe/org/position/position_list.jsp", 1);
-            Thread.sleep(500);
+            loading(driver);
+            Thread.sleep(1000);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
@@ -185,6 +188,7 @@ public class organizationManage {
             //员工信息 新增
             Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$6")).click();
             Thread.sleep(1000);
@@ -221,6 +225,7 @@ public class organizationManage {
             updateInput(driver, "xpath", "//*[@id=\"table1\"]/tbody/tr[1]/td[2]/span/span/input", "测试丁");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
@@ -233,7 +238,7 @@ public class organizationManage {
             Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             switchIframe(driver, "/coframe/org/employee/employee_list.jsp", 1);
-            Thread.sleep(500);
+            loading(driver);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
@@ -249,7 +254,8 @@ public class organizationManage {
             Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
             switchIframe(driver, "/coframe/org/employee/employee_list.jsp", 1);
-            Thread.sleep(500);
+            loading(driver);
+            Thread.sleep(1000);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
@@ -259,6 +265,7 @@ public class organizationManage {
             //权限设置
             Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$7")).click();
             Thread.sleep(500);
@@ -293,6 +300,7 @@ public class organizationManage {
             //权限计算
             Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 0);
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.id("mini-17$8")).click();
             Thread.sleep(500);
@@ -305,6 +313,7 @@ public class organizationManage {
             waitSearch(driver,By.xpath("//span[@id='3' and @class='mini-tools-close ']")).click();
 
             //删除测试组织
+            loading(driver);
             Thread.sleep(500);
             switchIframe(driver, "/coframe/org/organization/org_tree.jsp", 1);
             mouseClick(driver, "mini-tree-nodeshow", "test公司", 2);

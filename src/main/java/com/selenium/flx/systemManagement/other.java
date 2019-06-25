@@ -23,44 +23,43 @@ public class other {
             switchIframe(driver, "/policy/access_rules_list.jsp", 0);
 
             //新增
+            installSafeStrategy_add(driver);
             Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
-            Thread.sleep(500);
-            switchIframe(driver, "/policy/access_rules_edit.jsp", 0);
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(500);
-            updateInput(driver, "id", "startIP$text", "524512");
-            Thread.sleep(500);
-            updateInput(driver, "id", "endIP$text", "sgdrgs");
-            Thread.sleep(500);
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
-            Thread.sleep(500);
-            updateInput(driver, "id", "startIP$text", "192.168.5.67");
-            Thread.sleep(500);
-            updateInput(driver, "id", "endIP$text", "192.168.6.66");
-            Thread.sleep(500);
-            driver.findElement(By.className("mini-fit")).click();
-            driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
+            //判断是否已有测试信息
+            if (isExistBoxOrExistButton(driver, "//*[@class=\"mini-messagebox-buttons\"]/a/span", 3)) {
+                Thread.sleep(500);
+                driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-cancel")).click();
+                Thread.sleep(500);
+                switchIframe(driver, "/policy/access_rules_list.jsp", 0);
+                Thread.sleep(500);
+                if (!installSafeStrategy_clickIP(driver, "自动化测试")) {
+                    if (journal) {
+                        taskScreenShot(driver);
+                        Reporter.log("系统管理--其他--设置安全策略--测试失败。错误：已存在自动化测试ip：192.168.44.44或192.168.44.77。请查看并更改" + "<br/>");
+                        return false;
+                    }
+                }
+                Thread.sleep(500);
+                driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-remove")).click();
+                Thread.sleep(500);
+                driver.switchTo().alert().accept();
+                Thread.sleep(1000);
+                installSafeStrategy_add(driver);
+            }
 
             //编辑
             Thread.sleep(500);
             switchIframe(driver, "/policy/access_rules_list.jsp", 0);
             Thread.sleep(500);
-            List<WebElement> list = driver.findElements(By.className("mini-grid-cell"));
-            Thread.sleep(500);
-            for (int i = 1; i < list.size(); i += 6) {
-                if ("192.168.5.67".equals(list.get(i).getText())) {
-                    list.get(i).click();
-                    break;
-                }
-            }
+            installSafeStrategy_clickIP(driver, "自动化测试");
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
             Thread.sleep(500);
             switchIframe(driver, "/policy/access_rules_edit.jsp", 0);
             Thread.sleep(500);
-            updateInput(driver, "id", "endIP$text", "192.168.7.77");
+            updateInput(driver, "id", "endIP$text", "192.168.44.46");
             Thread.sleep(500);
             driver.findElement(By.id("enabled$text")).click();
             Thread.sleep(500);
@@ -92,6 +91,43 @@ public class other {
             }
             return false;
         }
+    }
+
+    public void installSafeStrategy_add(WebDriver driver) throws InterruptedException {
+        Thread.sleep(500);
+        driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
+        Thread.sleep(500);
+        switchIframe(driver, "/policy/access_rules_edit.jsp", 0);
+        Thread.sleep(500);
+        driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
+        Thread.sleep(500);
+        updateInput(driver, "id", "startIP$text", "524512");
+        Thread.sleep(500);
+        updateInput(driver, "id", "endIP$text", "sgdrgs");
+        Thread.sleep(500);
+        driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
+        Thread.sleep(500);
+        updateInput(driver, "id", "startIP$text", "192.168.44.44");
+        Thread.sleep(500);
+        updateInput(driver, "id", "endIP$text", "192.168.44.45");
+        Thread.sleep(500);
+        updateInput(driver, "id", "remark$text", "自动化测试");
+        Thread.sleep(500);
+        driver.findElement(By.className("mini-fit")).click();
+        driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
+    }
+
+    public boolean installSafeStrategy_clickIP(WebDriver driver, String name) throws InterruptedException {
+        Thread.sleep(500);
+        List<WebElement> list = driver.findElements(By.cssSelector(".mini-grid-cell-inner.mini-grid-cell-nowrap "));
+        Thread.sleep(500);
+        for (int i = 0; i < list.size(); i++) {
+            if (name.equals(list.get(i).getText().trim())) {
+                list.get(i).click();
+                return true;
+            }
+        }
+        return false;
     }
 
     //配置业务字典
@@ -158,7 +194,7 @@ public class other {
             switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("/html/body/table/tbody/tr/td[2]/div/div/div/div[2]/div[1]/div/a[1]/span")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             updatedict(driver, "false", "test01", "测试字典项01", "1");
             //添加子项
             Thread.sleep(500);
@@ -167,14 +203,14 @@ public class other {
             driver.findElements(By.className("mini-grid-radio-mask")).get(2).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"btn_addSubDict\"]/span")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             updatedict(driver, "true", "test01_test01", "测试字典项01子项", "1");
             //修改
             Thread.sleep(500);
             switchIframe(driver, "/coframe/dict/dict_manager.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"btn_editDict\"]/span")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             updatedict(driver, "false", "", "测试字典项02", "2");
             //删除  业务字典项
             Thread.sleep(500);

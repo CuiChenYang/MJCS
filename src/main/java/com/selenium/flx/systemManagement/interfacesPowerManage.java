@@ -8,9 +8,7 @@ import org.testng.Reporter;
 import java.util.List;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 
 public class interfacesPowerManage {
     //接口权限管理
@@ -30,6 +28,7 @@ public class interfacesPowerManage {
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-search")).click();
             //点击配置
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.id("01510089")).click();
 
@@ -43,7 +42,7 @@ public class interfacesPowerManage {
                 list.get(15).click();
                 Thread.sleep(500);
                 driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-edit")).click();
-                Thread.sleep(1000);
+                Thread.sleep(1500);
                 driver.findElement(By.xpath("//*[@class=\"mini-messagebox-buttons\"]/a/span")).click();
             }
 

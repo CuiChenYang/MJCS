@@ -10,19 +10,25 @@ import java.util.List;
 import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.switchIframe;
 import static com.selenium.flx.flxPublicMethod.taskScreenShot;
+import static com.selenium.flx.flxPublicMethod.waitSearch;
 
 public class validCustomer {
 
     //绩效管理--梯度管理--有效客户管理
     public boolean validCustomer(WebDriver driver) {
         try {
-            //编号5     47      56      12
 
             Thread.sleep(500);
             switchIframe(driver, "/pa/ValidCustomer/validCustomer.jsp", 0);
 
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
+            Thread.sleep(500);
+            if (!"6".equals(waitSearch(driver, By.id("6$cell$3")).getText())) {
+                Reporter.log("绩效管理--梯度管理--有效客户管理--请确认是否更新过数据 <br/>");
+                Reporter.log("测试开发时原数据最后一行为： 编号5 、开始总业绩47、结束总业绩56、奖金计提比例12、备注null <br/>");
+                return false;
+            }
             Thread.sleep(500);
             driver.findElement(By.id("6$cell$5")).click();
             Thread.sleep(200);

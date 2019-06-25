@@ -2,7 +2,12 @@ package com.selenium.flx.financeManagement.statisticalReport;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
+
+import java.util.List;
 
 import static com.selenium.flx.flx.journal;
 import static com.selenium.flx.flxPublicMethod.*;
@@ -44,10 +49,11 @@ public class reportlogMangaer {
 
     public void queryInput(WebDriver driver, int num, String spinnerXpath, String listId, String queryXpath) throws InterruptedException {
         for (int i = 1; i < num; i++) {
-            driver.findElement(By.xpath(spinnerXpath)).click();
-            driver.findElement(By.id(listId + i)).click();
-            driver.findElement(By.xpath(queryXpath)).click();
-            Thread.sleep(1500);
+            waitSearch(driver, By.xpath(spinnerXpath)).click();
+            waitSearch(driver, By.id(listId + i)).click();
+            waitSearch(driver, By.xpath(queryXpath)).click();
+            loading(driver);
+            Thread.sleep(500);
         }
         driver.findElement(By.xpath(spinnerXpath)).click();
         driver.findElement(By.id(listId + 0)).click();

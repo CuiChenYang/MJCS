@@ -181,7 +181,6 @@ public class flxPublicMethod {
                 if (click == 1) {
                     mouse.contextClick(list.get(i)).perform();
                     Thread.sleep(500);
-
                 }
                 if (click == 2) {
                     Thread.sleep(500);

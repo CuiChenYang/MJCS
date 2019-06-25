@@ -17,12 +17,19 @@ public class terminalCustomer {
             Thread.sleep(500);
             switchIframe(driver, "/pa/ValidCustomer/terminalCustomer.jsp", 0);
 
+            //判断信息是否更改
+            Thread.sleep(500);
+            if (!judge(driver)) {
+                Reporter.log("绩效管理--梯度管理--终端客户管理--请查看编号7一行的信息是否更改 <br/>");
+                Reporter.log("测试开发时，原信息为：编号7 、开始总业绩3500000、结束总业绩null、奖金计提比例0.5、备注11 <br/>");
+                return false;
+            }
+
             Thread.sleep(500);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();
             Thread.sleep(500);
-            //3500000      null       0.5   11
             String str1 = driver.findElement(By.id("7$cell$6")).getText();
             String str2 = driver.findElement(By.id("7$cell$7")).getText();
             driver.findElement(By.id("7$cell$7")).click();
@@ -66,4 +73,25 @@ public class terminalCustomer {
             return false;
         }
     }
+
+    public boolean judge(WebDriver driver) {
+        if (!"7".equals(driver.findElement(By.id("7$cell$3")).getText().trim()))
+            return false;
+
+        if (!"3500000".equals(driver.findElement(By.id("7$cell$4")).getText().trim()))
+            return false;
+
+        String str = driver.findElement(By.id("7$cell$5")).getText().trim();
+        if (!("".equals(str) || str == null))
+            return false;
+
+        if (!"0.5".equals(driver.findElement(By.id("7$cell$6")).getText().trim()))
+            return false;
+
+        if (!"11".equals(driver.findElement(By.id("7$cell$7")).getText().trim()))
+            return false;
+
+        return true;
+    }
+
 }

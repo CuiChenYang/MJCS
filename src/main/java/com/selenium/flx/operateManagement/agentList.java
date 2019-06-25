@@ -30,11 +30,11 @@ public class agentList {
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a/span")).click();
 
             //添加
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-add")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             switchIframe(driver, "/agent/agent/addAgent.jsp", 0);
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.cssSelector(".mini-button-text.mini-button-icon.icon-save")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("//div[@class='mini-messagebox-buttons']/a")).click();

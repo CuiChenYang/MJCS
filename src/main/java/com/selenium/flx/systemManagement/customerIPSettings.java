@@ -7,9 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
 
 import static com.selenium.flx.flx.journal;
-import static com.selenium.flx.flxPublicMethod.switchIframe;
-import static com.selenium.flx.flxPublicMethod.taskScreenShot;
-import static com.selenium.flx.flxPublicMethod.updateInput;
+import static com.selenium.flx.flxPublicMethod.*;
 import static com.selenium.fuyou.fuYouMethod.isExistBoxOrExistButton;
 
 public class customerIPSettings {
@@ -23,21 +21,17 @@ public class customerIPSettings {
             //新增
             add(driver);
             //若已存在，先删除原有
-            if (delete(driver, "01510182", "192.168.7.77"))
+            Thread.sleep(500);
+            if (delete(driver, "01510182", "192.168.44.44"))
                 add(driver);
             Thread.sleep(500);
             driver.findElement(By.id("savebtn1")).click();
-            Thread.sleep(500);
-            while (isExistBoxOrExistButton(driver, "savebtn1", 0)) {
-                driver.findElement(By.id("savebtn1")).click();
-                Thread.sleep(500);
-            }
 
             //查询选择
-            Thread.sleep(500);
+            Thread.sleep(1000);
             switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
             Thread.sleep(500);
-            query(driver, "01510182", "192.168.7.77");
+            query(driver, "01510182", "192.168.44.44");
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
 
@@ -47,16 +41,16 @@ public class customerIPSettings {
             Thread.sleep(500);
             switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
             Thread.sleep(500);
-            driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.7.87");
+            driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.44.45");
             Thread.sleep(500);
             driver.findElement(By.id("formtab1")).click();
             Thread.sleep(1000);
             //若已存在，先删除原有
-            if (delete(driver, "01510182", "192.168.7.87")) {
+            if (delete(driver, "01510182", "192.168.44.45")) {
                 Thread.sleep(500);
                 switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
                 Thread.sleep(500);
-                query(driver, "01510182", "192.168.7.77");
+                query(driver, "01510182", "192.168.44.44");
                 Thread.sleep(500);
                 driver.findElement(By.className("mini-grid-radio-mask")).click();
                 Thread.sleep(500);
@@ -64,31 +58,27 @@ public class customerIPSettings {
                 Thread.sleep(500);
                 switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
                 Thread.sleep(500);
-                driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.7.21");
+                driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.44.45");
                 Thread.sleep(500);
                 driver.findElement(By.id("formtab1")).click();
             }
             Thread.sleep(500);
             driver.findElement(By.id("savebtn1")).click();
-            Thread.sleep(500);
-            while (isExistBoxOrExistButton(driver, "savebtn1", 0)) {
-                driver.findElement(By.id("savebtn1")).click();
-                Thread.sleep(500);
-            }
 
             //查询并删除
-            Thread.sleep(500);
+            Thread.sleep(1000);
             switchIframe(driver, "/other/customIp/customIpQueryList.jsp", 0);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"queryForm\"]/table/tbody/tr[1]/td[6]/a[2]/span")).click();
-            query(driver, "01510182", "192.168.7.87");
+            query(driver, "01510182", "192.168.44.45");
             Thread.sleep(500);
             driver.findElement(By.className("mini-grid-radio-mask")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@id=\"add\"]/../a[3]")).click();
+            loading(driver);
             Thread.sleep(500);
             driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a[1]")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//*[@class='mini-messagebox-buttons']/a")).click();
 
             Thread.sleep(1000);
@@ -137,7 +127,7 @@ public class customerIPSettings {
         Thread.sleep(500);
         switchIframe(driver, "/other/customIp/editCustomIp.jsp", 0);
         Thread.sleep(500);
-        driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.7.77");
+        driver.findElement(By.id("ipAddress$text")).sendKeys(Keys.chord(Keys.CONTROL, "a"), "192.168.44.44");
         Thread.sleep(500);
         driver.findElement(By.id("formtab1")).click();
         Thread.sleep(500);
