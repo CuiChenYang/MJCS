@@ -11,6 +11,7 @@ import com.selenium.fuyou.login.loginValidate;
 import com.selenium.fuyou.welfareManager.welfareManager;
 import com.selenium.fuyou.transactionManager.electronicInvoice;
 import com.selenium.fuyou.transactionManager.transactionRecord;
+import com.selenium.utils.AESDncodeUtil;
 import com.selenium.utils.PropertiesConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -69,7 +70,6 @@ public class fuYou extends DriverBase {
     @Test(dependsOnMethods = "fuYouTest",description = "登陆")
     public boolean login(){
         try {
-            loginValidate log = new loginValidate();
             //判断是否存在广告
             boolean flag = isExistBoxOrExistButton(driver,"notice",1);
             if (flag) {
@@ -90,22 +90,11 @@ public class fuYou extends DriverBase {
             driver.findElement(By.id("username")).sendKeys(username);
             Thread.sleep(500);
             driver.findElement(By.id("password")).sendKeys(password);
-            String result = log.validateCoding(driver);
+            String result = AESDncodeUtil.decryptAES(driver.manage().getCookieNamed("VerifyCookie").getValue());
             driver.findElement(By.id("verifyCode")).sendKeys(result);
             Thread.sleep(500);
             driver.findElement(By.className("login_Btn")).click();
             Thread.sleep(1000);
-            //循环输入验证码登陆
-            while (isAlertPresent(driver)) {
-                driver.switchTo().alert().accept();
-                driver.findElement(By.id("verifyCode")).clear();
-                Thread.sleep(500);
-                result = log.validateCoding(driver);
-                driver.findElement(By.id("verifyCode")).sendKeys(result);
-                Thread.sleep(500);
-                driver.findElement(By.className("login_Btn")).click();
-                Thread.sleep(500);
-            }
 
             Reporter.log("企业账号登陆成功--企业号：" + username+"<br/>");
 
@@ -149,7 +138,6 @@ public class fuYou extends DriverBase {
 
             driver.get(fuYouUrl);
             driver.manage().window().maximize();
-            loginValidate log = new loginValidate();
             boolean flag = isExistBoxOrExistButton(driver, "notice", 1);
             if (flag) {
                 driver.findElement(By.className("notice_close")).click();
@@ -165,22 +153,11 @@ public class fuYou extends DriverBase {
             driver.findElement(By.id("username")).sendKeys(username);
             Thread.sleep(500);
             driver.findElement(By.id("password")).sendKeys(password);
-            String result = log.validateCoding(driver);
+            String result = AESDncodeUtil.decryptAES(driver.manage().getCookieNamed("VerifyCookie").getValue());
             driver.findElement(By.id("verifyCode")).sendKeys(result);
             Thread.sleep(500);
             driver.findElement(By.className("login_Btn")).click();
             Thread.sleep(1000);
-            while (isAlertPresent(driver)) {
-                driver.switchTo().alert().accept();
-                driver.findElement(By.id("verifyCode")).clear();
-                Thread.sleep(500);
-                result = log.validateCoding(driver);
-                driver.findElement(By.id("verifyCode")).sendKeys(result);
-                Thread.sleep(500);
-                driver.findElement(By.className("login_Btn")).click();
-                Thread.sleep(500);
-            }
-            Thread.sleep(500);
             flag = isExistBoxOrExistButton(driver,"gb",1);
             if(flag){
                 driver.findElement(By.className("gb")).click();

@@ -586,7 +586,7 @@ public class enterpriseProcurement {
                         driver.findElement(By.className("zeromodal-close")).click();
                     }
                     Thread.sleep(500);
-                    String verificationCode = AESDncodeUtil.decryptAES(driver.manage().getCookieNamed("VerifyCookie").getValue(),"FMpT+/DPUvN7qCJdTktmNQ==","Vs3Wurs07nh9Lt+0QVT2Vg==");
+                    String verificationCode = AESDncodeUtil.decryptAES(driver.manage().getCookieNamed("VerifyCookie").getValue());
                     driver.findElement(By.id("textfieldpassword")).sendKeys(verificationCode);
                     Thread.sleep(500);
                     driver.findElement(By.id("btnLoginAndBuy")).click();
